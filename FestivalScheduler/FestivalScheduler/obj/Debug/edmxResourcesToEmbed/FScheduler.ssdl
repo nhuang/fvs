@@ -1,4 +1,333 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="fschedulerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="fschedulerModelStoreContainer" />
+  <EntityContainer Name="fschedulerModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="fschedulerModel.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApplicationRoleGroups" EntityType="fschedulerModel.Store.ApplicationRoleGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApplicationUserGroups" EntityType="fschedulerModel.Store.ApplicationUserGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="fschedulerModel.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserClaims" EntityType="fschedulerModel.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserLogins" EntityType="fschedulerModel.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserRoles" EntityType="fschedulerModel.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUsers" EntityType="fschedulerModel.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="fschedulerModel.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MeetingAttendees" EntityType="fschedulerModel.Store.MeetingAttendees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Meetings" EntityType="fschedulerModel.Store.Meetings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tasks" EntityType="fschedulerModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId" Association="fschedulerModel.Store.FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="ApplicationRoleGroups" EntitySet="ApplicationRoleGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ApplicationRoleGroups_dbo_Groups_GroupId" Association="fschedulerModel.Store.FK_dbo_ApplicationRoleGroups_dbo_Groups_GroupId">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="ApplicationRoleGroups" EntitySet="ApplicationRoleGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ApplicationUserGroups_dbo_AspNetUsers_UserId" Association="fschedulerModel.Store.FK_dbo_ApplicationUserGroups_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ApplicationUserGroups" EntitySet="ApplicationUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ApplicationUserGroups_dbo_Groups_GroupId" Association="fschedulerModel.Store.FK_dbo_ApplicationUserGroups_dbo_Groups_GroupId">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="ApplicationUserGroups" EntitySet="ApplicationUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="fschedulerModel.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="fschedulerModel.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="fschedulerModel.Store.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="fschedulerModel.Store.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MeetingAtendee_Meeting" Association="fschedulerModel.Store.FK_MeetingAtendee_Meeting">
+      <End Role="Meetings" EntitySet="Meetings" />
+      <End Role="MeetingAttendees" EntitySet="MeetingAttendees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Meetings_Meetings" Association="fschedulerModel.Store.FK_Meetings_Meetings">
+      <End Role="Meetings" EntitySet="Meetings" />
+      <End Role="Meetings1" EntitySet="Meetings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Tasks" Association="fschedulerModel.Store.FK_Tasks_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Tasks1" EntitySet="Tasks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="ApplicationRoleGroups">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplicationUserGroups">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+    <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MeetingAttendees">
+    <Key>
+      <PropertyRef Name="MeetingID" />
+      <PropertyRef Name="AttendeeID" />
+    </Key>
+    <Property Name="MeetingID" Type="int" Nullable="false" />
+    <Property Name="AttendeeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Meetings">
+    <Key>
+      <PropertyRef Name="MeetingID" />
+    </Key>
+    <Property Name="MeetingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="End" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="ntext" Nullable="false" />
+    <Property Name="Description" Type="ntext" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="IsAllDay" Type="bit" Nullable="false" />
+    <Property Name="RecurrenceRule" Type="ntext" />
+    <Property Name="RecurrenceID" Type="int" />
+    <Property Name="RecurrenceException" Type="ntext" />
+    <Property Name="StartTimezone" Type="ntext" />
+    <Property Name="EndTimezone" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="End" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="ntext" Nullable="false" />
+    <Property Name="Description" Type="ntext" />
+    <Property Name="OwnerID" Type="int" />
+    <Property Name="IsAllDay" Type="bit" Nullable="false" />
+    <Property Name="RecurrenceRule" Type="ntext" />
+    <Property Name="RecurrenceID" Type="int" />
+    <Property Name="RecurrenceException" Type="ntext" />
+    <Property Name="StartTimezone" Type="ntext" />
+    <Property Name="EndTimezone" Type="ntext" />
+  </EntityType>
+  <Association Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="fschedulerModel.Store.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ApplicationRoleGroups" Type="fschedulerModel.Store.ApplicationRoleGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationRoleGroups">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ApplicationRoleGroups_dbo_Groups_GroupId">
+    <End Role="Groups" Type="fschedulerModel.Store.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ApplicationRoleGroups" Type="fschedulerModel.Store.ApplicationRoleGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationRoleGroups">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ApplicationUserGroups_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="fschedulerModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ApplicationUserGroups" Type="fschedulerModel.Store.ApplicationUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationUserGroups">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ApplicationUserGroups_dbo_Groups_GroupId">
+    <End Role="Groups" Type="fschedulerModel.Store.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ApplicationUserGroups" Type="fschedulerModel.Store.ApplicationUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationUserGroups">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUsers" Type="fschedulerModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="fschedulerModel.Store.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="fschedulerModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="fschedulerModel.Store.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="fschedulerModel.Store.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="fschedulerModel.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="fschedulerModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="fschedulerModel.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MeetingAtendee_Meeting">
+    <End Role="Meetings" Type="fschedulerModel.Store.Meetings" Multiplicity="1" />
+    <End Role="MeetingAttendees" Type="fschedulerModel.Store.MeetingAttendees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meetings">
+        <PropertyRef Name="MeetingID" />
+      </Principal>
+      <Dependent Role="MeetingAttendees">
+        <PropertyRef Name="MeetingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Meetings_Meetings">
+    <End Role="Meetings" Type="fschedulerModel.Store.Meetings" Multiplicity="0..1" />
+    <End Role="Meetings1" Type="fschedulerModel.Store.Meetings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meetings">
+        <PropertyRef Name="MeetingID" />
+      </Principal>
+      <Dependent Role="Meetings1">
+        <PropertyRef Name="RecurrenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Tasks">
+    <End Role="Tasks" Type="fschedulerModel.Store.Tasks" Multiplicity="0..1" />
+    <End Role="Tasks1" Type="fschedulerModel.Store.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="Tasks1">
+        <PropertyRef Name="RecurrenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

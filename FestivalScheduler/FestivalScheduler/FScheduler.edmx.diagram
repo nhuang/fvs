@@ -4,7 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dd6d4001d0c445e596ccccc31f9d73ec" Name="Diagram1" />
+      <Diagram DiagramId="dd6d4001d0c445e596ccccc31f9d73ec" Name="Diagram1" >
+        <EntityTypeShape EntityType="fschedulerModel.C__MigrationHistory" Width="1.5" PointX="1.2017375869684561" PointY="0.77325588500744469" />
+        <EntityTypeShape EntityType="fschedulerModel.AspNetRole" Width="1.5" PointX="8.5287082812416877" PointY="1.5073437101707532" />
+        <EntityTypeShape EntityType="fschedulerModel.AspNetUserClaim" Width="1.5" PointX="11.301588289114454" PointY="1.7302313306044002" />
+        <EntityTypeShape EntityType="fschedulerModel.AspNetUserLogin" Width="1.5" PointX="4.6586284752276859" PointY="1.844050125146308" />
+        <EntityTypeShape EntityType="fschedulerModel.AspNetUser" Width="1.5" PointX="5.4438071611541359" PointY="18.196141504773937" />
+        <EntityTypeShape EntityType="fschedulerModel.Group" Width="1.5" PointX="5.0103312437470677" PointY="5.6665198829334784" />
+        <EntityTypeShape EntityType="fschedulerModel.MeetingAttendee" Width="1.5" PointX="11.253983985285268" PointY="26.54429059966667" />
+        <EntityTypeShape EntityType="fschedulerModel.Meeting" Width="1.5" PointX="1.0225258027308275" PointY="0.3656080366883464" />
+        <EntityTypeShape EntityType="fschedulerModel.Task" Width="1.5" PointX="4.517369227724787" PointY="23.281193386428615" />
+        <AssociationConnector Association="fschedulerModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="fschedulerModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="fschedulerModel.FK_MeetingAtendee_Meeting" />
+        <AssociationConnector Association="fschedulerModel.FK_Meetings_Meetings" />
+        <AssociationConnector Association="fschedulerModel.FK_Tasks_Tasks" />
+        <AssociationConnector Association="fschedulerModel.ApplicationRoleGroups" />
+        <AssociationConnector Association="fschedulerModel.ApplicationUserGroups" />
+        <AssociationConnector Association="fschedulerModel.AspNetUserRoles" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

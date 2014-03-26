@@ -12,6 +12,7 @@
     <EntitySet Name="Groups" EntityType="fschedulerModel.Store.Groups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MeetingAttendees" EntityType="fschedulerModel.Store.MeetingAttendees" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Meetings" EntityType="fschedulerModel.Store.Meetings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Room" EntityType="fschedulerModel.Store.Room" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tasks" EntityType="fschedulerModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId" Association="fschedulerModel.Store.FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -164,6 +165,15 @@
     <Property Name="RecurrenceException" Type="ntext" />
     <Property Name="StartTimezone" Type="ntext" />
     <Property Name="EndTimezone" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="varchar" Nullable="false" MaxLength="2000" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="Color" Type="varchar" Nullable="false" MaxLength="2000" />
   </EntityType>
   <EntityType Name="Tasks">
     <Key>

@@ -34,5 +34,6 @@ namespace FestivalScheduler
         public DbSet<MeetingAttendee> MeetingAttendees { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Room> Rooms { get; set; }
     }
 }

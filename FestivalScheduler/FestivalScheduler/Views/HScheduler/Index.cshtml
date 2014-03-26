@@ -4,92 +4,51 @@
 }
 
 <h2>Index</h2>
-   <div id="example" class="k-content">
-    <div id="scheduler"></div>
-</div>
-<script>
-    $(function () {
-        $("#scheduler").kendoScheduler({
-            date: new Date("2013/6/13"),
-            startTime: new Date("2013/6/13 07:00 AM"),
-            height: 600,
-            views: [
-                "day",
-                { type: "week", selected: true },
-                "month"
-            ],
-            timezone: "Etc/UTC",
-            dataSource: {
-                batch: true,
-                transport: {
-                    read: {
-                        url: "http://demos.telerik.com/kendo-ui/service/meetings",
-                        dataType: "jsonp"
-                    },
-                    update: {
-                        url: "http://demos.telerik.com/kendo-ui/service/meetings/update",
-                        dataType: "jsonp"
-                    },
-                    create: {
-                        url: "http://demos.telerik.com/kendo-ui/service/meetings/create",
-                        dataType: "jsonp"
-                    },
-                    destroy: {
-                        url: "http://demos.telerik.com/kendo-ui/service/meetings/destroy",
-                        dataType: "jsonp"
-                    },
-                    parameterMap: function (options, operation) {
-                        if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
-                        }
-                    }
-                },
-                schema: {
-                    model: {
-                        id: "meetingID",
-                        fields: {
-                            meetingID: { from: "MeetingID", type: "number" },
-                            title: { from: "Title", defaultValue: "No title", validation: { required: true } },
-                            start: { type: "date", from: "Start" },
-                            end: { type: "date", from: "End" },
-                            startTimezone: { from: "StartTimezone" },
-                            endTimezone: { from: "EndTimezone" },
-                            description: { from: "Description" },
-                            recurrenceId: { from: "RecurrenceID" },
-                            recurrenceRule: { from: "RecurrenceRule" },
-                            recurrenceException: { from: "RecurrenceException" },
-                            roomId: { from: "RoomID", nullable: true },
-                            attendees: { from: "Attendees", nullable: true },
-                            isAllDay: { type: "boolean", from: "IsAllDay" }
-                        }
-                    }
-                }
-            },
-            group: {
-                resources: ["Rooms"]
-            },
-            resources: [
-                {
-                    field: "roomId",
-                    name: "Rooms",
-                    dataSource: [
-                        { text: "Meeting Room 101", value: 1, color: "#6eb3fa" },
-                        { text: "Meeting Room 201", value: 2, color: "#f58a8a" }
-                    ],
-                    title: "Room"
-                },
-                {
-                    field: "attendees",
-                    name: "Attendees",
-                    dataSource: [
-                        { text: "Alex", value: 1, color: "#f8a398" },
-                        { text: "Bob", value: 2, color: "#51a0ed" },
-                        { text: "Charlie", value: 3, color: "#56ca85" }
-                    ],
-                    multiple: true,
-                    title: "Attendees"
-                }
-            ]
-        });
-    });
-</script>
+@(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
+    .Name("scheduler")
+    .StartTime(new DateTime(2013, 6, 13, 7, 00, 00))
+    .Views(views =>
+    {
+        views.DayView();
+        views.WeekView(weekView => weekView.Selected(true));
+        views.WorkWeekView();     
+        views.MonthView();
+        views.AgendaView();
+    })
+    .Timezone("Etc/UTC")
+    .Group(group => group.Resources("Rooms"))
+    .Resources(resource =>
+         {
+            resource.Add(m => m.RoomID)
+                .Title("Room")
+                .Name("Rooms")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .DataColorField("Color")
+                .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+              );
+            resource.Add(m => m.Attendees)
+                .Title("Attendees")
+                .Multiple(true)
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .DataColorField("Color")
+                .BindTo(new[] { 
+                    new { Text = "Alex", Value = 1, Color = "#f8a398" } ,
+                    new { Text = "Bob", Value = 2, Color = "#51a0ed" } ,
+                    new { Text = "Charlie", Value = 3, Color = "#56ca85" } 
+                });
+         })
+    .DataSource(d => d
+            .Model(m => { 
+                m.Id(f => f.MeetingID);
+                m.Field(f => f.Title).DefaultValue("No title");
+                m.RecurrenceId(f => f.RecurrenceID);
+                m.Field(f => f.Title).DefaultValue("No title");
+            })
+            .Read("Grouping_Horizontal_Read", "HScheduler")
+            .Create("Grouping_Horizontal_Create", "HScheduler")
+            .Destroy("Grouping_Horizontal_Destroy", "HScheduler")
+            .Update("Grouping_Horizontal_Update", "HScheduler")
+    )
+)

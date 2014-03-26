@@ -3,7 +3,6 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\FestivalScheduler.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Antlr3.Runtime.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.SqlServer.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Kendo.Mvc.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -28,7 +27,6 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\WebGrease.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Antlr3.Runtime.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.SqlServer.xml
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Kendo.Mvc.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Owin.xml
@@ -47,20 +45,6 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.Razor.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.WebPages.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.WebPages.Deployment.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.WebPages.Razor.xml
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\bg-BG\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\da-DK\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\de-DE\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\es-ES\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\fr-FR\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\it-IT\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\nl-NL\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\pl-PL\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\pt-BR\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\pt-PT\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\ro-RO\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\ru-RU\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\sv-SE\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\uk-UA\Kendo.Mvc.resources.dll
-C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\zh-CN\Kendo.Mvc.resources.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.pdb
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.csprojResolveAssemblyReference.cache

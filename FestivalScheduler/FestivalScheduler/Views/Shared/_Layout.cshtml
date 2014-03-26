@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Fringe Theatre Scheduler System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/web/kendo.common.min.css")
@@ -24,16 +24,45 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Account")</li>
-                    <li>@Html.ActionLink("Groups", "Index", "Groups")</li>
-                    <li>@Html.ActionLink("Permissions", "Index", "Roles")</li>
+                  @(Html.Kendo().Menu()
+      .Name("Menu")
+      .Items(items =>
+      {
+          items.Add().Text("Home").Action("Index", "Home");
+          items.Add().Text("About").Action("Index", "Home");
+          items.Add().Text("Contact").Action("Index", "Home");
+          
+          items.Add()
+              .Text("Admin")
+              .Items(children =>
+               {
+                   children.Add().Text("Setting")
+                           .Items(innerChildren =>
+                           {
+                               innerChildren.Add().Text("Users").Action("Index", "Account");
+                               innerChildren.Add().Text("Groups").Action("Index", "Groups");
+                               innerChildren.Add().Text("Permissions").Action("Index", "Roles");
+                           });
+               });
+          items.Add()
+           .Text("Scheduler")
+           .Items(children =>
+           {
+
+               children.Add().Text("Rooms").Action("Index", "HScheduler");
+               children.Add().Text("Groups").Action("Index", "Groups");
+               children.Add().Text("Permissions").Action("Index", "Roles");
+ 
+           });     
+
+      })
+    )
+                  
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -43,7 +72,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Fringe Theatre Scheduler System</p>
         </footer>
     </div>
 

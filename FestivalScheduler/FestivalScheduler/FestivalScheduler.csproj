@@ -1670,6 +1670,7 @@
     <Compile Include="Controllers\Account\GroupsController.cs" />
     <Compile Include="Controllers\Account\HomeController.cs" />
     <Compile Include="Controllers\Account\RolesController.cs" />
+    <Compile Include="Controllers\Resources\RoomController.cs" />
     <Compile Include="Controllers\Scheduler\HSchedulerController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>FScheduler.tt</DependentUpon>
@@ -1710,12 +1711,17 @@
     <Compile Include="Models\Account\ApplicationUserGroup.cs" />
     <Compile Include="Models\Account\Group.cs" />
     <Compile Include="Models\Account\IdentityManager.cs" />
+    <Compile Include="Models\Resouces\RoomService.cs" />
+    <Compile Include="Models\Resouces\RoomViewModel.cs" />
     <Compile Include="Models\Scheduler\MeetingViewModel.cs" />
     <Compile Include="Models\Scheduler\Projection.cs" />
     <Compile Include="Models\Scheduler\SchedulerMeetingService.cs" />
     <Compile Include="Models\Scheduler\SchedulerTaskService.cs" />
     <Compile Include="Models\Scheduler\TaskViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room.cs">
+      <DependentUpon>FScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Task.cs">
       <DependentUpon>FScheduler.tt</DependentUpon>
@@ -1747,6 +1753,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml.bak" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
@@ -1757,11 +1764,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Meeting\Create.cshtml" />
-    <Content Include="Views\Meeting\Delete.cshtml" />
-    <Content Include="Views\Meeting\Details.cshtml" />
-    <Content Include="Views\Meeting\Edit.cshtml" />
-    <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\HScheduler\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1774,7 +1776,6 @@
     <Folder Include="Content\UserFiles\Images\icons\16\" />
     <Folder Include="Content\UserFiles\Images\icons\sports\" />
     <Folder Include="Content\UserFiles\Images\Menu\" />
-    <Folder Include="Views\Scheduler\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

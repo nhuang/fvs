@@ -42,6 +42,7 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -235,4 +236,13 @@
     <End Type="fschedulerModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="fschedulerModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Text" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Value" Nullable="false" />
+    <Property Type="String" Name="Color" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

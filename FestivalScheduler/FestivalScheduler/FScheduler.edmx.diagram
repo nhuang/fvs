@@ -22,6 +22,7 @@
         <AssociationConnector Association="fschedulerModel.ApplicationRoleGroups" />
         <AssociationConnector Association="fschedulerModel.ApplicationUserGroups" />
         <AssociationConnector Association="fschedulerModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="fschedulerModel.Room" Width="1.5" PointX="3.7969821224906397" PointY="16.810240872581602" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

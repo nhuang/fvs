@@ -11,25 +11,64 @@ using FestivalScheduler.Models.Resouces;
 
 namespace FestivalScheduler.Controllers.Resources
 {
-    public class RoomController : Controller
-    {
-        private RoomService roomService;
+	public class RoomController : Controller
+	{
+		private RoomService roomService;
 
-        public RoomController()
+		public RoomController()
+		{
+			this.roomService = new RoomService();
+		}
+
+		//
+		// GET: /Room/
+		public ActionResult Index()
+		{
+			return View(roomService.GetAll());
+		}
+
+
+		public virtual JsonResult Room_Read()
+		{
+			return Json(roomService.GetAll(), JsonRequestBehavior.AllowGet);
+		}
+
+        public ActionResult EditingPopup_Read([DataSourceRequest] DataSourceRequest request)
         {
-            this.roomService = new RoomService();
+            return Json(roomService.GetAll().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        //
-        // GET: /Room/
-        public ActionResult Index()
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult EditingPopup_Create([DataSourceRequest] DataSourceRequest request, RoomViewModel rvm)
         {
-            return View();
+            if (rvm != null && ModelState.IsValid)
+            {
+                roomService.Insert(rvm, ModelState);
+            }
+
+            return Json(new[] { rvm }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Room_Read()
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult EditingPopup_Update([DataSourceRequest] DataSourceRequest request, RoomViewModel rvm)
         {
-            return Json(roomService.GetAll(), JsonRequestBehavior.AllowGet);
+            if (rvm != null && ModelState.IsValid)
+            {
+                roomService.Update(rvm, ModelState);
+            }
+
+            return Json(new[] { rvm }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult EditingPopup_Destroy([DataSourceRequest] DataSourceRequest request, RoomViewModel rvm)
+        {
+            if (rvm != null)
+            {
+                roomService.Delete(rvm, ModelState);
+            }
+
+            return Json(new[] { rvm }.ToDataSourceResult(request, ModelState));
         }
 
 	}

@@ -37,18 +37,7 @@
           items.Add().Text("About").Action("Index", "Home");
           items.Add().Text("Contact").Action("Index", "Home");
           
-          items.Add()
-              .Text("Admin")
-              .Items(children =>
-               {
-                   children.Add().Text("Setting")
-                           .Items(innerChildren =>
-                           {
-                               innerChildren.Add().Text("Users").Action("Index", "Account");
-                               innerChildren.Add().Text("Groups").Action("Index", "Groups");
-                               innerChildren.Add().Text("Permissions").Action("Index", "Roles");
-                           });
-               });
+      
           items.Add()
            .Text("Scheduler")
            .Items(children =>
@@ -58,8 +47,25 @@
                children.Add().Text("Groups").Action("Index", "Groups");
                children.Add().Text("Permissions").Action("Index", "Roles");
  
-           });     
-
+           });
+          
+          items.Add()
+          .Text("Admin")
+          .Items(children =>
+          {
+              children.Add().Text("Setting")
+                      .Items(innerChildren =>
+                      {
+                          innerChildren.Add().Text("Users").Action("Index", "Account");
+                          innerChildren.Add().Text("Groups").Action("Index", "Groups");
+                          innerChildren.Add().Text("Permissions").Action("Index", "Roles");
+                      });
+              children.Add().Text("Resources")
+                     .Items(innerChildren =>
+                     {
+                         innerChildren.Add().Text("Rooms").Action("Index", "Room");
+                     });
+          });
       })
     )
                   

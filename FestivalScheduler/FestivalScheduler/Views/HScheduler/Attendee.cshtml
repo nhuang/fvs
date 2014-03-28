@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -12,33 +11,34 @@
     {
         views.DayView(view => view.Selected(true));
         views.WeekView();
-        views.WorkWeekView();     
+        views.WorkWeekView();
         views.MonthView();
         views.AgendaView();
     })
     .Timezone("Etc/UTC")
-    .Group(group => group.Resources("Rooms"))
+        .Group(group => group.Resources("Attendees"))
     .Resources(resource =>
          {
-            resource.Add(m => m.RoomID)
-                .Title("Room")
-                .Name("Rooms")
-                .DataTextField("Text")
-                .DataValueField("Value")
-                .DataColorField("Color")
-                .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
-              );
-            resource.Add(m => m.Attendees)
-                .Title("Attendees")
-                .Multiple(true)
-                .DataTextField("Text")
-                .DataValueField("Value")
-                .DataColorField("Color")
-                .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
-              );
+             resource.Add(m => m.RoomID)
+                 .Title("Room")
+                 .Name("Rooms")
+                 .DataTextField("Text")
+                 .DataValueField("Value")
+                 .DataColorField("Color")
+                 .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+               );
+             resource.Add(m => m.Attendees)
+                 .Title("Attendees")
+                 .Multiple(true)
+                 .DataTextField("Text")
+                 .DataValueField("Value")
+                 .DataColorField("Color")
+                 .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
+               );
          })
     .DataSource(d => d
-            .Model(m => { 
+            .Model(m =>
+            {
                 m.Id(f => f.MeetingID);
                 m.Field(f => f.Title).DefaultValue("No title");
                 m.RecurrenceId(f => f.RecurrenceID);
@@ -48,6 +48,7 @@
             .Create("Grouping_Horizontal_Create", "HScheduler")
             .Destroy("Grouping_Horizontal_Destroy", "HScheduler")
             .Update("Grouping_Horizontal_Update", "HScheduler")
+
         ).EventTemplate(
                         "<div class='view-template'>" +
                                 "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +

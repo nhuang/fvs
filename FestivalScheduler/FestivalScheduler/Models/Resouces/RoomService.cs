@@ -47,11 +47,6 @@ namespace FestivalScheduler.Models.Resouces
                     room.Value = 100;
                 }
 
-                if (!HtmlColorHexInString(room.Color))
-                {
-                    room.Color = "#f58a8a";
-                }
-
                 var entity = room.ToEntity();
 
                 db.Rooms.Add(entity);
@@ -73,11 +68,6 @@ namespace FestivalScheduler.Models.Resouces
                 if (room.Value < 0)
                 {
                     room.Value = 100;
-                }
-
-                if (!HtmlColorHexInString(room.Color))
-                {
-                    room.Color = "#f58a8a";
                 }
                 var entity = room.ToEntity();
                 db.Rooms.Attach(entity);
@@ -106,18 +96,6 @@ namespace FestivalScheduler.Models.Resouces
 
             return true;
         }
-
-        /**
-         * Validate hex with regular expression
-         * @param hex hex for validation
-         * @return true valid hex, false invalid hex
-        */
-        public bool HtmlColorHexInString(string test)
-        {
-            // For C-style hex notation (0xFF) you can use @"\A\b(0[xX])?[0-9a-fA-F]+\b\Z"
-            return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
-        }
-
 
         public void Dispose()
         {

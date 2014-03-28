@@ -140,5 +140,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Attendees">
+      <EntityTypeMapping TypeName="fschedulerModel.Attendee">
+        <MappingFragment StoreEntitySet="Attendees">
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

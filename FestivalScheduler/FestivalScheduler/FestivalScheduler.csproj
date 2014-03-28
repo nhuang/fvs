@@ -1666,10 +1666,14 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>FScheduler.tt</DependentUpon>
     </Compile>
+    <Compile Include="Attendee.cs">
+      <DependentUpon>FScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Account\AccountController.cs" />
     <Compile Include="Controllers\Account\GroupsController.cs" />
     <Compile Include="Controllers\Account\HomeController.cs" />
     <Compile Include="Controllers\Account\RolesController.cs" />
+    <Compile Include="Controllers\Resources\AttendeeController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
     <Compile Include="Controllers\Scheduler\HSchedulerController.cs" />
     <Compile Include="C__MigrationHistory.cs">
@@ -1711,6 +1715,8 @@
     <Compile Include="Models\Account\ApplicationUserGroup.cs" />
     <Compile Include="Models\Account\Group.cs" />
     <Compile Include="Models\Account\IdentityManager.cs" />
+    <Compile Include="Models\Resouces\AttendeeService.cs" />
+    <Compile Include="Models\Resouces\AttendeeViewModel.cs" />
     <Compile Include="Models\Resouces\RoomService.cs" />
     <Compile Include="Models\Resouces\RoomViewModel.cs" />
     <Compile Include="Models\Scheduler\MeetingViewModel.cs" />
@@ -1753,6 +1759,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Attendee\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
@@ -1766,6 +1773,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\HScheduler\Index.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\HScheduler\Attendee.cshtml" />
+    <Content Include="Views\HScheduler\Mix.cshtml" />
+    <Content Include="Views\HScheduler\Vertical.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

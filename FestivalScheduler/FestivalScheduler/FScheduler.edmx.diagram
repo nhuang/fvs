@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dd6d4001d0c445e596ccccc31f9d73ec" Name="Diagram1" >
-        <EntityTypeShape EntityType="fschedulerModel.C__MigrationHistory" Width="1.5" PointX="1.2017375869684561" PointY="0.77325588500744469" />
+        <EntityTypeShape EntityType="fschedulerModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="0.5" />
         <EntityTypeShape EntityType="fschedulerModel.AspNetRole" Width="1.5" PointX="8.5287082812416877" PointY="1.5073437101707532" />
         <EntityTypeShape EntityType="fschedulerModel.AspNetUserClaim" Width="1.5" PointX="11.301588289114454" PointY="1.7302313306044002" />
         <EntityTypeShape EntityType="fschedulerModel.AspNetUserLogin" Width="1.5" PointX="4.6586284752276859" PointY="1.844050125146308" />
@@ -23,6 +23,7 @@
         <AssociationConnector Association="fschedulerModel.ApplicationUserGroups" />
         <AssociationConnector Association="fschedulerModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="fschedulerModel.Room" Width="1.5" PointX="3.7969821224906397" PointY="16.810240872581602" />
+        <EntityTypeShape EntityType="fschedulerModel.Attendee" Width="1.5" PointX="0.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

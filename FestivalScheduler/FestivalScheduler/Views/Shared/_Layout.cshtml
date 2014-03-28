@@ -8,8 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/web/kendo.common.min.css")
     @Styles.Render("~/Content/web/kendo.rtl.min.css")
-    @Styles.Render("~/Content/web/kendo.default.min.css")
-    
+    @Styles.Render("~/Content/web/kendo.Metro.min.css")
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/bootstrap")
@@ -29,26 +29,25 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                  @(Html.Kendo().Menu()
+                    @(Html.Kendo().Menu()
       .Name("Menu")
       .Items(items =>
       {
           items.Add().Text("Home").Action("Index", "Home");
           items.Add().Text("About").Action("Index", "Home");
           items.Add().Text("Contact").Action("Index", "Home");
-          
-      
+
+
           items.Add()
            .Text("Scheduler")
            .Items(children =>
            {
-
-               children.Add().Text("Rooms").Action("Index", "HScheduler");
-               children.Add().Text("Groups").Action("Index", "Groups");
-               children.Add().Text("Permissions").Action("Index", "Roles");
- 
+               children.Add().Text("Mix").Action("Mix", "HScheduler");
+               children.Add().Text("Horizontal").Action("Index", "HScheduler");
+               children.Add().Text("Vertical ").Action("Vertical", "HScheduler");
+               children.Add().Text("Attendee").Action("Attendee", "HScheduler");
            });
-          
+
           items.Add()
           .Text("Admin")
           .Items(children =>
@@ -64,11 +63,12 @@
                      .Items(innerChildren =>
                      {
                          innerChildren.Add().Text("Rooms").Action("Index", "Room");
+                         innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
                      });
           });
       })
-    )
-                  
+                    )
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

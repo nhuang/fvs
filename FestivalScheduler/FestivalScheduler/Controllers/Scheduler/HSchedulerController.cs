@@ -9,7 +9,7 @@ using Kendo.Mvc.UI;
 
 using FestivalScheduler;
 using FestivalScheduler.Models;
-
+using FestivalScheduler.Models.Resouces;
 
 namespace FestivalScheduler.Controllers.Scheduler
 {
@@ -18,17 +18,37 @@ namespace FestivalScheduler.Controllers.Scheduler
 
         private SchedulerTaskService taskService;
         private SchedulerMeetingService meetingService;
-
-
+        private AttendeeService attendeeService;
+        private fschedulerEntities db;
         public HSchedulerController()
         {
             this.taskService = new SchedulerTaskService();
             this.meetingService = new SchedulerMeetingService();
+            this.attendeeService = new AttendeeService();
+            this.db = new fschedulerEntities();
         }
 
         //
         // GET: /HScheduler/
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: /HScheduler/Mix
+        public ActionResult Mix()
+        {
+            return View();
+        }
+
+        // GET: /HScheduler/Attendee
+        public ActionResult Attendee()
+        {
+              return View();
+        }
+
+        // GET: /HScheduler/Vertical
+        public ActionResult Vertical()
         {
             return View();
         }

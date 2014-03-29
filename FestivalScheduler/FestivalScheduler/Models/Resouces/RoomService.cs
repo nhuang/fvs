@@ -5,6 +5,10 @@ using System.Web;
 using Kendo.Mvc.UI;
 using System.Web.Mvc;
 
+using System.Data;
+using System.Data.Entity;
+using System.Data.Linq;
+
 namespace FestivalScheduler.Models.Resouces
 {
     public class RoomService
@@ -29,8 +33,43 @@ namespace FestivalScheduler.Models.Resouces
                     ID = room.ID,
                     Text = room.Text,
                     Value = room.Value,
-                    Color = room.Color
+                    Color = room.Color,
+                    Show = room.Show
                 }).AsQueryable();
+        }
+
+        public virtual IQueryable<RoomViewModel> GetRoomsForScheduler()
+        {
+            return db.Rooms.ToList().Select(room => new RoomViewModel
+            {
+                ID = room.ID,
+                Text = room.Text,
+                Value = room.Value,
+                Color = room.Color,
+                 Show = room.Show
+            }).Where(r => r.Show == true).AsQueryable();
+        }
+
+        public virtual void UpdateRoomToShow(string[] strs )
+        {
+            if (strs != null && strs.Length > 0)
+            {
+                db.Database.ExecuteSqlCommand("update Room set show = 0");
+                int roomId = 0;
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    roomId = Convert.ToInt32(strs[i]);
+                    Room r = db.Rooms.FirstOrDefault(room => room.Value == roomId);
+                    r.Show = true;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                db.Database.ExecuteSqlCommand("update Room set show = 0");
+                db.SaveChanges();
+            }
+        
         }
 
         public virtual void Insert(RoomViewModel room, ModelStateDictionary modelState)

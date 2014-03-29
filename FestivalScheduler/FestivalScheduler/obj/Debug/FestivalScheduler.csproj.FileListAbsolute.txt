@@ -49,3 +49,4 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.WebPages.Razor.
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Debug\FestivalScheduler.csprojResolveAssemblyReference.cache
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\MvcCheckBoxList.dll

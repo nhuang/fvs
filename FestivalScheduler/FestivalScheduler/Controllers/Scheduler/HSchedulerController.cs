@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using MvcCheckBoxList.Model;
 
 using FestivalScheduler;
 using FestivalScheduler.Models;
@@ -19,26 +20,26 @@ namespace FestivalScheduler.Controllers.Scheduler
         private SchedulerTaskService taskService;
         private SchedulerMeetingService meetingService;
         private AttendeeService attendeeService;
-        private fschedulerEntities db;
+        private RoomService roomService;
         public HSchedulerController()
         {
             this.taskService = new SchedulerTaskService();
             this.meetingService = new SchedulerMeetingService();
             this.attendeeService = new AttendeeService();
-            this.db = new fschedulerEntities();
+            this.roomService = new RoomService();
         }
 
         //
         // GET: /HScheduler/
         public ActionResult Index()
         {
-            return View();
+            return View(roomService.GetAll());
         }
 
         // GET: /HScheduler/Mix
         public ActionResult Mix()
         {
-            return View();
+            return View(roomService.GetAll());
         }
 
         // GET: /HScheduler/Attendee
@@ -50,7 +51,31 @@ namespace FestivalScheduler.Controllers.Scheduler
         // GET: /HScheduler/Vertical
         public ActionResult Vertical()
         {
-            return View();
+            return View(roomService.GetAll());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult HRoomFilter(FormCollection collection)
+        {
+            string[] strs = collection.GetValues("room");
+            roomService.UpdateRoomToShow(strs);
+            return View(roomService.GetAll());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult VRoomFilter(FormCollection collection)
+        {
+            string[] strs = collection.GetValues("room");
+            roomService.UpdateRoomToShow(strs);
+            return View(roomService.GetAll());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult MixFilter(FormCollection collection)
+        {
+            string[] strs = collection.GetValues("room");
+            roomService.UpdateRoomToShow(strs);
+            return View(roomService.GetAll());
         }
 
         public virtual JsonResult Grouping_Horizontal_Read([DataSourceRequest] DataSourceRequest request)

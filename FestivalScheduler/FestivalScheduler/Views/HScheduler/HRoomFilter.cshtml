@@ -1,13 +1,17 @@
 ﻿@model IEnumerable<FestivalScheduler.Models.Resouces.RoomViewModel>
+
 @{
-    ViewBag.Title = "Mix";
+    ViewBag.Title = "Room Filtered";
 }
+<h2>Rooms Horizontal Grouping</h2>
 
-<h2>Mix</h2>
-
-    @foreach (var item in Model)
+@using (Html.BeginForm("HRoomFilter", "HScheduler", FormMethod.Post))
 {
-    <label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+    foreach (var item in Model)
+    {
+        <input type="checkbox" name="room" value="@item.Value" checked="@item.Show"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+    }
+    <input type="submit" value="Filter" />
 }
 
 
@@ -17,12 +21,13 @@
     .Width(1080)
     .Views(views =>
     {
-        views.DayView();
-        views.WeekView(view => view.Selected(true));
+        views.DayView(view => view.Selected(true));
+        views.WeekView();
         views.MonthView();
     })
     .Timezone("Etc/UTC")
-       .Resources(resource =>
+    .Group(group => group.Resources("Rooms"))
+    .Resources(resource =>
          {
              resource.Add(m => m.RoomID)
                  .Title("Room")
@@ -30,7 +35,7 @@
                  .DataTextField("Text")
                  .DataValueField("Value")
                  .DataColorField("Color")
-                 .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+                 .DataSource(ds => ds.Read(read => read.Action("Room_Selected", "Room"))
                );
              resource.Add(m => m.Attendees)
                  .Title("Attendees")
@@ -54,12 +59,11 @@
             .Destroy("Grouping_Horizontal_Destroy", "HScheduler")
             .Update("Grouping_Horizontal_Update", "HScheduler")
         ).EventTemplate(
-                    "<div class='view-template'>" +
-                            "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +
-                        "<br/>" +
-                        "#= title #<br/>" +
-                        "#= kendo.toString('Room ') #" +
-                        "#= RoomID #" +
-                    "</div>")
-
+                        "<div class='view-template'>" +
+                                "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +
+                            "<br/>" +
+                            "#= title #<br/>" +
+                            "#= kendo.toString('Room ') #" +
+                            "#= RoomID #" +
+                        "</div>")
 )

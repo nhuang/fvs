@@ -8,14 +8,14 @@
 {
     foreach (var item in Model)
     {
-        <input type="checkbox" name="room" value="@item.Value" checked="checked"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+        <input type="checkbox" name="room" value="@item.Value" checked="@item.Show"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
     }
     <input type="submit" value="Filter" />
 }
 
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-         .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
+             .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
     .Views(views =>
     {
         views.DayView();
@@ -32,7 +32,7 @@
                      .DataTextField("Text")
                      .DataValueField("Value")
                      .DataColorField("Color")
-                     .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+                     .DataSource(ds => ds.Read(read => read.Action("Room_Selected", "Room"))
                    );
                  resource.Add(m => m.Attendees)
                      .Title("Attendees")

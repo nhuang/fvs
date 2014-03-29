@@ -130,9 +130,9 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Rooms">
-      <EntityTypeMapping TypeName="fschedulerModel.Room">
-        <MappingFragment StoreEntitySet="Room">
+    <EntitySetMapping Name="Attendees">
+      <EntityTypeMapping TypeName="fschedulerModel.Attendee">
+        <MappingFragment StoreEntitySet="Attendees">
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Text" ColumnName="Text" />
@@ -140,9 +140,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Attendees">
-      <EntityTypeMapping TypeName="fschedulerModel.Attendee">
-        <MappingFragment StoreEntitySet="Attendees">
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="fschedulerModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="Show" ColumnName="Show" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Text" ColumnName="Text" />

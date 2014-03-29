@@ -12,6 +12,7 @@ namespace FestivalScheduler.Models.Resouces
             public string Text { get; set; }
             public int Value { get; set; }
             public string Color { get; set; }
+            public bool Show { get; set; }
 
             public Room ToEntity()
             {
@@ -21,9 +22,16 @@ namespace FestivalScheduler.Models.Resouces
                     Text = Text,
                     Value = Value,
                     Color = Color,
+                    Show = Show,
                 };
 
                 return room;
             }
+
+            public class RoomsForScheduler
+            {
+                public int[] SelectValues { get; set; }
+            }
+
     }
 }

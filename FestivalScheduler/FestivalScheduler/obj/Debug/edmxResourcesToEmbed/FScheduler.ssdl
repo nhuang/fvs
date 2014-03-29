@@ -124,6 +124,7 @@
     <Property Name="Text" Type="varchar" MaxLength="2000" Nullable="false" />
     <Property Name="Value" Type="int" Nullable="false" />
     <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="Show" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Tasks">
     <Key>

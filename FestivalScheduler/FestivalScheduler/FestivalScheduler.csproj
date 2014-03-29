@@ -75,6 +75,9 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="MvcCheckBoxList">
+      <HintPath>..\packages\MvcCheckBoxList.1.4.4.5\lib\net45\MvcCheckBoxList.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -1776,6 +1779,10 @@
     <Content Include="Views\HScheduler\Attendee.cshtml" />
     <Content Include="Views\HScheduler\Mix.cshtml" />
     <Content Include="Views\HScheduler\Vertical.cshtml" />
+    <Content Include="Views\HScheduler\RoomFilter.cshtml" />
+    <Content Include="Views\HScheduler\HRoomFilter.cshtml" />
+    <Content Include="Views\HScheduler\VRoomFilter.cshtml" />
+    <Content Include="Views\HScheduler\MixFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

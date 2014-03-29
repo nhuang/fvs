@@ -129,6 +129,7 @@
           <Property Name="Text" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Tasks">
           <Key>
@@ -401,8 +402,8 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
           <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
+          <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -596,15 +597,6 @@
           <End Type="fschedulerModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="fschedulerModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="Room">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Text" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Value" Nullable="false" />
-          <Property Type="String" Name="Color" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Attendee">
           <Key>
             <PropertyRef Name="ID" />
@@ -613,6 +605,16 @@
           <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -749,9 +751,9 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="fschedulerModel.Room">
-              <MappingFragment StoreEntitySet="Room">
+          <EntitySetMapping Name="Attendees">
+            <EntityTypeMapping TypeName="fschedulerModel.Attendee">
+              <MappingFragment StoreEntitySet="Attendees">
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
@@ -759,9 +761,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Attendees">
-            <EntityTypeMapping TypeName="fschedulerModel.Attendee">
-              <MappingFragment StoreEntitySet="Attendees">
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="fschedulerModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Text" ColumnName="Text" />

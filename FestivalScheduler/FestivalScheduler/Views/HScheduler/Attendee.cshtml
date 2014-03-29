@@ -2,18 +2,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Rooms Horizontal Grouping</h2>
+<h2>Attendee Horizontal Grouping</h2>
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-    .StartTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 7, 00, 00))
+        .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
     .Width(1080)
     .Views(views =>
     {
-        views.DayView(view => view.Selected(true));
-        views.WeekView();
-        views.WorkWeekView();
+        views.DayView();
+        views.WeekView(view => view.Selected(true));
         views.MonthView();
-        views.AgendaView();
     })
     .Timezone("Etc/UTC")
         .Group(group => group.Resources("Attendees"))

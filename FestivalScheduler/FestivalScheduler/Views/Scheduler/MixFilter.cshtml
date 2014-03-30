@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.RoomViewModel>
+@{
+    ViewBag.Title = "Mix";
+}
+
+<h2>Mix</h2>
+@using (Html.BeginForm("MixFilter", "HScheduler", FormMethod.Post))
+{
+    foreach (var item in Model)
+    {
+        <input type="checkbox" name="room" value="@item.Value" checked="@item.Show"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+    }
+    <input type="submit" value="Filter" />
+}
+
+@(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
+    .Name("scheduler")
+       .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
+        .Width(1080)
+            .MajorTick(60)
+            .MinorTickCount(4)
+    .Views(views =>
+    {
+        views.DayView();
+        views.WeekView(view => view.Selected(true));
+        views.MonthView();
+    })
+    .Timezone("Etc/UTC")
+       .Resources(resource =>
+         {
+             resource.Add(m => m.RoomID)
+                 .Title("Room")
+                 .Name("Rooms")
+                 .DataTextField("Text")
+                 .DataValueField("Value")
+                 .DataColorField("Color")
+                 .DataSource(ds => ds.Read(read => read.Action("Room_Selected", "Room"))
+               );
+             resource.Add(m => m.Attendees)
+                 .Title("Attendees")
+                 .Multiple(true)
+                 .DataTextField("Text")
+                 .DataValueField("Value")
+                 .DataColorField("Color")
+                 .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
+               );
+         })
+    .DataSource(d => d
+            .Model(m =>
+            {
+                m.Id(f => f.MeetingID);
+                m.Field(f => f.Title).DefaultValue("No title");
+                m.RecurrenceId(f => f.RecurrenceID);
+                m.Field(f => f.Title).DefaultValue("No title");
+            })
+            .Read("Grouping_Horizontal_Read", "Scheduler")
+                .Create("Grouping_Horizontal_Create", "Scheduler")
+                .Destroy("Grouping_Horizontal_Destroy", "Scheduler")
+                .Update("Grouping_Horizontal_Update", "Scheduler")
+        ).EventTemplate(
+                    "<div class='view-template'>" +
+                            "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +
+                        "<br/>" +
+                        "#= title #<br/>" +
+                        "#= kendo.toString('Room ') #" +
+                        "#= RoomID #" +
+                    "</div>")
+
+)

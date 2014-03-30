@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AspNetGroupBasedPermissions
+namespace FestivalScheduler
 {
     public class RouteConfig
     {

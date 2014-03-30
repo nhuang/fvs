@@ -29,8 +29,43 @@ namespace FestivalScheduler.Models.Resouces
                     ID = attendee.ID,
                     Text = attendee.Text,
                     Value = attendee.Value,
-                    Color = attendee.Color
+                    Color = attendee.Color,
+                    Show = attendee.Show
                 }).AsQueryable();
+        }
+
+        public virtual IQueryable<AttendeeViewModel> GetAttendeesForScheduler()
+        {
+            return db.Attendees.ToList().Select(attendee => new AttendeeViewModel
+            {
+                ID = attendee.ID,
+                Text = attendee.Text,
+                Value = attendee.Value,
+                Color = attendee.Color,
+                Show = attendee.Show
+            }).Where(r => r.Show == true).AsQueryable();
+        }
+
+        public virtual void UpdateAttendeesToShow(string[] strs)
+        {
+            if (strs != null && strs.Length > 0)
+            {
+                db.Database.ExecuteSqlCommand("update Attendees set show = 0");
+                int attendeeId = 0;
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    attendeeId = Convert.ToInt32(strs[i]);
+                    Attendee r = db.Attendees.FirstOrDefault(attendee => attendee.Value == attendeeId);
+                    r.Show = true;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                db.Database.ExecuteSqlCommand("update Attendees set show = 0");
+                db.SaveChanges();
+            }
+
         }
 
         public virtual void Insert(AttendeeViewModel model, ModelStateDictionary modelState)

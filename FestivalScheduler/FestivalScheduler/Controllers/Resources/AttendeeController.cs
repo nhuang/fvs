@@ -33,6 +33,11 @@ namespace FestivalScheduler.Controllers.Resources
             return Json(service.GetAll(), JsonRequestBehavior.AllowGet);
 		}
 
+        public virtual JsonResult Attendee_Selected()
+        {
+            return Json(service.GetAttendeesForScheduler(), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult EditingPopup_Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(service.GetAll().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);

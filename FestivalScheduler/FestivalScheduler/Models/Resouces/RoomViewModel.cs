@@ -27,11 +27,5 @@ namespace FestivalScheduler.Models.Resouces
 
                 return room;
             }
-
-            public class RoomsForScheduler
-            {
-                public int[] SelectValues { get; set; }
-            }
-
     }
 }

@@ -1,50 +1,56 @@
-﻿
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.RoomViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-    .Editable(false)
+         .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
+         .Editable(false)
+         .MajorTick(60)
+         .MinorTickCount(4)
     .Views(views =>
     {
-        views.AgendaView();        
+        views.DayView();
+        views.WeekView(view => view.Selected(true));
+        views.MonthView();
     })
     .Timezone("Etc/UTC")
-    .Group(group => group.Resources("Rooms"))
-    .Resources(resource =>
-         {
-            resource.Add(m => m.RoomID)
-                .Title("Room")
-                .Name("Rooms")
-                .DataTextField("Text")
-                .DataValueField("Value")
-                .DataColorField("Color")
-                .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
-              );
-            resource.Add(m => m.Attendees)
-                .Title("Attendees")
-                .Multiple(true)
-                .DataTextField("Text")
-                .DataValueField("Value")
-                .DataColorField("Color")
-                .BindTo(new[] { 
-                    new { Text = "Alex", Value = 1, Color = "#f8a398" } ,
-                    new { Text = "Bob", Value = 2, Color = "#51a0ed" } ,
-                    new { Text = "Charlie", Value = 3, Color = "#56ca85" } 
-                });
-         })
+    .Group(group => group.Resources("Rooms").Orientation(SchedulerGroupOrientation.Vertical))
+         .Resources(resource =>
+             {
+                 resource.Add(m => m.RoomID)
+                     .Title("Room")
+                     .Name("Rooms")
+                     .DataTextField("Text")
+                     .DataValueField("Value")
+                     .DataColorField("Color")
+                     .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+                   );
+                 resource.Add(m => m.Attendees)
+                     .Title("Attendees")
+                     .Multiple(true)
+                     .DataTextField("Text")
+                     .DataValueField("Value")
+                     .DataColorField("Color")
+                     .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
+                   );
+             })
     .DataSource(d => d
-            .Model(m => { 
+            .Model(m =>
+            {
                 m.Id(f => f.MeetingID);
                 m.Field(f => f.Title).DefaultValue("No title");
                 m.RecurrenceId(f => f.RecurrenceID);
                 m.Field(f => f.Title).DefaultValue("No title");
             })
-            .Read("Grouping_Horizontal_Read", "HScheduler")
-            .Create("Grouping_Horizontal_Create", "HScheduler")
-            .Destroy("Grouping_Horizontal_Destroy", "HScheduler")
-            .Update("Grouping_Horizontal_Update", "HScheduler")
-    )
+                     .Read("Grouping_Horizontal_Read", "Scheduler")
+        ).EventTemplate(
+                        "<div class='view-template'>" +
+                                "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +
+                            "<br/>" +
+                            "#= title #<br/>" +
+                        "</div>")
 )

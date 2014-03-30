@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(AspNetGroupBasedPermissions.Startup))]
-namespace AspNetGroupBasedPermissions
+[assembly: OwinStartupAttribute(typeof(FestivalScheduler.Startup))]
+namespace FestivalScheduler
 {
     public partial class Startup
     {

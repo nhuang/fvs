@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 using System.Data;
 using System.Data.Entity;
-using System.Data.Linq;
 
 namespace FestivalScheduler.Models.Resouces
 {
@@ -50,7 +49,7 @@ namespace FestivalScheduler.Models.Resouces
             }).Where(r => r.Show == true).AsQueryable();
         }
 
-        public virtual void UpdateRoomToShow(string[] strs )
+        public virtual void UpdateRoomsToShow(string[] strs )
         {
             if (strs != null && strs.Length > 0)
             {

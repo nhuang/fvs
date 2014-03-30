@@ -4,24 +4,24 @@
     ViewBag.Title = "Index";
 }
 <h2>Rooms Horizontal Grouping</h2>
-  
+
 
 <br />
 @using (Html.BeginForm("HRoomFilter", "Scheduler", FormMethod.Post))
 {
     <p>
-    <label for="start">Start time:</label>
-    @(Html.Kendo().TimePicker()
+        <label for="start">Start time:</label>
+        @(Html.Kendo().TimePicker()
         .Name("timeStart")
         .Format("HH:mm")
         .Value("8:00 AM")
-    )
-    <label for="end" style="margin-left:3em">End time:</label>
-      @(Html.Kendo().TimePicker()
+        )
+        <label for="end" style="margin-left:3em">End time:</label>
+        @(Html.Kendo().TimePicker()
         .Name("timeEnd")
         .Format("HH:mm")
         .Value("6:00 PM")
-    )
+        )
     </p>
     foreach (var item in Model)
     {
@@ -81,9 +81,9 @@
                                 "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +
                             "<br/>" +
                             "#= title #<br/>" +
-                            "#= kendo.toString('Room ') #" +
-                            "#= RoomID #" +
+                            "#= description #" +
                         "</div>")
+)
 )
 
 

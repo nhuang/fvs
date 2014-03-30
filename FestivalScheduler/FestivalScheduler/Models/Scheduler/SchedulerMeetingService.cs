@@ -62,6 +62,9 @@
                         AttendeeID = attendeeId
                     });
                 }
+                // update meeting title
+                entity.Title = ResetMeetingTitle(meeting.Attendees);
+                entity.Description = ResetMeetingDescription(entity.RoomID, meeting.Description);
 
                 db.Meetings.Add(entity);
                 db.SaveChanges();
@@ -70,14 +73,15 @@
             }
         }
 
+       
+
         public virtual void Update(MeetingViewModel meeting, ModelStateDictionary modelState)
         {
             if (ValidateModel(meeting, modelState))
             {
-                if (string.IsNullOrEmpty(meeting.Title))
-                {
-                    meeting.Title = "";
-                }
+                // update meeting title
+                meeting.Title = ResetMeetingTitle(meeting.Attendees);
+                meeting.Description = ResetMeetingDescription(meeting.RoomID, meeting.Description);
 
                 var entity = db.Meetings.Include("MeetingAttendees").FirstOrDefault(m => m.MeetingID == meeting.MeetingID);
 
@@ -150,7 +154,49 @@
             db.Meetings.Remove(entity);
             db.SaveChanges();
         }
+        public string ResetMeetingTitle(System.Collections.Generic.IEnumerable<int> enumerable)
+        {           
+            string result = "";
+            if (enumerable == null)
+            {
+                result = "No title";
+            }
+            else
+            {
+                Attendee attendee = null;
+                foreach (int i in enumerable)
+                {
+                    attendee = db.Attendees.Where(w => w.Value == i).FirstOrDefault();
+                    if (attendee != null) {
+                        result += string.Format("#{0} {1} \n", attendee.Value, attendee.Text);                    
+                    }
+                }
+            
+            }            
+            return result.Trim();
+        }
 
+        public string ResetMeetingDescription(int? Id, string description)
+        {
+            string prefix = "At:";
+            string result="";
+            if (description.StartsWith(prefix))
+            {
+                return description;
+            }
+            if (Id == null)
+            {
+                result = "Waiting";
+            }
+            else
+            {
+                Room room = db.Rooms.Where(q => q.Value == Id).FirstOrDefault();
+                result = string.Format("At: {0}.\n",room.Text);
+                result += description;
+            }
+            return result;
+
+        }
         private bool ValidateModel(MeetingViewModel appointment, ModelStateDictionary modelState)
         {
             if (appointment.Start > appointment.End)

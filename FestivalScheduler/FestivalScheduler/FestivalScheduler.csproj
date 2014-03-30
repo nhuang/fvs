@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Account\RolesController.cs" />
     <Compile Include="Controllers\Resources\AttendeeController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
+    <Compile Include="Controllers\Rules\MeetingRule.cs" />
     <Compile Include="Controllers\Scheduler\SchedulerController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
@@ -868,6 +869,7 @@
     <Content Include="Views\Scheduler\MixFilter.cshtml" />
     <Content Include="Views\Scheduler\Horizontal.cshtml" />
     <Content Include="Views\Scheduler\HAttendeeFilter.cshtml" />
+    <Content Include="Views\Scheduler\AttendeeAgenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

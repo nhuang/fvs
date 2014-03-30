@@ -59,6 +59,19 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(roomService.GetAll());
         }
 
+        // GET: /Scheduler/AttendeeAgenda
+        public ActionResult AttendeeAgenda(){
+
+            return View(meetingService.GetAllMeetingAgenda());
+        }
+
+        // GET: /Scheduler/ResetMeetingTitles
+        public ActionResult ResetMeetingTitles()
+        {
+            meetingService.ResetAllMeetingTitle();
+            return RedirectToAction("AttendeeAgenda", "Scheduler");
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult HRoomFilter(FormCollection collection)
         {

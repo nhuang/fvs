@@ -1,0 +1,45 @@
+﻿@using System.Globalization;
+@model IEnumerable<FestivalScheduler.Models.Meeting>
+
+@{
+    ViewBag.Title = "Scheduling";
+    string patten = "MMM-dd-yyyy hh:mm tt";
+}
+
+<h2>Scheduling</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @item.Start.ToString(patten, CultureInfo.CreateSpecificCulture("en-US"))
+        </td>
+        <td>
+            @item.End.ToString(patten, CultureInfo.CreateSpecificCulture("en-US"))
+        </td>      
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
+}
+
+</table>

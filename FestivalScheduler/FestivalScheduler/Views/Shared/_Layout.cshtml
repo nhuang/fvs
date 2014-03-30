@@ -48,13 +48,14 @@
                children.Add().Text("Horizontal").Action("Horizontal", "Scheduler");
                children.Add().Text("Vertical ").Action("Vertical", "Scheduler");
                children.Add().Text("Attendee").Action("Attendee", "Scheduler");
+               children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");
            });
 
           items.Add()
           .Text("Admin")
           .Items(children =>
           {
-              children.Add().Text("Setting")
+              children.Add().Text("Permissions")
                       .Items(innerChildren =>
                       {
                           innerChildren.Add().Text("Users").Action("Index", "Account");
@@ -66,6 +67,7 @@
                      {
                          innerChildren.Add().Text("Rooms").Action("Index", "Room");
                          innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
+                         innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");                         
                      });
           });
       })

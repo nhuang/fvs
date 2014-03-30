@@ -4,14 +4,18 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Collections.Generic;
+    using FestivalScheduler.Controllers.Rules;
 
     public class SchedulerMeetingService : ISchedulerEventService<MeetingViewModel>
     {
         private fschedulerEntities db;
+        private MeetingRule meetingRules;
 
         public SchedulerMeetingService(fschedulerEntities context)
         {
             db = context;
+            meetingRules = new MeetingRule();
         }
 
         public SchedulerMeetingService()
@@ -39,10 +43,64 @@
                 }).AsQueryable();
         }
 
+        public List<Meeting> GetAllMeetingAgenda()
+        {
+            List<Meeting> results = new List<Meeting>();
+            // get all attendees and order by ref number
+            var attendees = db.Attendees.ToList().OrderBy(o => o.Value);
+
+            foreach (Attendee a in attendees)
+            {
+                // get all meetings by this attendee
+                var meetingAttendees = db.MeetingAttendees.ToList().Where(m => m.AttendeeID == a.Value);
+                int[] meetingIds = new int[meetingAttendees.Count()];
+                for (int i = 0; i < meetingIds.Length; i++)
+                {
+                    meetingIds[i] = meetingAttendees.ElementAt(i).MeetingID;
+                }
+                var query = db.Meetings.Where(m => meetingIds.Contains(m.MeetingID)).OrderBy(m => m.Start);
+                foreach (Meeting j in query)
+                {
+                    results.Add(j);
+                }
+            }
+            return results;
+        }
+
+        public void ResetAllMeetingTitle()
+        {
+            // get all attendees and order by ref number
+            var attendees = db.Attendees.ToList().OrderBy(o => o.Value);
+            string tempTitle = "";
+            foreach (Attendee a in attendees)
+            {
+                // get all meetings by this attendee
+                var meetingAttendees = db.MeetingAttendees.ToList().Where(m => m.AttendeeID == a.Value);
+                int[] meetingIds = new int[meetingAttendees.Count()];
+                for (int i = 0; i < meetingIds.Length; i++)
+                {
+                    meetingIds[i] = meetingAttendees.ElementAt(i).MeetingID;
+                }
+                var query = db.Meetings.Where(m => meetingIds.Contains(m.MeetingID)).OrderBy(m => m.Start);
+                foreach (Meeting j in query)
+                {
+                    tempTitle = string.Format("#{0} {1}", a.Value, a.Text);
+                    if (string.Compare(j.Title,tempTitle) !=0 )
+                    {
+                        j.Title = tempTitle;
+                        db.Entry(j).State = System.Data.Entity.EntityState.Modified;
+                    }
+                }
+            }
+            db.SaveChanges();
+        }
+
         public virtual void Insert(MeetingViewModel meeting, ModelStateDictionary modelState)
         {
             if (ValidateModel(meeting, modelState))
             {
+                meeting = ApplyMeetingRules(meeting);
+
                 if (meeting.Attendees == null)
                 {
                     meeting.Attendees = new int[0];
@@ -62,9 +120,7 @@
                         AttendeeID = attendeeId
                     });
                 }
-                // update meeting title
-                entity.Title = ResetMeetingTitle(meeting.Attendees);
-                entity.Description = ResetMeetingDescription(entity.RoomID, meeting.Description);
+
 
                 db.Meetings.Add(entity);
                 db.SaveChanges();
@@ -73,15 +129,14 @@
             }
         }
 
-       
+
 
         public virtual void Update(MeetingViewModel meeting, ModelStateDictionary modelState)
         {
             if (ValidateModel(meeting, modelState))
             {
-                // update meeting title
-                meeting.Title = ResetMeetingTitle(meeting.Attendees);
-                meeting.Description = ResetMeetingDescription(meeting.RoomID, meeting.Description);
+
+                meeting = ApplyMeetingRules(meeting);
 
                 var entity = db.Meetings.Include("MeetingAttendees").FirstOrDefault(m => m.MeetingID == meeting.MeetingID);
 
@@ -115,7 +170,7 @@
                         entity.MeetingAttendees.Add(meetingAttendee);
                     }
                 }
-
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -154,8 +209,20 @@
             db.Meetings.Remove(entity);
             db.SaveChanges();
         }
-        public string ResetMeetingTitle(System.Collections.Generic.IEnumerable<int> enumerable)
-        {           
+
+        private MeetingViewModel ApplyMeetingRules(MeetingViewModel meeting)
+        {
+            // update meeting title
+            meeting.Title = ResetMeetingTitle(meeting.Attendees);
+            meeting.Description = ResetMeetingDescription(meeting.RoomID, meeting.Description);
+            // update meeting end time
+            meeting.End = meetingRules.ResetMinMeetingDuration(meeting.Start, meeting.End);
+
+            return meeting;
+        }
+
+        private string ResetMeetingTitle(System.Collections.Generic.IEnumerable<int> enumerable)
+        {
             string result = "";
             if (enumerable == null)
             {
@@ -167,31 +234,35 @@
                 foreach (int i in enumerable)
                 {
                     attendee = db.Attendees.Where(w => w.Value == i).FirstOrDefault();
-                    if (attendee != null) {
-                        result += string.Format("#{0} {1} \n", attendee.Value, attendee.Text);                    
+                    if (attendee != null)
+                    {
+                        result += string.Format("#{0} {1} \n", attendee.Value, attendee.Text);
                     }
                 }
-            
-            }            
+
+            }
             return result.Trim();
         }
 
-        public string ResetMeetingDescription(int? Id, string description)
+        private string ResetMeetingDescription(int? Id, string description)
         {
             string prefix = "At:";
-            string result="";
-            if (description.StartsWith(prefix))
-            {
-                return description;
-            }
+            string result = "";
+
             if (Id == null)
             {
                 result = "Waiting";
             }
             else
             {
+
+                if (!string.IsNullOrEmpty(description) && description.StartsWith(prefix))
+                {
+                    return description;
+                }
+
                 Room room = db.Rooms.Where(q => q.Value == Id).FirstOrDefault();
-                result = string.Format("At: {0}.\n",room.Text);
+                result = string.Format("At: {0}.\n", room.Text);
                 result += description;
             }
             return result;

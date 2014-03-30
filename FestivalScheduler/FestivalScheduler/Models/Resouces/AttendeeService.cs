@@ -138,5 +138,6 @@ namespace FestivalScheduler.Models.Resouces
         {
             db.Dispose();
         }
+
     }
 }

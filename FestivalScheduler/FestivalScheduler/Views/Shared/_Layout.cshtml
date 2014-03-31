@@ -69,6 +69,11 @@
                          innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
                          innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");                         
                      });
+              children.Add().Text("System")
+                     .Items(innerChildren =>
+                     {
+                         innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
+                     });
           });
       })
                     )

@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Account\RolesController.cs" />
     <Compile Include="Controllers\Resources\AttendeeController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
+    <Compile Include="Controllers\Resources\SysSettingController.cs" />
     <Compile Include="Controllers\Rules\MeetingRule.cs" />
     <Compile Include="Controllers\Scheduler\SchedulerController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -254,11 +255,16 @@
     <Compile Include="Models\Resouces\AttendeeViewModel.cs" />
     <Compile Include="Models\Resouces\RoomService.cs" />
     <Compile Include="Models\Resouces\RoomViewModel.cs" />
+    <Compile Include="Models\Resouces\SysSettingService.cs" />
+    <Compile Include="Models\Resouces\SysSettingViewModel.cs" />
     <Compile Include="Models\Scheduler\MeetingViewModel.cs" />
     <Compile Include="Models\Scheduler\Projection.cs" />
     <Compile Include="Models\Scheduler\SchedulerMeetingService.cs" />
     <Compile Include="Models\Scheduler\SchedulerTaskService.cs" />
     <Compile Include="Models\Scheduler\TaskViewModel.cs" />
+    <Compile Include="Models\SysSetting.cs">
+      <DependentUpon>FestivalScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Room.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
@@ -845,14 +851,6 @@
     <Content Include="Views\Groups\GroupRoles.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml.bak" />
-    <Content Include="Views\HScheduler\Attendee.cshtml" />
-    <Content Include="Views\HScheduler\HRoomFilter.cshtml" />
-    <Content Include="Views\HScheduler\Index.cshtml" />
-    <Content Include="Views\HScheduler\Mix.cshtml" />
-    <Content Include="Views\HScheduler\MixFilter.cshtml" />
-    <Content Include="Views\HScheduler\RoomFilter.cshtml" />
-    <Content Include="Views\HScheduler\Vertical.cshtml" />
-    <Content Include="Views\HScheduler\VRoomFilter.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
@@ -870,9 +868,13 @@
     <Content Include="Views\Scheduler\Horizontal.cshtml" />
     <Content Include="Views\Scheduler\HAttendeeFilter.cshtml" />
     <Content Include="Views\Scheduler\AttendeeAgenda.cshtml" />
+    <Content Include="Views\SysSetting\Index.cshtml" />
+    <Content Include="Views\SysSetting\Create.cshtml" />
+    <Content Include="Views\SysSetting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\UserFiles\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

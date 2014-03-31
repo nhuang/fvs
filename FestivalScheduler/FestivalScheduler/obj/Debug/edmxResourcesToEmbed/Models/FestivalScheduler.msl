@@ -152,5 +152,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SysSettings">
+      <EntityTypeMapping TypeName="fschedulerModel.SysSetting">
+        <MappingFragment StoreEntitySet="SysSetting">
+          <ScalarProperty Name="KeyGroup" ColumnName="KeyGroup" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+          <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

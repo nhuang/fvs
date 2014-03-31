@@ -24,6 +24,8 @@
         <AssociationConnector Association="fschedulerModel.ApplicationUserGroups" ManuallyRouted="false" />
         <AssociationConnector Association="fschedulerModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="fschedulerModel.Attendee" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="fschedulerModel.SysSetting" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="fschedulerModel.SysEvent" Width="1.5" PointX="10.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

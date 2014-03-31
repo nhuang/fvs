@@ -127,6 +127,17 @@
     <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
     <Property Name="Show" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="SysSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeyGroup" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Tasks">
     <Key>
       <PropertyRef Name="TaskID" />
@@ -306,6 +317,7 @@
     <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysSetting" EntityType="Self.SysSetting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />

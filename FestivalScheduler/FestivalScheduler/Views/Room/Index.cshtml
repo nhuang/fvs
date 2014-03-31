@@ -13,7 +13,7 @@
     .Name("Room")
     .Columns(columns =>
     {
-        columns.Bound(r => r.ID);
+        columns.Bound(r => r.ID).Visible(false);
         columns.Bound(r => r.Text);
         columns.Bound(r => r.Value);
         columns.Bound(r => r.Color);

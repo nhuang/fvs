@@ -132,6 +132,27 @@
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SysEvents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdateAt" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SysSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KeyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="KeyGroup" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="TaskID" />
@@ -311,6 +332,8 @@
           <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysEvents" EntityType="Self.SysEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysSetting" EntityType="Self.SysSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -607,6 +630,8 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
+          <EntitySet Name="SysSettings" EntityType="fschedulerModel.SysSetting" />
+          <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
         </EntityContainer>
         <EntityType Name="Attendee">
           <Key>
@@ -617,6 +642,27 @@
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeyGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysEvent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -771,6 +817,29 @@
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysSettings">
+            <EntityTypeMapping TypeName="fschedulerModel.SysSetting">
+              <MappingFragment StoreEntitySet="SysSetting">
+                <ScalarProperty Name="KeyGroup" ColumnName="KeyGroup" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysEvents">
+            <EntityTypeMapping TypeName="fschedulerModel.SysEvent">
+              <MappingFragment StoreEntitySet="SysEvents">
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

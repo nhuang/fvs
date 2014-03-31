@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.SysEventViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    @using (Html.BeginForm("Create", "SysEvent", FormMethod.Post))
+    {
+            <label for="level">Level</label>
+            @(Html.Kendo().ComboBox()
+          .Name("Level")
+          .Placeholder("Select message level...")
+          .BindTo(new List<string>() {
+              "INFO",
+              "WARNING",
+          })
+          .SelectedIndex(0)
+          .Suggest(true)
+            )
+
+            <label for="message" style="margin-left:3em">Message</label>
+    <input type="text" id="Message" name="Message" class="k-textbox" style="width: 300px;" placeholder="message" required validationmessage="Please enter {0}" />
+        <input type="submit" value="Add" />
+    }
+</div>
+<hr />
+
+@(Html.Kendo().Grid<FestivalScheduler.Models.Resouces.SysEventViewModel>(Model)
+    .Name("Events")
+    .Columns(columns =>
+    {
+        columns.Bound(r => r.ID).Visible(false);
+        columns.Bound(r => r.Level).Width(100);
+        columns.Bound(r => r.UpdateAt).Format("{0:MMM-dd-yyyy hh:mm tt}").Width(200);
+        columns.Bound(r => r.Message).Width(400);
+        columns.Command(command => {command.Destroy(); }).Width(80);
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+            {
+                //The unique identifier (primary key) of the model is the ProductID property
+                model.Id(r => r.ID);
+                // Declare a model field and optionally specify its default value (used when a new model instance is created)
+                model.Field(v => v.ID).Editable(false);
+            })
+       .Create(update => update.Action("EditingPopup_Create", "SysEvent"))
+           .Read(read => read.Action("EditingPopup_Read", "SysEvent"))
+           .Update(update => update.Action("EditingPopup_Update", "SysEvent"))
+           .Destroy(update => update.Action("EditingPopup_Destroy", "SysEvent"))
+    )
+)
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

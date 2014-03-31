@@ -1,0 +1,25 @@
+﻿@{
+    List<string> files = ViewBag.Message;
+}
+<h2>
+    Uploaded files
+</h2>
+
+@{if (files != null)
+{
+    <div class="t-widget t-upload">
+        <ul class="t-upload-files t-reset">
+            @foreach (string attachment in files)
+            {
+                <li class="t-file"><span class="t-icon t-success"></span>@attachment</li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <text>-- None --</text>
+}
+}
+
+<p><a href='@Url.Action("Index", "Upload")' class="t-button">Go back</a></p>

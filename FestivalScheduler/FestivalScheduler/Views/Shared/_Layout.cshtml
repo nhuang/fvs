@@ -35,7 +35,10 @@
       .Name("Menu")
       .Items(items =>
       {
-          items.Add().Text("Home").Action("Index", "Home");
+          items.Add().Text("Home").Action("Index", "Home").Items(children =>
+           {
+               children.Add().Text("Notification").Action("Events", "Home");
+           });
           items.Add().Text("About").Action("About", "Home");
           items.Add().Text("Contact").Action("Contact", "Home");
 
@@ -72,6 +75,7 @@
               children.Add().Text("System")
                      .Items(innerChildren =>
                      {
+                         innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
                          innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
                      });
           });

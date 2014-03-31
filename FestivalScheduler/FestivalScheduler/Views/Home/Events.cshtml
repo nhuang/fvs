@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.SysEventViewModel>
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Today Events</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @{
+    if (string.Equals(item.Level, "INFO", StringComparison.CurrentCultureIgnoreCase))
+    {
+        <img src="~/Images/info.png" width="24" height="24">
+    }
+    else if (string.Equals(item.Level, "WARNING", StringComparison.CurrentCultureIgnoreCase))
+    {
+        <img src="~/Images/warning.png" width="24" height="24">
+    }
+}
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateAt)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateBy)
+        </td>
+    </tr>
+}
+
+</table>

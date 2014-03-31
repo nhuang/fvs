@@ -16,24 +16,27 @@ namespace FestivalScheduler.Controllers.Scheduler
 {
     public class SchedulerController : Controller
     {
-        //
-        // GET: /Scheduler/
-        public ActionResult Index()
-        {
-            return View(roomService.GetAll());
-        }
-         private SchedulerTaskService taskService;
+       
+        private SchedulerTaskService taskService;
         private SchedulerMeetingService meetingService;
         private AttendeeService attendeeService;
         private RoomService roomService;
+        private SysEventService eventService;
         public SchedulerController()
         {
             this.taskService = new SchedulerTaskService();
             this.meetingService = new SchedulerMeetingService();
             this.attendeeService = new AttendeeService();
             this.roomService = new RoomService();
+            this.eventService = new SysEventService();
         }
 
+        //
+        // GET: /Scheduler/
+        public ActionResult Index()
+        {
+            return View(roomService.GetAll());
+        }
 
         // GET: /Scheduler/Mix
         public ActionResult Mix()
@@ -124,6 +127,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Delete(meeting, ModelState);
+                NewSysEvent(SysEventViewModel.WARNING, string.Format("Meeting {0} deleted.", meeting.Title));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
@@ -134,6 +138,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Insert(meeting, ModelState);
+                NewSysEvent(SysEventViewModel.WARNING, string.Format("Meeting {0} created.", meeting.Title));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
@@ -144,9 +149,16 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Update(meeting, ModelState);
+                NewSysEvent(SysEventViewModel.INFO, string.Format("Meeting {0} updated.", meeting.Title));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
+        }
+
+        private void NewSysEvent(string level, string message)
+        {
+            SysEventViewModel newEvent = new SysEventViewModel().Init(level,message,"System");
+            eventService.Insert(newEvent, ModelState);
         }
 	}
 }

@@ -9,10 +9,12 @@ namespace AspNetGroupBasedPermissions.Controllers
 {
     public class HomeController : Controller
     {
-        SysSettingService service;
+        SysSettingService settingService;
+        SysEventService eventService;
         public HomeController()
         {
-            this.service = new SysSettingService();
+            this.settingService = new SysSettingService();
+            this.eventService = new SysEventService();
         }
 
         public ActionResult Index()
@@ -22,7 +24,7 @@ namespace AspNetGroupBasedPermissions.Controllers
 
         public ActionResult About()
         {
-            SysSettingViewModel data = service.GetAbout();
+            SysSettingViewModel data = settingService.GetAbout();
             ViewBag.Content = data;
             ViewBag.Message = "Your application description page.";
 
@@ -31,11 +33,16 @@ namespace AspNetGroupBasedPermissions.Controllers
 
         public ActionResult Contact()
         {
-            SysSettingViewModel data = service.GetContact();
+            SysSettingViewModel data = settingService.GetContact();
             ViewBag.Content = data;
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Events()
+        {
+            return View(eventService.GetTodayEvents());
         }
     }
 }

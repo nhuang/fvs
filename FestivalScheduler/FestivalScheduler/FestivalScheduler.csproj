@@ -194,7 +194,9 @@
     <Compile Include="Controllers\Account\RolesController.cs" />
     <Compile Include="Controllers\Resources\AttendeeController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
+    <Compile Include="Controllers\Resources\SysEventController.cs" />
     <Compile Include="Controllers\Resources\SysSettingController.cs" />
+    <Compile Include="Controllers\Resources\UploadController.cs" />
     <Compile Include="Controllers\Rules\MeetingRule.cs" />
     <Compile Include="Controllers\Scheduler\SchedulerController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -255,6 +257,8 @@
     <Compile Include="Models\Resouces\AttendeeViewModel.cs" />
     <Compile Include="Models\Resouces\RoomService.cs" />
     <Compile Include="Models\Resouces\RoomViewModel.cs" />
+    <Compile Include="Models\Resouces\SysEventService.cs" />
+    <Compile Include="Models\Resouces\SysEventViewModel.cs" />
     <Compile Include="Models\Resouces\SysSettingService.cs" />
     <Compile Include="Models\Resouces\SysSettingViewModel.cs" />
     <Compile Include="Models\Scheduler\MeetingViewModel.cs" />
@@ -262,6 +266,9 @@
     <Compile Include="Models\Scheduler\SchedulerMeetingService.cs" />
     <Compile Include="Models\Scheduler\SchedulerTaskService.cs" />
     <Compile Include="Models\Scheduler\TaskViewModel.cs" />
+    <Compile Include="Models\SysEvent.cs">
+      <DependentUpon>FestivalScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SysSetting.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
@@ -566,6 +573,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\info.png" />
+    <Content Include="Images\warning.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\FestivalScheduler.edmx">
@@ -871,6 +880,10 @@
     <Content Include="Views\SysSetting\Index.cshtml" />
     <Content Include="Views\SysSetting\Create.cshtml" />
     <Content Include="Views\SysSetting\Edit.cshtml" />
+    <Content Include="Views\Home\Events.cshtml" />
+    <Content Include="Views\SysEvent\Index.cshtml" />
+    <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Upload\Submit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

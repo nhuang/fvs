@@ -42,6 +42,7 @@ namespace FestivalScheduler.Controllers.Resources
         // GET: /SysSetting/Create
         public ActionResult Create()
         {
+            ViewBag.UrlAddress = this.Request.Url.Host;
             return View();
         }
 
@@ -52,6 +53,7 @@ namespace FestivalScheduler.Controllers.Resources
         {
             try
             {
+                ViewBag.UrlAddress = this.Request.Url.Host;
                 SysSettingViewModel sys = ConvertToViewModel(collection);
 
                 settingService.Insert(sys, ModelState);
@@ -67,6 +69,7 @@ namespace FestivalScheduler.Controllers.Resources
         // GET: /SysSetting/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.UrlAddress = this.Request.Url.Host;
             return View(settingService.GetById(id));
         }
 
@@ -77,6 +80,7 @@ namespace FestivalScheduler.Controllers.Resources
         {
             try
             {
+                ViewBag.UrlAddress = this.Request.Url.Host;
                 SysSettingViewModel sys = ConvertToViewModel(collection);
                 sys.ID = id;
                 settingService.Update(sys, ModelState);

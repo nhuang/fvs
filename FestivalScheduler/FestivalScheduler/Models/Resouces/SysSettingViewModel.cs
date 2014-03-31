@@ -28,5 +28,6 @@ namespace FestivalScheduler.Models.Resouces
 
             return sysSetting;
         }
+
     }
 }

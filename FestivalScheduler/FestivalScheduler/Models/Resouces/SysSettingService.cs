@@ -20,7 +20,6 @@
         {
         }
 
-
         public virtual IQueryable<SysSettingViewModel> GetAll()
         {
             return db.SysSettings.ToList().Select(sys => new SysSettingViewModel

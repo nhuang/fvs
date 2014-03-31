@@ -8,11 +8,11 @@
 {
     foreach (var item in Model)
     {
-        <input type="checkbox" name="attendee" value="@item.Value" checked="checked"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+        <input type="checkbox" name="attendee" value="@item.Value" checked="checked"><label style="background-color:@item.Color;text-align: center;">@item.Text</label>
     }
     <input type="submit" value="Filter" />
 }
-
+<hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
         .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))

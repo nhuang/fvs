@@ -164,5 +164,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SysEvents">
+      <EntityTypeMapping TypeName="fschedulerModel.SysEvent">
+        <MappingFragment StoreEntitySet="SysEvents">
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

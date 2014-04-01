@@ -132,6 +132,16 @@
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SupportTeam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="SysEvents">
           <Key>
             <PropertyRef Name="ID" />
@@ -332,6 +342,7 @@
           <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportTeam" EntityType="Self.SupportTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysEvents" EntityType="Self.SysEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysSetting" EntityType="Self.SysSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
@@ -632,6 +643,7 @@
           <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
           <EntitySet Name="SysSettings" EntityType="fschedulerModel.SysSetting" />
           <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
+          <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
         </EntityContainer>
         <EntityType Name="Attendee">
           <Key>
@@ -663,6 +675,16 @@
           <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdateAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SupportTeam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -840,6 +862,17 @@
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportTeams">
+            <EntityTypeMapping TypeName="fschedulerModel.SupportTeam">
+              <MappingFragment StoreEntitySet="SupportTeam">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

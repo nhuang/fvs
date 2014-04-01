@@ -175,5 +175,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MeetingSupportTeams">
+      <EntityTypeMapping TypeName="fschedulerModel.MeetingSupportTeam">
+        <MappingFragment StoreEntitySet="MeetingSupportTeams">
+          <ScalarProperty Name="SupportTeamID" ColumnName="SupportTeamID" />
+          <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportTeams">
+      <EntityTypeMapping TypeName="fschedulerModel.SupportTeam">
+        <MappingFragment StoreEntitySet="SupportTeam">
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

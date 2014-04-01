@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.SupportTeamViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Support Team</h2>
+
+@(Html.Kendo().Grid<FestivalScheduler.Models.Resouces.SupportTeamViewModel>(Model)
+        .Name("SupportTeam")
+    .Columns(columns =>
+    {
+        columns.Bound(r => r.ID).Visible(false);
+        columns.Bound(r => r.Text);
+        columns.Bound(r => r.Value);
+        columns.Bound(r => r.Color);
+        columns.Command(command => { command.Edit(); command.Destroy(); });
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .ToolBar(toolbar => toolbar.Create())
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+            {
+                //The unique identifier (primary key) of the model is the ProductID property
+                model.Id(r => r.ID);
+                // Declare a model field and optionally specify its default value (used when a new model instance is created)
+                model.Field(v => v.ID).Editable(false);
+            })
+               .Create(update => update.Action("EditingPopup_Create", "SupportTeam"))
+               .Read(read => read.Action("EditingPopup_Read", "SupportTeam"))
+               .Update(update => update.Action("EditingPopup_Update", "SupportTeam"))
+               .Destroy(update => update.Action("EditingPopup_Destroy", "SupportTeam"))
+    )
+)
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

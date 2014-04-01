@@ -9,7 +9,7 @@ namespace FestivalScheduler.Models.Resouces
 {
     public class AttendeeService
     {
-               private fschedulerEntities db;
+        private fschedulerEntities db;
 
         public AttendeeService(fschedulerEntities context)
         {

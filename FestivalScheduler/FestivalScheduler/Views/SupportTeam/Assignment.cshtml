@@ -1,0 +1,31 @@
+﻿@using FestivalScheduler.Models.Resouces;
+@{
+    ViewBag.Title = "Assignment";
+    IEnumerable<AttendeeViewModel> attendees = ViewBag.Attendees;
+    IEnumerable<SupportTeamViewModel> supportTeams = ViewBag.SupportTeams;
+}
+
+<h2>Assignment</h2>
+@using (Html.BeginForm("Assignment", "SupportTeam", FormMethod.Post))
+{
+    <input type="submit" value="Save" />
+<table class="table">
+        @{
+           foreach (AttendeeViewModel atm in attendees)
+            { <tr>
+                <td>
+                   <label style="color:@atm.Color"> @atm.Text</label>
+                </td>
+                @foreach (SupportTeamViewModel stm in supportTeams)
+                {
+                    <td>
+                        <input type="checkbox" name="assignment" value="@string.Format("{0}_{1}",stm.ID,atm.ID)"><label style="color:@stm.Color;">@stm.Text</label>
+                    </td>
+                }
+             </tr>
+            }
+        }
+    
+</table>
+    <input type="submit" value="Save" />
+}

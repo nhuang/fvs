@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Account\RolesController.cs" />
     <Compile Include="Controllers\Resources\AttendeeController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
+    <Compile Include="Controllers\Resources\SupportTeamController.cs" />
     <Compile Include="Controllers\Resources\SysEventController.cs" />
     <Compile Include="Controllers\Resources\SysSettingController.cs" />
     <Compile Include="Controllers\Resources\UploadController.cs" />
@@ -253,10 +254,17 @@
     <Compile Include="Models\MeetingAttendee.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MeetingSupportTeam.cs">
+      <DependentUpon>FestivalScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Resouces\AttendeeService.cs" />
     <Compile Include="Models\Resouces\AttendeeViewModel.cs" />
+    <Compile Include="Models\Resouces\MeetingDetailService.cs" />
+    <Compile Include="Models\Resouces\MeetingDetailViewModel.cs" />
     <Compile Include="Models\Resouces\RoomService.cs" />
     <Compile Include="Models\Resouces\RoomViewModel.cs" />
+    <Compile Include="Models\Resouces\SupportTeamService.cs" />
+    <Compile Include="Models\Resouces\SupportTeamViewModel.cs" />
     <Compile Include="Models\Resouces\SysEventService.cs" />
     <Compile Include="Models\Resouces\SysEventViewModel.cs" />
     <Compile Include="Models\Resouces\SysSettingService.cs" />
@@ -266,6 +274,9 @@
     <Compile Include="Models\Scheduler\SchedulerMeetingService.cs" />
     <Compile Include="Models\Scheduler\SchedulerTaskService.cs" />
     <Compile Include="Models\Scheduler\TaskViewModel.cs" />
+    <Compile Include="Models\SupportTeam.cs">
+      <DependentUpon>FestivalScheduler.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SysEvent.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
@@ -884,6 +895,8 @@
     <Content Include="Views\SysEvent\Index.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\Upload\Submit.cshtml" />
+    <Content Include="Views\SupportTeam\Index.cshtml" />
+    <Content Include="Views\SupportTeam\Assignment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

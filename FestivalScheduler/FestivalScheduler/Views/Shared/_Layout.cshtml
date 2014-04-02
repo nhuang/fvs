@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 
 	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
@@ -19,82 +19,84 @@
 	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js")"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @(Html.Kendo().Menu()
-      .Name("Menu")
-      .Items(items =>
-      {
-          items.Add().Text("Home").Action("Index", "Home").Items(children =>
-           {
-               children.Add().Text("Notification").Action("Events", "Home");
-           });
-          items.Add().Text("About").Action("About", "Home");
-          items.Add().Text("Contact").Action("Contact", "Home");
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					@(Html.Kendo().Menu()
+	  .Name("Menu")
+	  .Items(items =>
+	  {
+		  items.Add().Text("Home").Action("Index", "Home").Items(children =>
+		   {
+			   children.Add().Text("Notification").Action("Events", "Home");
+		   });
+		  items.Add().Text("About").Action("About", "Home");
+		  items.Add().Text("Contact").Action("Contact", "Home");
 
 
-          items.Add()
-           .Text("Scheduler")
-           .Items(children =>
-           {
-               children.Add().Text("Mix").Action("Mix", "Scheduler");
-               children.Add().Text("Horizontal").Action("Horizontal", "Scheduler");
-               children.Add().Text("Vertical ").Action("Vertical", "Scheduler");
-               children.Add().Text("Attendee").Action("Attendee", "Scheduler");
-               children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");
-           });
+		  items.Add()
+		   .Text("Scheduler")
+		   .Items(children =>
+		   {
+			   children.Add().Text("Room Mix").Action("Mix", "Scheduler");
+			   children.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
+			   children.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
+			   children.Add().Text("Room Attendee").Action("Attendee", "Scheduler");
+			   children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");
+			   children.Add().Text("Attendee Mix").Action("Index", "TaskScheduler");
+			   
+		   });
 
-          items.Add()
-          .Text("Admin")
-          .Items(children =>
-          {
-              children.Add().Text("Permissions")
-                      .Items(innerChildren =>
-                      {
-                          innerChildren.Add().Text("Users").Action("Index", "Account");
-                          innerChildren.Add().Text("Groups").Action("Index", "Groups");
-                          innerChildren.Add().Text("Permissions").Action("Index", "Roles");
-                      });
-              children.Add().Text("Resources")
-                     .Items(innerChildren =>
-                     {
-                         innerChildren.Add().Text("Rooms").Action("Index", "Room");
-                         innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
-                         innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
-                         innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");                         
-                     });
-              children.Add().Text("System")
-                     .Items(innerChildren =>
-                     {
-                         innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
-                         innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
-                     });
-          });
-      })
-                    )
+		  items.Add()
+		  .Text("Admin")
+		  .Items(children =>
+		  {
+			  children.Add().Text("Permissions")
+					  .Items(innerChildren =>
+					  {
+						  innerChildren.Add().Text("Users").Action("Index", "Account");
+						  innerChildren.Add().Text("Groups").Action("Index", "Groups");
+						  innerChildren.Add().Text("Permissions").Action("Index", "Roles");
+					  });
+			  children.Add().Text("Resources")
+					 .Items(innerChildren =>
+					 {
+						 innerChildren.Add().Text("Rooms").Action("Index", "Room");
+						 innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
+						 innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
+						 innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");                         
+					 });
+			  children.Add().Text("System")
+					 .Items(innerChildren =>
+					 {
+						 innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
+						 innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
+					 });
+		  });
+	  })
+					)
 
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Fringe Theatre Scheduler System</p>
-        </footer>
-    </div>
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - Fringe Theatre Scheduler System</p>
+		</footer>
+	</div>
 
 
 </body>

@@ -6,6 +6,21 @@
 <h2>Attendee Horizontal Grouping</h2>
 @using (Html.BeginForm("HAttendeeFilter", "Scheduler", FormMethod.Post))
 {
+     <p>
+        <label for="start">Start time:</label>
+        @(Html.Kendo().TimePicker()
+        .Name("timeStart")
+        .Format("HH:mm")
+        .Value("8:00 AM")
+        )
+        <label for="end" style="margin-left:3em">End time:</label>
+        @(Html.Kendo().TimePicker()
+        .Name("timeEnd")
+        .Format("HH:mm")
+        .Value("6:00 PM")
+        )
+    </p>
+
     foreach (var item in Model)
     {
         <input type="checkbox" name="attendee" value="@item.Value" checked="checked"><label style="background-color:@item.Color;text-align: center;">@item.Text</label>
@@ -15,7 +30,6 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-        .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
         .Width(1080)
         .MajorTick(60)
         .MinorTickCount(4)

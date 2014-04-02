@@ -14,6 +14,7 @@
         columns.Bound(r => r.Text);
         columns.Bound(r => r.Value);
         columns.Bound(r => r.Color);
+        columns.Bound(r => r.Length);
         columns.Command(command => { command.Edit(); command.Destroy(); });
     })
     .Editable(editable => editable.Mode(GridEditMode.PopUp))

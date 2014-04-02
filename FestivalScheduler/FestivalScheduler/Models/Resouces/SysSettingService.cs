@@ -46,6 +46,14 @@
             }).Where(m => m.ID == id).FirstOrDefault();
         }
 
+
+        public virtual Int32 GetIntByKey(string key)
+        {
+            var item = db.SysSettings.Where(v => v.KeyName == key).FirstOrDefault();
+            return Convert.ToInt32(item.Value);
+        }
+
+
         public virtual SysSettingViewModel GetAbout()
         {
             return db.SysSettings.Select(sys => new SysSettingViewModel

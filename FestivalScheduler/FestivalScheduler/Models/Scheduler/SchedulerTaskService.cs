@@ -6,6 +6,7 @@
     using System;
     using System.Data;
     using System.Data.Entity;
+    using System.Collections.Generic;
 
     public class SchedulerTaskService : ISchedulerEventService<TaskViewModel>
     {
@@ -91,8 +92,51 @@
             db.Tasks.Remove(entity);
             db.SaveChanges();
         }
+        public virtual IQueryable<TaskViewModel> RecreateTasks()
+        {
+            db.Database.ExecuteSqlCommand(string.Format("TRUNCATE TABLE TASKS "));
+            db.SaveChanges();
+            List<Meeting> meetings = db.Meetings.ToList<Meeting>();
+            foreach (Meeting meeting in meetings)
+            {
+                try
+                {
+                    Task entity = new Task();
+                    entity.Start = meeting.Start;
+                    entity.End = meeting.End;
+                    entity.Title = meeting.Title;
+                    entity.IsAllDay = meeting.IsAllDay;
+                    entity.RecurrenceRule = meeting.RecurrenceRule;
+                    entity.RecurrenceID = meeting.RecurrenceID;
+                    entity.RecurrenceException = meeting.RecurrenceException;
+                    entity.StartTimezone = meeting.StartTimezone;
+                    entity.EndTimezone = meeting.EndTimezone;
+                    entity.Description = meeting.Description;
 
-        //TODO: better naming or refactor
+                    if (meeting.MeetingAttendees.Count() > 0)
+                    {
+                        try
+                        {
+                            entity.OwnerID = meeting.MeetingAttendees.FirstOrDefault().AttendeeID;
+                        }
+                        catch (Exception) { }
+                    }
+                    if (!string.IsNullOrEmpty(meeting.RoomID + ""))
+                    {
+                        //entity.RecurrenceID = meeting.RoomID;
+                    }
+                    db.Tasks.Add(entity);
+                    db.SaveChanges();
+                }
+                catch (Exception) { }
+
+            }
+
+
+            SchedulerTaskService service = new SchedulerTaskService();
+            return service.GetAll();
+        }
+        //TODO: better naming or re-factor
         private bool ValidateModel(TaskViewModel appointment, ModelStateDictionary modelState)
         {
             if (appointment.Start > appointment.End)

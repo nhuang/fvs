@@ -200,6 +200,7 @@
     <Compile Include="Controllers\Resources\UploadController.cs" />
     <Compile Include="Controllers\Rules\MeetingRule.cs" />
     <Compile Include="Controllers\Scheduler\SchedulerController.cs" />
+    <Compile Include="Controllers\Scheduler\TaskSchedulerController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\Account\ApplicationRole.cs" />
@@ -252,9 +253,6 @@
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MeetingAttendee.cs">
-      <DependentUpon>FestivalScheduler.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MeetingSupportTeam.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Resouces\AttendeeService.cs" />
@@ -897,6 +895,7 @@
     <Content Include="Views\Upload\Submit.cshtml" />
     <Content Include="Views\SupportTeam\Index.cshtml" />
     <Content Include="Views\SupportTeam\Assignment.cshtml" />
+    <Content Include="Views\TaskScheduler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

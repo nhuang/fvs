@@ -30,7 +30,8 @@ namespace FestivalScheduler.Models.Resouces
                     Text = attendee.Text,
                     Value = attendee.Value,
                     Color = attendee.Color,
-                    Show = attendee.Show
+                    Show = attendee.Show,
+                    Length = attendee.Length
                 }).AsQueryable();
         }
 
@@ -42,7 +43,8 @@ namespace FestivalScheduler.Models.Resouces
                 Text = attendee.Text,
                 Value = attendee.Value,
                 Color = attendee.Color,
-                Show = attendee.Show
+                Show = attendee.Show,
+                Length = attendee.Length
             }).Where(r => r.Show == true).AsQueryable();
         }
 

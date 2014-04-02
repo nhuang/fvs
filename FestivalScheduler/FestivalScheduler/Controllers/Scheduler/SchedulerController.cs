@@ -16,12 +16,13 @@ namespace FestivalScheduler.Controllers.Scheduler
 {
     public class SchedulerController : Controller
     {
-       
+
         private SchedulerTaskService taskService;
         private SchedulerMeetingService meetingService;
         private AttendeeService attendeeService;
         private RoomService roomService;
         private SysEventService eventService;
+        private SysSettingService settingService;
         public SchedulerController()
         {
             this.taskService = new SchedulerTaskService();
@@ -29,12 +30,14 @@ namespace FestivalScheduler.Controllers.Scheduler
             this.attendeeService = new AttendeeService();
             this.roomService = new RoomService();
             this.eventService = new SysEventService();
+            this.settingService = new SysSettingService();
         }
 
         //
         // GET: /Scheduler/
         public ActionResult Index()
         {
+
             return View(roomService.GetAll());
         }
 
@@ -47,9 +50,9 @@ namespace FestivalScheduler.Controllers.Scheduler
         // GET: /Scheduler/Attendee
         public ActionResult Attendee()
         {
-              return View(attendeeService.GetAll());
+            return View(attendeeService.GetAll());
         }
- 
+
         // GET: /Scheduler/Horizontal
         public ActionResult Horizontal()
         {
@@ -63,7 +66,8 @@ namespace FestivalScheduler.Controllers.Scheduler
         }
 
         // GET: /Scheduler/AttendeeAgenda
-        public ActionResult AttendeeAgenda(){
+        public ActionResult AttendeeAgenda()
+        {
 
             return View(meetingService.GetAllMeetingAgenda());
         }
@@ -79,23 +83,32 @@ namespace FestivalScheduler.Controllers.Scheduler
         public ActionResult HRoomFilter(FormCollection collection)
         {
             string[] periods = collection.GetValues("timeStart");
-            int timeStartHour =Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
-            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':')+1,2).Trim());
+            int timeStartHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
             ViewBag.timeStart = new DateTime(DateTime.Now.Year, 1, 1, timeStartHour, timeStartMin, 0);
             periods = collection.GetValues("timeEnd");
             int timeEndHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
             int timeEndMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
             ViewBag.timeEnd = new DateTime(DateTime.Now.Year, 1, 1, timeEndHour, timeEndMin, 0);
 
-            
+
             string[] strs = collection.GetValues("room");
             roomService.UpdateRoomsToShow(strs);
             return View(roomService.GetAll());
         }
 
-           [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult HAttendeeFilter(FormCollection collection)
         {
+            string[] periods = collection.GetValues("timeStart");
+            int timeStartHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeStart = new DateTime(DateTime.Now.Year, 1, 1, timeStartHour, timeStartMin, 0);
+            periods = collection.GetValues("timeEnd");
+            int timeEndHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeEndMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeEnd = new DateTime(DateTime.Now.Year, 1, 1, timeEndHour, timeEndMin, 0);
+
             string[] strs = collection.GetValues("attendee");
             attendeeService.UpdateAttendeesToShow(strs);
             return View(attendeeService.GetAll());
@@ -104,6 +117,15 @@ namespace FestivalScheduler.Controllers.Scheduler
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult VRoomFilter(FormCollection collection)
         {
+            string[] periods = collection.GetValues("timeStart");
+            int timeStartHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeStart = new DateTime(DateTime.Now.Year, 1, 1, timeStartHour, timeStartMin, 0);
+            periods = collection.GetValues("timeEnd");
+            int timeEndHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeEndMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeEnd = new DateTime(DateTime.Now.Year, 1, 1, timeEndHour, timeEndMin, 0);
+
             string[] strs = collection.GetValues("room");
             roomService.UpdateRoomsToShow(strs);
             return View(roomService.GetAll());
@@ -112,6 +134,15 @@ namespace FestivalScheduler.Controllers.Scheduler
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult MixFilter(FormCollection collection)
         {
+            string[] periods = collection.GetValues("timeStart");
+            int timeStartHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeStart = new DateTime(DateTime.Now.Year, 1, 1, timeStartHour, timeStartMin, 0);
+            periods = collection.GetValues("timeEnd");
+            int timeEndHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
+            int timeEndMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
+            ViewBag.timeEnd = new DateTime(DateTime.Now.Year, 1, 1, timeEndHour, timeEndMin, 0);
+
             string[] strs = collection.GetValues("room");
             roomService.UpdateRoomsToShow(strs);
             return View(roomService.GetAll());
@@ -157,8 +188,9 @@ namespace FestivalScheduler.Controllers.Scheduler
 
         private void NewSysEvent(string level, string message)
         {
-            SysEventViewModel newEvent = new SysEventViewModel().Init(level,message,"System");
+            SysEventViewModel newEvent = new SysEventViewModel().Init(level, message, "System");
             eventService.Insert(newEvent, ModelState);
         }
-	}
+
+    }
 }

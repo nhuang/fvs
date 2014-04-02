@@ -2,10 +2,26 @@
 @{
     ViewBag.Title = "Mix";
 }
-
+@{
+    DateTime timeStart = ViewBag.timeStart;
+    DateTime timeEnd = ViewBag.timeEnd;
+}
 <h2>Mix</h2>
 @using (Html.BeginForm("MixFilter", "HScheduler", FormMethod.Post))
 {
+    <p>
+        @(Html.Kendo().TimePicker()
+        .Name("timeStart")
+        .Format("HH:mm")
+            .Value(timeStart.Hour.ToString())
+        )
+        <label for="end" style="margin-left:3em">End time:</label>
+        @(Html.Kendo().TimePicker()
+        .Name("timeEnd")
+        .Format("HH:mm")
+             .Value(timeEnd.Hour.ToString())
+        )
+    </p>
     foreach (var item in Model)
     {
         <input type="checkbox" name="room" value="@item.Value" checked="@item.Show"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
@@ -15,7 +31,6 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-       .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
         .Width(1080)
             .MajorTick(60)
             .MinorTickCount(4)

@@ -89,6 +89,7 @@
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
+          <Property Name="Length" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -640,21 +641,11 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
           <EntitySet Name="SysSettings" EntityType="fschedulerModel.SysSetting" />
           <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
           <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
+          <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
         </EntityContainer>
-        <EntityType Name="Attendee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="SysSetting">
           <Key>
             <PropertyRef Name="ID" />
@@ -685,6 +676,17 @@
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attendee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+          <Property Name="Length" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -832,17 +834,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Attendees">
-            <EntityTypeMapping TypeName="fschedulerModel.Attendee">
-              <MappingFragment StoreEntitySet="Attendees">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SysSettings">
             <EntityTypeMapping TypeName="fschedulerModel.SysSetting">
               <MappingFragment StoreEntitySet="SysSetting">
@@ -869,6 +860,18 @@
           <EntitySetMapping Name="SupportTeams">
             <EntityTypeMapping TypeName="fschedulerModel.SupportTeam">
               <MappingFragment StoreEntitySet="SupportTeam">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendees">
+            <EntityTypeMapping TypeName="fschedulerModel.Attendee">
+              <MappingFragment StoreEntitySet="Attendees">
+                <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Value" ColumnName="Value" />

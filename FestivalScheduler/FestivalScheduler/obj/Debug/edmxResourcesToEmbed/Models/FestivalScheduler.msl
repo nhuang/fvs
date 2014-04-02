@@ -141,17 +141,6 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Attendees">
-      <EntityTypeMapping TypeName="fschedulerModel.Attendee">
-        <MappingFragment StoreEntitySet="Attendees">
-          <ScalarProperty Name="Show" ColumnName="Show" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SysSettings">
       <EntityTypeMapping TypeName="fschedulerModel.SysSetting">
         <MappingFragment StoreEntitySet="SysSetting">
@@ -175,17 +164,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MeetingSupportTeams">
-      <EntityTypeMapping TypeName="fschedulerModel.MeetingSupportTeam">
-        <MappingFragment StoreEntitySet="MeetingSupportTeams">
-          <ScalarProperty Name="SupportTeamID" ColumnName="SupportTeamID" />
-          <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SupportTeams">
       <EntityTypeMapping TypeName="fschedulerModel.SupportTeam">
         <MappingFragment StoreEntitySet="SupportTeam">
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendees">
+      <EntityTypeMapping TypeName="fschedulerModel.Attendee">
+        <MappingFragment StoreEntitySet="Attendees">
+          <ScalarProperty Name="Length" ColumnName="Length" />
           <ScalarProperty Name="Show" ColumnName="Show" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Value" ColumnName="Value" />

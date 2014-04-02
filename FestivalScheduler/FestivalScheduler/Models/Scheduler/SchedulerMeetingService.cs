@@ -85,7 +85,7 @@
                 foreach (Meeting j in query)
                 {
                     tempTitle = string.Format("#{0} {1}", a.Value, a.Text);
-                    if (string.Compare(j.Title,tempTitle) !=0 )
+                    if (string.Compare(j.Title, tempTitle) != 0)
                     {
                         j.Title = tempTitle;
                         db.Entry(j).State = System.Data.Entity.EntityState.Modified;
@@ -212,6 +212,14 @@
 
         private MeetingViewModel ApplyMeetingRules(MeetingViewModel meeting)
         {
+            if (meeting.Attendees != null)
+            {
+                int aId = meeting.Attendees.First();
+                Attendee attendee = db.Attendees.Where(m => m.Value == aId).FirstOrDefault();
+                meeting.End = meeting.Start.AddMinutes(attendee.Length);
+            }
+
+
             // update meeting title
             meeting.Title = ResetMeetingTitle(meeting.Attendees);
             meeting.Description = ResetMeetingDescription(meeting.RoomID, meeting.Description);

@@ -96,7 +96,6 @@
     <NavigationProperty Name="MeetingAttendees" Relationship="Self.FK_MeetingAtendee_Meeting" FromRole="Meetings" ToRole="MeetingAttendees" />
     <NavigationProperty Name="Meetings1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings" ToRole="Meetings1" />
     <NavigationProperty Name="Meeting1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings1" ToRole="Meetings" />
-    <NavigationProperty Name="MeetingSupportTeams" Relationship="fschedulerModel.FK_MeetingSupportTeams_Meetings" FromRole="Meeting" ToRole="MeetingSupportTeam" />
   </EntityType>
   <EntityType Name="Room">
     <Key>
@@ -246,26 +245,11 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
     <EntitySet Name="SysSettings" EntityType="fschedulerModel.SysSetting" />
     <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
-    <EntitySet Name="MeetingSupportTeams" EntityType="fschedulerModel.MeetingSupportTeam" />
     <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
-    <AssociationSet Name="FK_MeetingSupportTeams_Meetings" Association="fschedulerModel.FK_MeetingSupportTeams_Meetings">
-      <End Role="Meeting" EntitySet="Meetings" />
-      <End Role="MeetingSupportTeam" EntitySet="MeetingSupportTeams" />
-    </AssociationSet>
+    <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
   </EntityContainer>
-  <EntityType Name="Attendee">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Value" Type="Int32" Nullable="false" />
-    <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Show" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="SysSetting">
     <Key>
       <PropertyRef Name="ID" />
@@ -287,15 +271,6 @@
     <Property Name="UpdateAt" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreateBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="MeetingSupportTeam">
-    <Key>
-      <PropertyRef Name="MeetingID" />
-      <PropertyRef Name="SupportTeamID" />
-    </Key>
-    <Property Name="MeetingID" Type="Int32" Nullable="false" />
-    <Property Name="SupportTeamID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Meeting" Relationship="fschedulerModel.FK_MeetingSupportTeams_Meetings" FromRole="MeetingSupportTeam" ToRole="Meeting" />
-  </EntityType>
   <EntityType Name="SupportTeam">
     <Key>
       <PropertyRef Name="ID" />
@@ -306,16 +281,15 @@
     <Property Name="Color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Show" Type="Boolean" Nullable="false" />
   </EntityType>
-  <Association Name="FK_MeetingSupportTeams_Meetings">
-    <End Type="fschedulerModel.Meeting" Role="Meeting" Multiplicity="1" />
-    <End Type="fschedulerModel.MeetingSupportTeam" Role="MeetingSupportTeam" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Meeting">
-        <PropertyRef Name="MeetingID" />
-      </Principal>
-      <Dependent Role="MeetingSupportTeam">
-        <PropertyRef Name="MeetingID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Attendee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Show" Type="Boolean" Nullable="false" />
+    <Property Name="Length" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

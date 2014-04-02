@@ -13,7 +13,7 @@ namespace FestivalScheduler.Models.Resouces
         public int Value { get; set; }
         public string Color { get; set; }
         public bool Show { get; set; }
-
+        public int Length { get; set; }
 
         public Attendee ToEntity()
         {
@@ -24,6 +24,7 @@ namespace FestivalScheduler.Models.Resouces
                 Value = Value,
                 Color = Color,
                 Show = Show,
+                Length = Length
             };
 
             return attendee;

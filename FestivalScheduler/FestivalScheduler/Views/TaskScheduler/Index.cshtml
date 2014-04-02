@@ -1,0 +1,41 @@
+﻿@using FestivalScheduler.Models;
+@model IEnumerable<FestivalScheduler.Models.TaskViewModel>
+
+<h2>TODO: Implement the Filter</h2>
+<hr />
+@(Html.Kendo().Scheduler<FestivalScheduler.Models.TaskViewModel>()
+    .Name("scheduler")
+    .Date(DateTime.Today)
+    .StartTime(new DateTime(2013, 6, 13, 11, 00, 00))
+    .Height(1080)
+    .Views(views =>
+    {
+        views.DayView();
+        views.WeekView(View => View.Selected(true));
+        views.AgendaView();
+    })
+    .Timezone("Etc/UTC")
+    .Resources(resource =>
+    {
+        resource.Add(m => m.OwnerID)
+            .Title("Owner")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .DataColorField("Color")
+           .DataSource(ds => ds.Read(read => read.Action("Owner_Read", "TaskScheduler")));
+    })
+    .DataSource(d => d
+        .Model(m =>
+        {
+            m.Id(f => f.TaskID);
+            m.Field(f => f.Title).DefaultValue("No title");
+            m.Field(f => f.OwnerID).DefaultValue(1);
+            m.Field(f => f.Title).DefaultValue("No title");
+            m.RecurrenceId(f => f.RecurrenceID);
+        })
+        .Read("Read", "TaskScheduler")
+        .Create("Create", "TaskScheduler")
+        .Destroy("Destroy", "TaskScheduler")
+        .Update("Update", "TaskScheduler")
+    )
+)

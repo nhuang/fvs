@@ -84,6 +84,7 @@
     <Property Name="Value" Type="int" Nullable="false" />
     <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
     <Property Name="Show" Type="bit" Nullable="false" />
+    <Property Name="Length" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
@@ -116,14 +117,6 @@
     <Property Name="RecurrenceException" Type="ntext" />
     <Property Name="StartTimezone" Type="ntext" />
     <Property Name="EndTimezone" Type="ntext" />
-  </EntityType>
-  <EntityType Name="MeetingSupportTeams">
-    <Key>
-      <PropertyRef Name="MeetingID" />
-      <PropertyRef Name="SupportTeamID" />
-    </Key>
-    <Property Name="MeetingID" Type="int" Nullable="false" />
-    <Property Name="SupportTeamID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Room">
     <Key>
@@ -319,18 +312,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_MeetingSupportTeams_Meetings">
-    <End Role="Meetings" Type="Self.Meetings" Multiplicity="1" />
-    <End Role="MeetingSupportTeams" Type="Self.MeetingSupportTeams" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Meetings">
-        <PropertyRef Name="MeetingID" />
-      </Principal>
-      <Dependent Role="MeetingSupportTeams">
-        <PropertyRef Name="MeetingID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Tasks_Tasks">
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
     <End Role="Tasks1" Type="Self.Tasks" Multiplicity="*" />
@@ -356,7 +337,6 @@
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MeetingSupportTeams" EntityType="Self.MeetingSupportTeams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SupportTeam" EntityType="Self.SupportTeam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysEvents" EntityType="Self.SysEvents" Schema="dbo" store:Type="Tables" />
@@ -401,10 +381,6 @@
     <AssociationSet Name="FK_Meetings_Meetings" Association="Self.FK_Meetings_Meetings">
       <End Role="Meetings" EntitySet="Meetings" />
       <End Role="Meetings1" EntitySet="Meetings" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MeetingSupportTeams_Meetings" Association="Self.FK_MeetingSupportTeams_Meetings">
-      <End Role="Meetings" EntitySet="Meetings" />
-      <End Role="MeetingSupportTeams" EntitySet="MeetingSupportTeams" />
     </AssociationSet>
     <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
       <End Role="Tasks" EntitySet="Tasks" />

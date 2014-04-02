@@ -5,15 +5,33 @@
 
 <h2>Mix</h2>
 
-@foreach (var item in Model)
+@using (Html.BeginForm("MixFilter", "Scheduler", FormMethod.Post))
 {
-    <label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+    <p>
+        <label for="start">Start time:</label>
+        @(Html.Kendo().TimePicker()
+        .Name("timeStart")
+        .Format("HH:mm")
+        .Value("11:00 AM")
+        )
+        <label for="end" style="margin-left:3em">End time:</label>
+        @(Html.Kendo().TimePicker()
+        .Name("timeEnd")
+        .Format("HH:mm")
+        .Value("11:59 PM")
+        )
+    </p>
+
+    foreach (var item in Model)
+    {
+        <input type="checkbox" name="room" value="@item.Value" checked="checked"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
+    }
+    <input type="submit" value="Filter" />
 }
 <hr />
 
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-        .StartTime(new DateTime(DateTime.Now.Year, 1, 1, 7, 00, 00))
         .Width(1080)
             .MajorTick(60)
             .MinorTickCount(4)

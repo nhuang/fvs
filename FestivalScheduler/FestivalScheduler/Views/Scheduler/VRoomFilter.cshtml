@@ -44,7 +44,16 @@
             .MinorTickCount(4)
     .Group(group => group.Resources("Rooms").Orientation(SchedulerGroupOrientation.Vertical))
          .Resources(resource =>
-             {
+         {
+             resource.Add(m => m.Attendees)
+                .Title("Attendees")
+                .Multiple(true)
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .DataColorField("Color")
+                .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
+              );
+                 
                  resource.Add(m => m.RoomID)
                      .Title("Room")
                      .Name("Rooms")
@@ -53,14 +62,7 @@
                      .DataColorField("Color")
                      .DataSource(ds => ds.Read(read => read.Action("Room_Selected", "Room"))
                    );
-                 resource.Add(m => m.Attendees)
-                     .Title("Attendees")
-                     .Multiple(true)
-                     .DataTextField("Text")
-                     .DataValueField("Value")
-                     .DataColorField("Color")
-                     .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
-                   );
+                
              })
     .DataSource(d => d
             .Model(m =>

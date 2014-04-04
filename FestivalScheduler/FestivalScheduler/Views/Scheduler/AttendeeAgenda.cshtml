@@ -3,7 +3,8 @@
 
 @{
     ViewBag.Title = "Scheduling";
-    string patten = "MMM-dd-yyyy hh:mm tt";
+    string datePatten = "MMM-dd-yyyy";
+    string timePatten = "hh:mm tt";
 }
 
 <h2>Scheduling</h2>
@@ -12,6 +13,9 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+           <label>Date</label>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Start)
@@ -31,10 +35,13 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @item.Start.ToString(patten, CultureInfo.CreateSpecificCulture("en-US"))
+            @item.Start.ToString(datePatten ,CultureInfo.CreateSpecificCulture("en-US"))
         </td>
         <td>
-            @item.End.ToString(patten, CultureInfo.CreateSpecificCulture("en-US"))
+            @item.Start.ToString(timePatten, CultureInfo.CreateSpecificCulture("en-US"))
+        </td>
+        <td>
+            @item.End.ToString(timePatten, CultureInfo.CreateSpecificCulture("en-US"))
         </td>      
         <td>
             @Html.DisplayFor(modelItem => item.Description)

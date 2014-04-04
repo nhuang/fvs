@@ -11,13 +11,13 @@
         @(Html.Kendo().TimePicker()
         .Name("timeStart")
         .Format("HH:mm")
-        .Value("8:00 AM")
+        .Value("11:00 AM")
         )
         <label for="end" style="margin-left:3em">End time:</label>
         @(Html.Kendo().TimePicker()
         .Name("timeEnd")
         .Format("HH:mm")
-        .Value("6:00 PM")
+        .Value("23:59 PM")
         )
     </p>
 
@@ -30,6 +30,9 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
+         .Date(DateTime.Today)
+                .StartTime(11, 0, 0)
+                    .EndTime(23, 59, 59)
         .Width(1080)
         .MajorTick(60)
         .MinorTickCount(4)
@@ -80,4 +83,128 @@
                             "#= title #<br/>" +
                             "#= description #" +
                         "</div>")
+        .Events(events => events
+                .Add("scheduler_add")
+                .Save("scheduler_save")
+                .Resize("scheduler_resize")
+                .ResizeEnd("scheduler_resizeEnd")
+                .Move("scheduler_move")
+                .MoveEnd("scheduler_moveEnd")
+        )
 )
+
+
+<script>
+    function scheduler_resize(e) {
+        if (roomIsOccupied(e.start, e.end, e.event, e.resources) || attendeeIsOccupied(e.start, e.end, e.event, e.resources)) {
+            this.wrapper.find(".k-marquee-color").addClass("invalid-slot");
+            e.preventDefault();
+        }
+    }
+
+    function scheduler_resizeEnd(e) {
+        if (!checkAvailability(e.start, e.end, e.events)) {
+            e.preventDefault();
+        }
+    }
+
+    function scheduler_move(e) {
+        if (roomIsOccupied(e.start, e.end, e.event, e.resources) || attendeeIsOccupied(e.start, e.end, e.event, e.resources)) {
+            this.wrapper.find(".k-event-drag-hint").addClass("invalid-slot");
+        }
+    }
+
+    function scheduler_moveEnd(e) {
+        if (!checkAvailability(e.start, e.end, e.event, e.resources)) {
+            e.preventDefault();
+        }
+    }
+
+    function scheduler_add(e) {
+        if (!checkAvailability(e.event.start, e.event.end, e.event)) {
+            e.preventDefault();
+        }
+    }
+
+    function scheduler_save(e) {
+        if (!checkAvailability(e.event.start, e.event.end, e.event)) {
+            e.preventDefault();
+        }
+    }
+
+    function occurrencesInRangeByResource(start, end, resourceFieldName, event, resources) {
+        var scheduler = $("#scheduler").getKendoScheduler();
+
+        var occurrences = scheduler.occurrencesInRange(start, end);
+
+        var idx = occurrences.indexOf(event);
+        if (idx > -1) {
+            occurrences.splice(idx, 1);
+        }
+
+        event = $.extend({}, event, resources);
+
+        return filterByResource(occurrences, resourceFieldName, event[resourceFieldName]);
+    }
+
+    function filterByResource(occurrences, resourceFieldName, value) {
+        var result = [];
+        var occurrence;
+
+        for (var idx = 0, length = occurrences.length; idx < length; idx++) {
+            occurrence = occurrences[idx];
+            var resourceValue = occurrence[resourceFieldName];
+
+            if (resourceValue === value) {
+                result.push(occurrence);
+            } else if (resourceValue instanceof kendo.data.ObservableArray) {
+                if (value) {
+                    for (var i = 0; i < value.length; i++) {
+                        if (resourceValue.indexOf(value[i]) != -1) {
+                            result.push(occurrence);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    function attendeeIsOccupied(start, end, event, resources) {
+        var occurrences = occurrencesInRangeByResource(start, end, "Attendees", event, resources);
+        if (occurrences.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function roomIsOccupied(start, end, event, resources) {
+        var occurrences = occurrencesInRangeByResource(start, end, "RoomID", event, resources);
+        if (occurrences.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkAvailability(start, end, event, resources) {
+        if (attendeeIsOccupied(start, end, event, resources)) {
+            setTimeout(function () {
+                alert("This person is not available in this time period.");
+            }, 0);
+
+            return false;
+        }
+
+        if (roomIsOccupied(start, end, event, resources)) {
+            setTimeout(function () {
+                alert("This room is not available in this time period.");
+            }, 0);
+
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

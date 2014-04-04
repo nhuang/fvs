@@ -1702,6 +1702,7 @@
     <Content Include="Views\Upload\Submit.cshtml" />
     <Content Include="Views\SupportTeam\Index.cshtml" />
     <Content Include="Views\SupportTeam\Assignment.cshtml" />
+    <Content Include="Views\Scheduler\AttendeeShows.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

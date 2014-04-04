@@ -107,6 +107,10 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#example').dataTable({
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Scripts/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"
+            },
             "aaSorting": [[1, "desc"]],
             "iDisplayLength": 25,
             "bPaginate": true,

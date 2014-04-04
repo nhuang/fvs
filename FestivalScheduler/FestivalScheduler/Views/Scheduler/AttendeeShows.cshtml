@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.AttendeeViewModel>
+
+@{
+    ViewBag.Title = "AttendeeShows";
+}
+
+<h2>AttendeeShows</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfShows)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Length)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Text) </strong>
+        </td>       
+        <td>
+            <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Color) </strong>
+</td>
+        <td>
+           @Html.DisplayFor(modelItem => item.NumberOfShows)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+    </tr>
+}
+
+</table>

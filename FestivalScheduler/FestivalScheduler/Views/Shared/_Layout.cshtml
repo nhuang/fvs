@@ -16,11 +16,15 @@
 	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/demo_page.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/css/TableTools.css")" rel="stylesheet" type="text/css" />
 
 	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/jquery.min.js")"></script>
 	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.all.min.js")"></script>
 	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js")"></script>
     <script src="@Url.Content("~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/js/ZeroClipboard.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/js/TableTools.js")"></script>
+
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,60 +38,62 @@
 				@Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
 			</div>
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					@(Html.Kendo().Menu()
-	  .Name("Menu")
-	  .Items(items =>
-	  {
-		  items.Add().Text("Home").Action("Index", "Home").Items(children =>
-		   {
-			   children.Add().Text("Notification").Action("Events", "Home");
-		   });
-		  items.Add().Text("About").Action("About", "Home");
-		  items.Add().Text("Contact").Action("Contact", "Home");
+                <ul class="nav navbar-nav">
+                    @(Html.Kendo().Menu()
+      .Name("Menu")
+      .Items(items =>
+      {
+          items.Add().Text("Home").Action("Index", "Home").Items(children =>
+           {
+               children.Add().Text("Notification").Action("Events", "Home");
+           });
+          items.Add().Text("About").Action("About", "Home");
+          items.Add().Text("Contact").Action("Contact", "Home");
 
 
-		  items.Add()
-		   .Text("Scheduler")
-		   .Items(children =>
-		   {
-			   children.Add().Text("Room Mix").Action("Mix", "Scheduler");
-			   children.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
-			   children.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
-			   children.Add().Text("Room Attendee").Action("Attendee", "Scheduler");
-			   children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");		   
-		   });
+          items.Add()
+           .Text("Scheduler")
+           .Items(children =>
+           {
+               children.Add().Text("Room Mix").Action("Mix", "Scheduler");
+               children.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
+               children.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
+               children.Add().Text("Room Attendee").Action("Attendee", "Scheduler");
+               children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");
+               children.Add().Text("Attendee Details").Action("AttendeeShows", "Scheduler");
+               
+           });
 
-		  items.Add()
-		  .Text("Admin")
-		  .Items(children =>
-		  {
-			  children.Add().Text("Permissions")
-					  .Items(innerChildren =>
-					  {
-						  innerChildren.Add().Text("Users").Action("Index", "Account");
-						  innerChildren.Add().Text("Groups").Action("Index", "Groups");
-						  innerChildren.Add().Text("Permissions").Action("Index", "Roles");
-					  });
-			  children.Add().Text("Resources")
-					 .Items(innerChildren =>
-					 {
-						 innerChildren.Add().Text("Rooms").Action("Index", "Room");
-						 innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
-						 innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
-						 innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");                         
-					 });
-			  children.Add().Text("System")
-					 .Items(innerChildren =>
-					 {
-						 innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
-						 innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
-					 });
-		  });
-	  })
-					)
+          items.Add()
+          .Text("Admin")
+          .Items(children =>
+          {
+              children.Add().Text("Permissions")
+                      .Items(innerChildren =>
+                      {
+                          innerChildren.Add().Text("Users").Action("Index", "Account");
+                          innerChildren.Add().Text("Groups").Action("Index", "Groups");
+                          innerChildren.Add().Text("Permissions").Action("Index", "Roles");
+                      });
+              children.Add().Text("Resources")
+                     .Items(innerChildren =>
+                     {
+                         innerChildren.Add().Text("Rooms").Action("Index", "Room");
+                         innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
+                         innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
+                         innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
+                     });
+              children.Add().Text("System")
+                     .Items(innerChildren =>
+                     {
+                         innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
+                         innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
+                     });
+          });
+      })
+                    )
 
-				</ul>
+                </ul>
 				@Html.Partial("_LoginPartial")
 			</div>
 		</div>

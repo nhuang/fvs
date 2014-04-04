@@ -75,6 +75,13 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(meetingService.GetAllMeetingAgenda());
         }
 
+
+        // GET: /Scheduler/AttendeeShows
+        public ActionResult AttendeeShows()
+        {
+            return View(attendeeService.CountShowsForAttendee());
+        }
+
         // GET: /Scheduler/ResetMeetingTitles
         public ActionResult ResetMeetingTitles()
         {

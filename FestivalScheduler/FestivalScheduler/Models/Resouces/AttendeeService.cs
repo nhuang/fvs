@@ -35,6 +35,27 @@ namespace FestivalScheduler.Models.Resouces
                 }).AsQueryable();
         }
 
+
+        public virtual List<AttendeeViewModel> CountShowsForAttendee()
+        {
+            IEnumerable<AttendeeViewModel> iAttendees = db.Attendees.ToList().Select(attendee => new AttendeeViewModel
+                {
+                    ID = attendee.ID,
+                    Text = attendee.Text,
+                    Value = attendee.Value,
+                    Color = attendee.Color,
+                    Show = attendee.Show,
+                    Length = attendee.Length
+                });
+
+            List<AttendeeViewModel> result = iAttendees.ToList();
+            foreach (AttendeeViewModel comp in result)
+            {
+                comp.NumberOfShows = db.MeetingAttendees.Count(m => m.AttendeeID == comp.Value);
+            }
+            return result;
+        }
+
         public virtual IQueryable<AttendeeViewModel> GetAttendeesForScheduler()
         {
             return db.Attendees.ToList().Select(attendee => new AttendeeViewModel

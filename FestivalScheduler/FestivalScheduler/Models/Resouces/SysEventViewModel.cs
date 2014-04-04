@@ -14,6 +14,9 @@ namespace FestivalScheduler.Models.Resouces
         public string CreateBy { get; set; }
 
         public readonly static string INFO = "INFO";
+        public readonly static string NEW = "NEW";
+        public readonly static string UPDATE = "UPDATE";
+        public readonly static string DELETED = "DELETE";
         public readonly static string WARNING = "WARNING";
 
         public SysEvent ToEntity()

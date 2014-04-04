@@ -6,53 +6,117 @@
 
 <h2>Today Events</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Level)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.CreateBy)
-        </th>
-    </tr>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
+    <thead>
+        <tr>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th width="20%">
+                @Html.DisplayNameFor(model => model.UpdateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @{
-    if (string.Equals(item.Level, "INFO", StringComparison.CurrentCultureIgnoreCase))
-    {
-        <img src="~/Images/info.png" width="24" height="24">
-    }
-    else if (string.Equals(item.Level, "WARNING", StringComparison.CurrentCultureIgnoreCase))
-    {
-        <img src="~/Images/warning.png" width="24" height="24">
-    }
-}
-            @Html.DisplayFor(modelItem => item.Level)
-        </td>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateBy)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+            if (string.Equals(item.Level, "INFO", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <img src="~/Images/info.png" width="24" height="24">
+            }
+            else if (string.Equals(item.Level, "WARNING", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <img src="~/Images/warning.png" width="24" height="24">
+            }
+            else if (string.Equals(item.Level, "NEW", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <img src="~/Images/new.png" width="24" height="24">
+            }
+            else if (string.Equals(item.Level, "UPDATE", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <img src="~/Images/edit.png" width="24" height="24">
+            }
+            else if (string.Equals(item.Level, "DELETE", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <img src="~/Images/delete.png" width="24" height="24">
+            }
+                    }
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateAt)
+                </td>
+
+                <td>
+                    @{
+            if (string.Equals(item.Level, "DELETE", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <del style="color:red">@Html.DisplayFor(modelItem => item.Message)</del>
+            }
+            else if (string.Equals(item.Level, "UPDATE", StringComparison.CurrentCultureIgnoreCase) || string.Equals(item.Level, "NEW", StringComparison.CurrentCultureIgnoreCase))
+            {
+                <em> @Html.DisplayFor(modelItem => item.Message)</em>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.Message)
+            }
+                    }
+
+                </td>
 
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateAt)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateBy)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-     
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateBy)
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.CreateBy)
+            </th>
+        </tr>
+    </tfoot>
 
 </table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "aaSorting": [[1, "desc"]],
+            "iDisplayLength": 25,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true,
+            "sPaginationType": "full_numbers",
+            "sScrollY": "750px"
+        });
+    });
+</script>

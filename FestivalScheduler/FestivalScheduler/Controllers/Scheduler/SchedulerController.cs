@@ -23,6 +23,9 @@ namespace FestivalScheduler.Controllers.Scheduler
         private RoomService roomService;
         private SysEventService eventService;
         private SysSettingService settingService;
+        private string datePatten = "MMM-dd-yyyy";
+        private string timePatten = "hh:mm tt";
+
         public SchedulerController()
         {
             this.taskService = new SchedulerTaskService();
@@ -158,7 +161,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Delete(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.WARNING, string.Format("Meeting {0} deleted.", meeting.Title));
+                NewSysEvent(SysEventViewModel.DELETED, string.Format("Meeting {0} deleted. Schedule : {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten),meeting.Start.ToString(timePatten),meeting.End.ToString(timePatten),meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
@@ -169,7 +172,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Insert(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.WARNING, string.Format("Meeting {0} created.", meeting.Title));
+                NewSysEvent(SysEventViewModel.NEW, string.Format("Meeting {0} created. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
@@ -180,7 +183,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             if (ModelState.IsValid)
             {
                 meetingService.Update(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.INFO, string.Format("Meeting {0} updated.", meeting.Title));
+                NewSysEvent(SysEventViewModel.UPDATE, string.Format("Meeting {0} updated. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
@@ -188,6 +191,7 @@ namespace FestivalScheduler.Controllers.Scheduler
 
         private void NewSysEvent(string level, string message)
         {
+
             SysEventViewModel newEvent = new SysEventViewModel().Init(level, message, "System");
             eventService.Insert(newEvent, ModelState);
         }

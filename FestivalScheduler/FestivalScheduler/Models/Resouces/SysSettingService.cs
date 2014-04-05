@@ -6,6 +6,8 @@
     using System;
     using System.Data;
     using System.Data.Entity;
+    using System.Collections.Generic;
+
     public class SysSettingService
     {
         private fschedulerEntities db;
@@ -22,6 +24,10 @@
 
         public virtual IQueryable<SysSettingViewModel> GetAll()
         {
+            List<string> exceptionList = new List<string>();
+            exceptionList.Add("About");
+            exceptionList.Add("Contact");
+
             return db.SysSettings.ToList().Select(sys => new SysSettingViewModel
                 {
                     ID = sys.ID,
@@ -30,7 +36,7 @@
                     Value = sys.Value,
                     Description = sys.Description,
                     KeyGroup = sys.KeyGroup
-                }).AsQueryable();
+                }).Where(m=>!exceptionList.Contains(m.KeyName)).AsQueryable();
         }
 
         public virtual SysSettingViewModel GetById(int id)

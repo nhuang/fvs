@@ -1703,6 +1703,8 @@
     <Content Include="Views\SupportTeam\Index.cshtml" />
     <Content Include="Views\SupportTeam\Assignment.cshtml" />
     <Content Include="Views\Scheduler\AttendeeShows.cshtml" />
+    <Content Include="Views\SysSetting\EditAbout.cshtml" />
+    <Content Include="Views\SysSetting\EditContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

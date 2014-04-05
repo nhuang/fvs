@@ -27,6 +27,7 @@ namespace FestivalScheduler.Controllers.Resources
             return View(settingService.GetAll());
         }
 
+
         public ActionResult ImageBrowser()
         {
             return View();
@@ -62,6 +63,62 @@ namespace FestivalScheduler.Controllers.Resources
             catch
             {
                 return View();
+            }
+        }
+
+        // GET: /SysSetting/EditAbout
+        public ActionResult EditAbout()
+        {
+            ViewBag.UrlAddress = this.Request.Url.Host;
+            return View(settingService.GetAbout());
+        }
+
+        //
+        // POST: /SysSetting/EditAbout
+        [HttpPost]
+        public ActionResult EditAbout(FormCollection collection)
+        {
+            try
+            {
+                ViewBag.UrlAddress = this.Request.Url.Host;
+                SysSettingViewModel model = settingService.GetAbout();
+                SysSettingViewModel sys = ConvertToViewModel(collection);
+                sys.ID = model.ID;
+
+                settingService.Update(sys, ModelState);
+                return RedirectToAction("About", "Home");
+            }
+            catch
+            {
+                return View(settingService.GetAbout());
+            }
+        }
+
+        // GET: /SysSetting/EditContact
+        public ActionResult EditContact()
+        {
+            ViewBag.UrlAddress = this.Request.Url.Host;
+            return View(settingService.GetContact());
+        }
+
+        //
+        // POST: /SysSetting/EditContact
+        [HttpPost]
+        public ActionResult EditContact(FormCollection collection)
+        {
+            try
+            {
+                ViewBag.UrlAddress = this.Request.Url.Host;
+                SysSettingViewModel model = settingService.GetContact();
+                SysSettingViewModel sys = ConvertToViewModel(collection);
+                sys.ID = model.ID;
+
+                settingService.Update(sys, ModelState);
+                return RedirectToAction("Contact", "Home");
+            }
+            catch
+            {
+                return View(settingService.GetContact());
             }
         }
 

@@ -1,0 +1,73 @@
+﻿@model FestivalScheduler.Models.Resouces.SysSettingViewModel
+@{
+    ViewBag.Title = "EditContact";
+    string urlAddress = ViewBag.UrlAddress;
+}
+
+<h2>Edit Contact</h2>
+
+@using (Html.BeginForm("EditContact", "SysSetting", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>SysSetting</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.KeyName)
+        @Html.HiddenFor(model => model.KeyGroup)
+        @Html.HiddenFor(model => model.Value)
+        @Html.HiddenFor(model => model.ValueType)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            @string.Format("Image url example http:://{0}/Images/xxx.png", @urlAddress)
+            <div class="col-md-10">
+                <textarea id="Description" name="Description" rows="10" cols="60" style="width:100%;height:600px">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $("#Description").kendoEditor({
+        tools: [
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "justifyLeft",
+            "justifyCenter",
+            "justifyRight",
+            "justifyFull",
+            "insertUnorderedList",
+            "insertOrderedList",
+            "indent",
+            "outdent",
+            "createLink",
+            "unlink",
+            "insertImage",
+            "subscript",
+            "superscript",
+            "createTable",
+            "addRowAbove",
+            "addRowBelow",
+            "addColumnLeft",
+            "addColumnRight",
+            "deleteRow",
+            "deleteColumn",
+            "viewHtml",
+            "formatting",
+            "fontName",
+            "fontSize",
+            "foreColor",
+            "backColor"
+        ]
+    });
+</script>

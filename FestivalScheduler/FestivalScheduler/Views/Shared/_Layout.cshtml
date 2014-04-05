@@ -87,6 +87,8 @@
                      .Items(innerChildren =>
                      {
                          innerChildren.Add().Text("Notifier").Action("Index", "SysEvent");
+                         innerChildren.Add().Text("Edit About").Action("EditAbout", "SysSetting");
+                         innerChildren.Add().Text("Edit Contact").Action("EditContact", "SysSetting");
                          innerChildren.Add().Text("Parameters").Action("Index", "SysSetting");
                      });
           });

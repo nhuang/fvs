@@ -27,6 +27,9 @@
     }
     <input type="submit" value="Filter" />
 }
+<form>
+    <input type="button" value="New Window!" style="float:right" onclick="window.open('@Request.Url.AbsoluteUri', 'mywindow', 'width=$( window ).width();,height=$( window ).height();')">
+</form> 
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")

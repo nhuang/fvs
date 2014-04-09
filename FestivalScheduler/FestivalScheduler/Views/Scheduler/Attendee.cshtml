@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<FestivalScheduler.Models.Resouces.AttendeeViewModel>
 @{
     ViewBag.Title = "Index";
+    int StartHour = ViewBag.StartHour;
+    int StartMinute = ViewBag.StartMinute;
+    int EndHour = ViewBag.EndHour;
+    int EndMinute = ViewBag.EndMinute;
+    DateTime StartDate = ViewBag.StartDate;
+    DateTime EndDate = ViewBag.EndDate;
 }
 
 <h2>Attendee Horizontal Grouping</h2>
@@ -30,9 +36,9 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-         .Date(DateTime.Today)
-                .StartTime(11, 0, 0)
-                    .EndTime(23, 59, 59)
+         .Date(@StartDate)
+                .StartTime(@StartHour, @StartMinute, 0)
+                    .EndTime(@EndHour, @EndMinute, 59)
         .Width(1080)
         .MajorTick(60)
         .MinorTickCount(4)

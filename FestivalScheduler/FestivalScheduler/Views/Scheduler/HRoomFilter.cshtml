@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<FestivalScheduler.Models.Resouces.RoomViewModel>
 
 @{
+    DateTime startDate = ViewBag.StartDate;
     DateTime timeStart = ViewBag.timeStart;
     DateTime timeEnd = ViewBag.timeEnd;
 }
@@ -36,6 +37,7 @@
 
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
+        .Date(@startDate)
                 .StartTime(@timeStart)
                 .EndTime(@timeEnd)
         .Width(1080)

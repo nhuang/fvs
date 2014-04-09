@@ -1684,12 +1684,10 @@
     <Content Include="Views\Shared\EditorTemplates\SelectGroupEditorViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRoleEditorViewModel.cshtml" />
     <Content Include="Views\Scheduler\Index.cshtml" />
-    <Content Include="Views\Scheduler\Mix.cshtml" />
     <Content Include="Views\Scheduler\Attendee.cshtml" />
     <Content Include="Views\Scheduler\Vertical.cshtml" />
     <Content Include="Views\Scheduler\HRoomFilter.cshtml" />
     <Content Include="Views\Scheduler\VRoomFilter.cshtml" />
-    <Content Include="Views\Scheduler\MixFilter.cshtml" />
     <Content Include="Views\Scheduler\Horizontal.cshtml" />
     <Content Include="Views\Scheduler\HAttendeeFilter.cshtml" />
     <Content Include="Views\Scheduler\AttendeeAgenda.cshtml" />

@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<FestivalScheduler.Models.Resouces.RoomViewModel>
 @{
     ViewBag.Title = "Index";
+    int StartHour = ViewBag.StartHour;
+    int StartMinute = ViewBag.StartMinute;
+    int EndHour = ViewBag.EndHour;
+    int EndMinute = ViewBag.EndMinute;
+    DateTime StartDate = ViewBag.StartDate;
+    DateTime EndDate = ViewBag.EndDate;
 }
 
 <h2>Rooms Vertical Grouping</h2>
@@ -33,9 +39,9 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
-         .Date(DateTime.Today)
-        .StartTime(11, 0, 0)
-            .EndTime(23, 59, 59)
+         .Date(@StartDate)
+        .StartTime(@StartHour, @StartMinute, 0)
+            .EndTime(@EndHour, @EndMinute, 59)
     .Views(views =>
     {
         views.DayView();

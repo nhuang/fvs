@@ -4,6 +4,7 @@
 }
 
 @{
+    DateTime startDate = ViewBag.StartDate;
     DateTime timeStart = ViewBag.timeStart;
     DateTime timeEnd = ViewBag.timeEnd;
 }
@@ -33,6 +34,9 @@
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
+    .Date(@startDate)
+        .StartTime(@timeStart)
+        .EndTime(@timeEnd)
         .Width(1080)
         .MajorTick(60)
         .MinorTickCount(4)

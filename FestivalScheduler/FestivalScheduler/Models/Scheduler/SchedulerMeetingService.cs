@@ -244,7 +244,7 @@
                     attendee = db.Attendees.Where(w => w.Value == i).FirstOrDefault();
                     if (attendee != null)
                     {
-                        result += string.Format("#{0} {1} \n", attendee.Value, attendee.Text);
+                        result += string.Format("#{0} {1}\n", attendee.Value, attendee.Text);
                     }
                 }
 
@@ -263,15 +263,8 @@
             }
             else
             {
-
-                if (!string.IsNullOrEmpty(description) && description.StartsWith(prefix))
-                {
-                    return description;
-                }
-
                 Room room = db.Rooms.Where(q => q.Value == Id).FirstOrDefault();
                 result = string.Format("At: {0}.\n", room.Text);
-                result += description;
             }
             return result;
 

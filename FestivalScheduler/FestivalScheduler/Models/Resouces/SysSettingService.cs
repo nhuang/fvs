@@ -7,6 +7,7 @@
     using System.Data;
     using System.Data.Entity;
     using System.Collections.Generic;
+    using System.Globalization;
 
     public class SysSettingService
     {
@@ -59,7 +60,90 @@
             return Convert.ToInt32(item.Value);
         }
 
+        public virtual DateTime GetStartDate()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("StartDate")).FirstOrDefault();
+            string format = "MM/dd/yyyy";
+            return DateTime.ParseExact(model.Value, format, CultureInfo.InvariantCulture);
+        }
 
+        public virtual DateTime GetGetEndDate()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("EndDate")).FirstOrDefault();
+            string format = "MM/dd/yyyy";
+            return DateTime.ParseExact(model.Value, format, CultureInfo.InvariantCulture);
+        }
+
+        public virtual int GetStartHour()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("StartHour")).FirstOrDefault();
+            return Convert.ToInt32(model.Value);
+        }
+
+        public virtual int GetStartMinute()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("StartMinute")).FirstOrDefault();
+            return Convert.ToInt32(model.Value);
+        }
+
+        public virtual int GetEndHour()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("EndHour")).FirstOrDefault();
+            return Convert.ToInt32(model.Value);
+        }
+        public virtual int GetEndMinute()
+        {
+            SysSettingViewModel model = db.SysSettings.Select(sys => new SysSettingViewModel
+            {
+                ID = sys.ID,
+                KeyName = sys.KeyName,
+                ValueType = sys.ValueType,
+                Value = sys.Value,
+                Description = sys.Description,
+                KeyGroup = sys.KeyGroup
+            }).Where(m => m.KeyName.Equals("EndMinute")).FirstOrDefault();
+            return Convert.ToInt32(model.Value);
+        }
         public virtual SysSettingViewModel GetAbout()
         {
             return db.SysSettings.Select(sys => new SysSettingViewModel

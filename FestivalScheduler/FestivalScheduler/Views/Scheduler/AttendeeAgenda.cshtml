@@ -1,13 +1,62 @@
 ﻿@using System.Globalization;
+@using FestivalScheduler.Models.Resouces;
 @model IEnumerable<FestivalScheduler.Models.Meeting>
 
 @{
     ViewBag.Title = "Scheduling";
     string datePatten = "MMM-dd-yyyy";
     string timePatten = "hh:mm tt";
+    IEnumerable<FestivalScheduler.Models.Resouces.AttendeeViewModel> shows= ViewBag.Shows;
 }
 
 <h2>Scheduling</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           Reference Number
+        </th>
+
+        <th>
+            Show Title
+        </th>
+
+        <th>
+           Color
+        </th>
+        <th>
+            Number of shows
+        </th>
+        <th>
+            Length
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in shows)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Text) </strong>
+            </td>
+            <td>
+                <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Color) </strong>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfShows)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+        </tr>
+    }
+
+</table>
+
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
     <thead>

@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="ComputerBeacon.Json">
+      <HintPath>..\packages\ComputerBeacon.Json.4.2.804\lib\portable-net4+sl4+wp7+win8\ComputerBeacon.Json.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -51,11 +54,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.2\lib\net45\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\lib\KENDOUIMVC\2014.1.318.545\Kendo.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Expression.SilverlightPlatform, Version=5.0.30709.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -193,6 +203,7 @@
     <Compile Include="Controllers\Account\HomeController.cs" />
     <Compile Include="Controllers\Account\RolesController.cs" />
     <Compile Include="Controllers\Resources\AttendeeController.cs" />
+    <Compile Include="Controllers\Resources\DataResourceController.cs" />
     <Compile Include="Controllers\Resources\RoomController.cs" />
     <Compile Include="Controllers\Resources\SupportTeamController.cs" />
     <Compile Include="Controllers\Resources\SysEventController.cs" />
@@ -227,6 +238,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>FestivalScheduler.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataResource\DataIOService.cs" />
     <Compile Include="Models\FestivalScheduler.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -634,6 +646,7 @@
     <Content Include="Scripts\DataTables-1.9.4\scripts\jshint.config" />
     <Content Include="Scripts\DataTables-1.9.4\scripts\make.sh" />
     <Content Include="Scripts\DataTables-1.9.4\scripts\unit_tests.sh" />
+    <Content Include="File\Upload\BYOVArtistMasterList.xlsx" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\34cdb56b2c.html" />
     <Content Include="Scripts\DataTables-1.9.4\docs\DataTable.defaults.columns.html" />
@@ -1703,10 +1716,12 @@
     <Content Include="Views\Scheduler\AttendeeShows.cshtml" />
     <Content Include="Views\SysSetting\EditAbout.cshtml" />
     <Content Include="Views\SysSetting\EditContact.cshtml" />
+    <Content Include="Views\DataResource\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\UserFiles\Images\" />
+    <Folder Include="File\Download\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

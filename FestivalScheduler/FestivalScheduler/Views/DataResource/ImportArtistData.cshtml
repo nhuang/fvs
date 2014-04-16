@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "ImportArtistData";
+}
+
+<h2>Import Artist Data</h2>
+
+@using (Html.BeginForm("ImportFromService", "DataResource", FormMethod.Post))
+{
+    <ul data-role="listview" data-style="inset">
+        <li>
+            <label for="username" class="required">Login Name</label>
+            <input type="text" id="username" name="username" class="k-textbox" placeholder="login name" required validationmessage="Please enter {0}" />
+        </li>
+        <li>
+            <label for="password" class="required">Password</label>
+            <input type="password" id="password" name="password" class="k-textbox" placeholder="password" required validationmessage="Please enter {0}" />
+        </li>
+    </ul>
+        <input type="submit" value="Import" />
+    
+}

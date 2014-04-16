@@ -90,6 +90,120 @@
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
           <Property Name="Length" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="Company" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryFirstName" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryLastName" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryAddress" Type="varchar" MaxLength="500" />
+          <Property Name="PrimaryCity" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryProvState" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryCountry" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryPCZip" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryPhone" Type="varchar" MaxLength="200" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryFirstName" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryLastName" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryAddress" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryCity" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryPovState" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryCountry" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryPCZip" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryPhone" Type="varchar" MaxLength="200" />
+          <Property Name="SecondaryEmail" Type="varchar" MaxLength="200" />
+          <Property Name="CastMembers" Type="varchar(max)" />
+          <Property Name="Playwright" Type="varchar" MaxLength="200" />
+          <Property Name="Director" Type="varchar" MaxLength="200" />
+          <Property Name="StageManager" Type="varchar" MaxLength="200" />
+          <Property Name="Designer" Type="varchar" MaxLength="200" />
+          <Property Name="TeamSize" Type="varchar" MaxLength="200" />
+          <Property Name="NewWork" Type="varchar" MaxLength="200" />
+          <Property Name="Genre" Type="varchar" MaxLength="200" />
+          <Property Name="GenreOther" Type="varchar" MaxLength="200" />
+          <Property Name="ShowRating" Type="varchar" MaxLength="200" />
+          <Property Name="AgeRestriction" Type="varchar" MaxLength="200" />
+          <Property Name="ShowContains" Type="varchar" MaxLength="200" />
+          <Property Name="ContentAdvisory" Type="varchar" MaxLength="200" />
+          <Property Name="GeneralAdmission" Type="varchar" MaxLength="200" />
+          <Property Name="StudentSenior" Type="varchar" MaxLength="200" />
+          <Property Name="ShowDescription" Type="varchar(max)" />
+          <Property Name="Website" Type="varchar" MaxLength="500" />
+          <Property Name="ShowImage" Type="varchar" MaxLength="200" />
+          <Property Name="NameonCheque" Type="varchar" MaxLength="200" />
+          <Property Name="CompanyNameonCheque" Type="varchar" MaxLength="200" />
+          <Property Name="ChequeAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ChequeCity" Type="varchar" MaxLength="200" />
+          <Property Name="ChequeProvState" Type="varchar" MaxLength="200" />
+          <Property Name="ChequeCountry" Type="varchar" MaxLength="200" />
+          <Property Name="ChequePCZip" Type="varchar" MaxLength="200" />
+          <Property Name="GST" Type="varchar" MaxLength="200" />
+          <Property Name="WhenNotAvailable" Type="varchar" MaxLength="200" />
+          <Property Name="Sharing" Type="varchar" MaxLength="200" />
+          <Property Name="SharingRef" Type="varchar" MaxLength="200" />
+          <Property Name="SharingCompany" Type="varchar" MaxLength="200" />
+          <Property Name="SharingShowTitle" Type="varchar" MaxLength="200" />
+          <Property Name="StagingRequirements" Type="varchar(max)" />
+          <Property Name="Intermission" Type="varchar" MaxLength="200" />
+          <Property Name="LightingRequirements" Type="varchar(max)" />
+          <Property Name="SoundRequirements" Type="varchar(max)" />
+          <Property Name="Dancing" Type="varchar" MaxLength="200" />
+          <Property Name="DancingType" Type="varchar" MaxLength="200" />
+          <Property Name="Projection" Type="varchar" MaxLength="200" />
+          <Property Name="ImageSize" Type="varchar" MaxLength="200" />
+          <Property Name="ThrowDistance" Type="varchar" MaxLength="200" />
+          <Property Name="Holdovers" Type="varchar" MaxLength="200" />
+          <Property Name="ScreenElevation" Type="varchar" MaxLength="200" />
+          <Property Name="ScreenHeight" Type="varchar" MaxLength="200" />
+          <Property Name="ScreenWidth" Type="varchar" MaxLength="200" />
+          <Property Name="ProjectionRatio" Type="varchar" MaxLength="200" />
+          <Property Name="MediaType" Type="varchar" MaxLength="200" />
+          <Property Name="ShootFrom" Type="varchar" MaxLength="200" />
+          <Property Name="ShootFromOther" Type="varchar" MaxLength="200" />
+          <Property Name="ScreenMaterial" Type="varchar" MaxLength="200" />
+          <Property Name="SoundOut" Type="varchar" MaxLength="200" />
+          <Property Name="Liquids" Type="varchar" MaxLength="200" />
+          <Property Name="LiquidsDescribe" Type="varchar(max)" />
+          <Property Name="OpenFlames" Type="varchar" MaxLength="200" />
+          <Property Name="Loud" Type="varchar" MaxLength="200" />
+          <Property Name="LoudDescribe" Type="varchar(max)" />
+          <Property Name="Firearms" Type="varchar" MaxLength="200" />
+          <Property Name="Smoking" Type="varchar" MaxLength="200" />
+          <Property Name="FogMachine" Type="varchar" MaxLength="200" />
+          <Property Name="Strobe" Type="varchar" MaxLength="200" />
+          <Property Name="Hazer" Type="varchar" MaxLength="200" />
+          <Property Name="MoreLights" Type="varchar" MaxLength="200" />
+          <Property Name="WirelessMic" Type="varchar" MaxLength="200" />
+          <Property Name="Frequencies" Type="varchar" MaxLength="200" />
+          <Property Name="OtherEquipments" Type="varchar" MaxLength="200" />
+          <Property Name="EquipmentSpecify" Type="varchar(max)" />
+          <Property Name="StageDesign" Type="varchar" MaxLength="200" />
+          <Property Name="SpecialNeeds" Type="varchar(max)" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="RehearsalTime" Type="varchar" MaxLength="200" />
+          <Property Name="ComingFrom" Type="varchar" MaxLength="200" />
+          <Property Name="FestivalComingFrom" Type="varchar" MaxLength="200" />
+          <Property Name="WhenArriving" Type="varchar" MaxLength="200" />
+          <Property Name="Release" Type="varchar" MaxLength="200" />
+          <Property Name="VenueName" Type="varchar" MaxLength="200" />
+          <Property Name="VenueAddress" Type="varchar" MaxLength="200" />
+          <Property Name="VenueTotal" Type="varchar" MaxLength="200" />
+          <Property Name="Wheelchair" Type="varchar" MaxLength="200" />
+          <Property Name="WheelchairCapacity" Type="varchar" MaxLength="200" />
+          <Property Name="Washrooms" Type="varchar" MaxLength="200" />
+          <Property Name="WheelchairWashrooms" Type="varchar" MaxLength="200" />
+          <Property Name="Alcohol" Type="varchar" MaxLength="200" />
+          <Property Name="Food" Type="varchar" MaxLength="200" />
+          <Property Name="EnterEarly" Type="varchar" MaxLength="200" />
+          <Property Name="MinutesBefore" Type="varchar" MaxLength="200" />
+          <Property Name="Bar" Type="varchar" MaxLength="200" />
+          <Property Name="Minors" Type="varchar" MaxLength="200" />
+          <Property Name="ShowDate" Type="varchar(max)" />
+          <Property Name="PayDate" Type="varchar" MaxLength="200" />
+          <Property Name="PayMethod" Type="varchar" MaxLength="200" />
+          <Property Name="Amount" Type="varchar" MaxLength="200" />
+          <Property Name="Refund" Type="varchar" MaxLength="200" />
+          <Property Name="RefundDate" Type="varchar" MaxLength="200" />
+          <Property Name="DateEntered" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -180,6 +294,8 @@
           <Property Name="RecurrenceException" Type="ntext" />
           <Property Name="StartTimezone" Type="ntext" />
           <Property Name="EndTimezone" Type="ntext" />
+          <Property Name="MeetingID" Type="int" />
+          <Property Name="RoomID" Type="int" />
         </EntityType>
         <Association Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
@@ -521,6 +637,8 @@
           <Property Name="EndTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tasks1" Relationship="Self.FK_Tasks_Tasks" FromRole="Tasks" ToRole="Tasks1" />
           <NavigationProperty Name="Task1" Relationship="Self.FK_Tasks_Tasks" FromRole="Tasks1" ToRole="Tasks" />
+          <Property Name="MeetingID" Type="Int32" />
+          <Property Name="RoomID" Type="Int32" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -687,6 +805,120 @@
           <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
           <Property Name="Length" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryFirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryLastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryProvState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryPCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryFirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryLastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryPovState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryPCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CastMembers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Playwright" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Director" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StageManager" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Designer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TeamSize" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NewWork" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GenreOther" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShowRating" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AgeRestriction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShowContains" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ContentAdvisory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GeneralAdmission" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StudentSenior" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ShowImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NameonCheque" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyNameonCheque" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeProvState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ChequePCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GST" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WhenNotAvailable" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sharing" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SharingRef" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SharingCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SharingShowTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StagingRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Intermission" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LightingRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SoundRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dancing" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DancingType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Projection" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImageSize" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ThrowDistance" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Holdovers" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenElevation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenHeight" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenWidth" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectionRatio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MediaType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShootFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShootFromOther" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenMaterial" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SoundOut" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Liquids" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LiquidsDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OpenFlames" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Loud" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LoudDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Firearms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Smoking" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FogMachine" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Strobe" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hazer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MoreLights" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WirelessMic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Frequencies" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OtherEquipments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentSpecify" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StageDesign" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialNeeds" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RehearsalTime" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ComingFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FestivalComingFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WhenArriving" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Release" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueTotal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Wheelchair" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WheelchairCapacity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Washrooms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WheelchairWashrooms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Alcohol" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Food" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EnterEarly" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MinutesBefore" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Bar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Minors" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PayDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PayMethod" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Refund" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RefundDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DateEntered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -795,6 +1027,8 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="fschedulerModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="Start" ColumnName="Start" />
                 <ScalarProperty Name="End" ColumnName="End" />
@@ -871,6 +1105,120 @@
           <EntitySetMapping Name="Attendees">
             <EntityTypeMapping TypeName="fschedulerModel.Attendee">
               <MappingFragment StoreEntitySet="Attendees">
+                <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
+                <ScalarProperty Name="RefundDate" ColumnName="RefundDate" />
+                <ScalarProperty Name="Refund" ColumnName="Refund" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PayMethod" ColumnName="PayMethod" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="Minors" ColumnName="Minors" />
+                <ScalarProperty Name="Bar" ColumnName="Bar" />
+                <ScalarProperty Name="MinutesBefore" ColumnName="MinutesBefore" />
+                <ScalarProperty Name="EnterEarly" ColumnName="EnterEarly" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Alcohol" ColumnName="Alcohol" />
+                <ScalarProperty Name="WheelchairWashrooms" ColumnName="WheelchairWashrooms" />
+                <ScalarProperty Name="Washrooms" ColumnName="Washrooms" />
+                <ScalarProperty Name="WheelchairCapacity" ColumnName="WheelchairCapacity" />
+                <ScalarProperty Name="Wheelchair" ColumnName="Wheelchair" />
+                <ScalarProperty Name="VenueTotal" ColumnName="VenueTotal" />
+                <ScalarProperty Name="VenueAddress" ColumnName="VenueAddress" />
+                <ScalarProperty Name="VenueName" ColumnName="VenueName" />
+                <ScalarProperty Name="Release" ColumnName="Release" />
+                <ScalarProperty Name="WhenArriving" ColumnName="WhenArriving" />
+                <ScalarProperty Name="FestivalComingFrom" ColumnName="FestivalComingFrom" />
+                <ScalarProperty Name="ComingFrom" ColumnName="ComingFrom" />
+                <ScalarProperty Name="RehearsalTime" ColumnName="RehearsalTime" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="SpecialNeeds" ColumnName="SpecialNeeds" />
+                <ScalarProperty Name="StageDesign" ColumnName="StageDesign" />
+                <ScalarProperty Name="EquipmentSpecify" ColumnName="EquipmentSpecify" />
+                <ScalarProperty Name="OtherEquipments" ColumnName="OtherEquipments" />
+                <ScalarProperty Name="Frequencies" ColumnName="Frequencies" />
+                <ScalarProperty Name="WirelessMic" ColumnName="WirelessMic" />
+                <ScalarProperty Name="MoreLights" ColumnName="MoreLights" />
+                <ScalarProperty Name="Hazer" ColumnName="Hazer" />
+                <ScalarProperty Name="Strobe" ColumnName="Strobe" />
+                <ScalarProperty Name="FogMachine" ColumnName="FogMachine" />
+                <ScalarProperty Name="Smoking" ColumnName="Smoking" />
+                <ScalarProperty Name="Firearms" ColumnName="Firearms" />
+                <ScalarProperty Name="LoudDescribe" ColumnName="LoudDescribe" />
+                <ScalarProperty Name="Loud" ColumnName="Loud" />
+                <ScalarProperty Name="OpenFlames" ColumnName="OpenFlames" />
+                <ScalarProperty Name="LiquidsDescribe" ColumnName="LiquidsDescribe" />
+                <ScalarProperty Name="Liquids" ColumnName="Liquids" />
+                <ScalarProperty Name="SoundOut" ColumnName="SoundOut" />
+                <ScalarProperty Name="ScreenMaterial" ColumnName="ScreenMaterial" />
+                <ScalarProperty Name="ShootFromOther" ColumnName="ShootFromOther" />
+                <ScalarProperty Name="ShootFrom" ColumnName="ShootFrom" />
+                <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+                <ScalarProperty Name="ProjectionRatio" ColumnName="ProjectionRatio" />
+                <ScalarProperty Name="ScreenWidth" ColumnName="ScreenWidth" />
+                <ScalarProperty Name="ScreenHeight" ColumnName="ScreenHeight" />
+                <ScalarProperty Name="ScreenElevation" ColumnName="ScreenElevation" />
+                <ScalarProperty Name="Holdovers" ColumnName="Holdovers" />
+                <ScalarProperty Name="ThrowDistance" ColumnName="ThrowDistance" />
+                <ScalarProperty Name="ImageSize" ColumnName="ImageSize" />
+                <ScalarProperty Name="Projection" ColumnName="Projection" />
+                <ScalarProperty Name="DancingType" ColumnName="DancingType" />
+                <ScalarProperty Name="Dancing" ColumnName="Dancing" />
+                <ScalarProperty Name="SoundRequirements" ColumnName="SoundRequirements" />
+                <ScalarProperty Name="LightingRequirements" ColumnName="LightingRequirements" />
+                <ScalarProperty Name="Intermission" ColumnName="Intermission" />
+                <ScalarProperty Name="StagingRequirements" ColumnName="StagingRequirements" />
+                <ScalarProperty Name="SharingShowTitle" ColumnName="SharingShowTitle" />
+                <ScalarProperty Name="SharingCompany" ColumnName="SharingCompany" />
+                <ScalarProperty Name="SharingRef" ColumnName="SharingRef" />
+                <ScalarProperty Name="Sharing" ColumnName="Sharing" />
+                <ScalarProperty Name="WhenNotAvailable" ColumnName="WhenNotAvailable" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="ChequePCZip" ColumnName="ChequePCZip" />
+                <ScalarProperty Name="ChequeCountry" ColumnName="ChequeCountry" />
+                <ScalarProperty Name="ChequeProvState" ColumnName="ChequeProvState" />
+                <ScalarProperty Name="ChequeCity" ColumnName="ChequeCity" />
+                <ScalarProperty Name="ChequeAddress" ColumnName="ChequeAddress" />
+                <ScalarProperty Name="CompanyNameonCheque" ColumnName="CompanyNameonCheque" />
+                <ScalarProperty Name="NameonCheque" ColumnName="NameonCheque" />
+                <ScalarProperty Name="ShowImage" ColumnName="ShowImage" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="ShowDescription" ColumnName="ShowDescription" />
+                <ScalarProperty Name="StudentSenior" ColumnName="StudentSenior" />
+                <ScalarProperty Name="GeneralAdmission" ColumnName="GeneralAdmission" />
+                <ScalarProperty Name="ContentAdvisory" ColumnName="ContentAdvisory" />
+                <ScalarProperty Name="ShowContains" ColumnName="ShowContains" />
+                <ScalarProperty Name="AgeRestriction" ColumnName="AgeRestriction" />
+                <ScalarProperty Name="ShowRating" ColumnName="ShowRating" />
+                <ScalarProperty Name="GenreOther" ColumnName="GenreOther" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="NewWork" ColumnName="NewWork" />
+                <ScalarProperty Name="TeamSize" ColumnName="TeamSize" />
+                <ScalarProperty Name="Designer" ColumnName="Designer" />
+                <ScalarProperty Name="StageManager" ColumnName="StageManager" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Playwright" ColumnName="Playwright" />
+                <ScalarProperty Name="CastMembers" ColumnName="CastMembers" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+                <ScalarProperty Name="SecondaryPCZip" ColumnName="SecondaryPCZip" />
+                <ScalarProperty Name="SecondaryCountry" ColumnName="SecondaryCountry" />
+                <ScalarProperty Name="SecondaryPovState" ColumnName="SecondaryPovState" />
+                <ScalarProperty Name="SecondaryCity" ColumnName="SecondaryCity" />
+                <ScalarProperty Name="SecondaryAddress" ColumnName="SecondaryAddress" />
+                <ScalarProperty Name="SecondaryLastName" ColumnName="SecondaryLastName" />
+                <ScalarProperty Name="SecondaryFirstName" ColumnName="SecondaryFirstName" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+                <ScalarProperty Name="PrimaryPCZip" ColumnName="PrimaryPCZip" />
+                <ScalarProperty Name="PrimaryCountry" ColumnName="PrimaryCountry" />
+                <ScalarProperty Name="PrimaryProvState" ColumnName="PrimaryProvState" />
+                <ScalarProperty Name="PrimaryCity" ColumnName="PrimaryCity" />
+                <ScalarProperty Name="PrimaryAddress" ColumnName="PrimaryAddress" />
+                <ScalarProperty Name="PrimaryLastName" ColumnName="PrimaryLastName" />
+                <ScalarProperty Name="PrimaryFirstName" ColumnName="PrimaryFirstName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Color" ColumnName="Color" />

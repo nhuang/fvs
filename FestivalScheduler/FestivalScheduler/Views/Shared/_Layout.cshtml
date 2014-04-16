@@ -79,6 +79,8 @@
                          innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
                          innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
                          innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
+                         innerChildren.Add().Text("Import Artist").Action("ImportArtistData", "DataResource");
+                         innerChildren.Add().Text("Clean System").Action("SchedulerResetIndex", "DataResource");
                      });
               children.Add().Text("System")
                      .Items(innerChildren =>

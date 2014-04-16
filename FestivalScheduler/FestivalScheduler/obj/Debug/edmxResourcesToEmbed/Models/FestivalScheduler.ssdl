@@ -85,6 +85,120 @@
     <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
     <Property Name="Show" Type="bit" Nullable="false" />
     <Property Name="Length" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="Company" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryFirstName" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryLastName" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryAddress" Type="varchar" MaxLength="500" />
+    <Property Name="PrimaryCity" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryProvState" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryCountry" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryPCZip" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryPhone" Type="varchar" MaxLength="200" />
+    <Property Name="PrimaryEmail" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryFirstName" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryLastName" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryAddress" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryCity" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryPovState" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryCountry" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryPCZip" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryPhone" Type="varchar" MaxLength="200" />
+    <Property Name="SecondaryEmail" Type="varchar" MaxLength="200" />
+    <Property Name="CastMembers" Type="varchar(max)" />
+    <Property Name="Playwright" Type="varchar" MaxLength="200" />
+    <Property Name="Director" Type="varchar" MaxLength="200" />
+    <Property Name="StageManager" Type="varchar" MaxLength="200" />
+    <Property Name="Designer" Type="varchar" MaxLength="200" />
+    <Property Name="TeamSize" Type="varchar" MaxLength="200" />
+    <Property Name="NewWork" Type="varchar" MaxLength="200" />
+    <Property Name="Genre" Type="varchar" MaxLength="200" />
+    <Property Name="GenreOther" Type="varchar" MaxLength="200" />
+    <Property Name="ShowRating" Type="varchar" MaxLength="200" />
+    <Property Name="AgeRestriction" Type="varchar" MaxLength="200" />
+    <Property Name="ShowContains" Type="varchar" MaxLength="200" />
+    <Property Name="ContentAdvisory" Type="varchar" MaxLength="200" />
+    <Property Name="GeneralAdmission" Type="varchar" MaxLength="200" />
+    <Property Name="StudentSenior" Type="varchar" MaxLength="200" />
+    <Property Name="ShowDescription" Type="varchar(max)" />
+    <Property Name="Website" Type="varchar" MaxLength="500" />
+    <Property Name="ShowImage" Type="varchar" MaxLength="200" />
+    <Property Name="NameonCheque" Type="varchar" MaxLength="200" />
+    <Property Name="CompanyNameonCheque" Type="varchar" MaxLength="200" />
+    <Property Name="ChequeAddress" Type="varchar" MaxLength="200" />
+    <Property Name="ChequeCity" Type="varchar" MaxLength="200" />
+    <Property Name="ChequeProvState" Type="varchar" MaxLength="200" />
+    <Property Name="ChequeCountry" Type="varchar" MaxLength="200" />
+    <Property Name="ChequePCZip" Type="varchar" MaxLength="200" />
+    <Property Name="GST" Type="varchar" MaxLength="200" />
+    <Property Name="WhenNotAvailable" Type="varchar" MaxLength="200" />
+    <Property Name="Sharing" Type="varchar" MaxLength="200" />
+    <Property Name="SharingRef" Type="varchar" MaxLength="200" />
+    <Property Name="SharingCompany" Type="varchar" MaxLength="200" />
+    <Property Name="SharingShowTitle" Type="varchar" MaxLength="200" />
+    <Property Name="StagingRequirements" Type="varchar(max)" />
+    <Property Name="Intermission" Type="varchar" MaxLength="200" />
+    <Property Name="LightingRequirements" Type="varchar(max)" />
+    <Property Name="SoundRequirements" Type="varchar(max)" />
+    <Property Name="Dancing" Type="varchar" MaxLength="200" />
+    <Property Name="DancingType" Type="varchar" MaxLength="200" />
+    <Property Name="Projection" Type="varchar" MaxLength="200" />
+    <Property Name="ImageSize" Type="varchar" MaxLength="200" />
+    <Property Name="ThrowDistance" Type="varchar" MaxLength="200" />
+    <Property Name="Holdovers" Type="varchar" MaxLength="200" />
+    <Property Name="ScreenElevation" Type="varchar" MaxLength="200" />
+    <Property Name="ScreenHeight" Type="varchar" MaxLength="200" />
+    <Property Name="ScreenWidth" Type="varchar" MaxLength="200" />
+    <Property Name="ProjectionRatio" Type="varchar" MaxLength="200" />
+    <Property Name="MediaType" Type="varchar" MaxLength="200" />
+    <Property Name="ShootFrom" Type="varchar" MaxLength="200" />
+    <Property Name="ShootFromOther" Type="varchar" MaxLength="200" />
+    <Property Name="ScreenMaterial" Type="varchar" MaxLength="200" />
+    <Property Name="SoundOut" Type="varchar" MaxLength="200" />
+    <Property Name="Liquids" Type="varchar" MaxLength="200" />
+    <Property Name="LiquidsDescribe" Type="varchar(max)" />
+    <Property Name="OpenFlames" Type="varchar" MaxLength="200" />
+    <Property Name="Loud" Type="varchar" MaxLength="200" />
+    <Property Name="LoudDescribe" Type="varchar(max)" />
+    <Property Name="Firearms" Type="varchar" MaxLength="200" />
+    <Property Name="Smoking" Type="varchar" MaxLength="200" />
+    <Property Name="FogMachine" Type="varchar" MaxLength="200" />
+    <Property Name="Strobe" Type="varchar" MaxLength="200" />
+    <Property Name="Hazer" Type="varchar" MaxLength="200" />
+    <Property Name="MoreLights" Type="varchar" MaxLength="200" />
+    <Property Name="WirelessMic" Type="varchar" MaxLength="200" />
+    <Property Name="Frequencies" Type="varchar" MaxLength="200" />
+    <Property Name="OtherEquipments" Type="varchar" MaxLength="200" />
+    <Property Name="EquipmentSpecify" Type="varchar(max)" />
+    <Property Name="StageDesign" Type="varchar" MaxLength="200" />
+    <Property Name="SpecialNeeds" Type="varchar(max)" />
+    <Property Name="Comments" Type="varchar(max)" />
+    <Property Name="RehearsalTime" Type="varchar" MaxLength="200" />
+    <Property Name="ComingFrom" Type="varchar" MaxLength="200" />
+    <Property Name="FestivalComingFrom" Type="varchar" MaxLength="200" />
+    <Property Name="WhenArriving" Type="varchar" MaxLength="200" />
+    <Property Name="Release" Type="varchar" MaxLength="200" />
+    <Property Name="VenueName" Type="varchar" MaxLength="200" />
+    <Property Name="VenueAddress" Type="varchar" MaxLength="200" />
+    <Property Name="VenueTotal" Type="varchar" MaxLength="200" />
+    <Property Name="Wheelchair" Type="varchar" MaxLength="200" />
+    <Property Name="WheelchairCapacity" Type="varchar" MaxLength="200" />
+    <Property Name="Washrooms" Type="varchar" MaxLength="200" />
+    <Property Name="WheelchairWashrooms" Type="varchar" MaxLength="200" />
+    <Property Name="Alcohol" Type="varchar" MaxLength="200" />
+    <Property Name="Food" Type="varchar" MaxLength="200" />
+    <Property Name="EnterEarly" Type="varchar" MaxLength="200" />
+    <Property Name="MinutesBefore" Type="varchar" MaxLength="200" />
+    <Property Name="Bar" Type="varchar" MaxLength="200" />
+    <Property Name="Minors" Type="varchar" MaxLength="200" />
+    <Property Name="ShowDate" Type="varchar(max)" />
+    <Property Name="PayDate" Type="varchar" MaxLength="200" />
+    <Property Name="PayMethod" Type="varchar" MaxLength="200" />
+    <Property Name="Amount" Type="varchar" MaxLength="200" />
+    <Property Name="Refund" Type="varchar" MaxLength="200" />
+    <Property Name="RefundDate" Type="varchar" MaxLength="200" />
+    <Property Name="DateEntered" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
@@ -175,6 +289,8 @@
     <Property Name="RecurrenceException" Type="ntext" />
     <Property Name="StartTimezone" Type="ntext" />
     <Property Name="EndTimezone" Type="ntext" />
+    <Property Name="MeetingID" Type="int" />
+    <Property Name="RoomID" Type="int" />
   </EntityType>
   <Association Name="FK_dbo_ApplicationRoleGroups_dbo_AspNetRoles_RoleId">
     <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">

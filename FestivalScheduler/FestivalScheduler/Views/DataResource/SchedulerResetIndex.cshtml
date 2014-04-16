@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SchedulerResetIndex";
+}
+
+<h2>SchedulerResetIndex</h2>
+
+@using (Html.BeginForm("CleanMeetings", "DataResource", FormMethod.Post))
+{
+    <label>Delete all meetings in the system</label>
+    <input type="submit" value="Submit" />
+}
+
+@using (Html.BeginForm("CleanAttendees", "DataResource", FormMethod.Post))
+{
+    <label>Delete all companies in the system</label>
+    <input type="submit" value="Submit" />
+}

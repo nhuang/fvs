@@ -254,7 +254,6 @@
 
         private string ResetMeetingDescription(int? Id, string description)
         {
-            string prefix = "At:";
             string result = "";
 
             if (Id == null)

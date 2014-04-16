@@ -43,9 +43,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="ComputerBeacon.Json">
-      <HintPath>..\packages\ComputerBeacon.Json.4.2.804\lib\portable-net4+sl4+wp7+win8\ComputerBeacon.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -59,6 +56,9 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.0\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\lib\KENDOUIMVC\2014.1.318.545\Kendo.Mvc.dll</HintPath>
@@ -88,14 +88,17 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -107,19 +110,19 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.1\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.1\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,19 +130,19 @@
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -583,6 +586,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="File\Resource\colorNames.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1427,9 +1431,9 @@
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1437,7 +1441,16 @@
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\kendo\2014.1.318\jquery.min.js" />
     <None Include="Scripts\kendo\2014.1.318\kendo.all-vsdoc.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.all-vsdoc.min.js.map">
+      <DependentUpon>kendo.all-vsdoc.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.all.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.all-vsdoc.min.js">
+      <DependentUpon>kendo.all-vsdoc.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\kendo\2014.1.318\kendo.all.min.intellisense.min.js">
+      <DependentUpon>kendo.all.min.intellisense.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.all.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.autocomplete.min.js" />
@@ -1452,7 +1465,13 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.data.odata.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.data.signalr.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.data.xml.min.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.all.min.intellisense.min.js.map">
+      <DependentUpon>kendo.all.min.intellisense.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.dataviz-vsdoc.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz-vsdoc.min.js">
+      <DependentUpon>kendo.dataviz-vsdoc.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.barcode.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.canvas.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.chart.funnel.min.js" />
@@ -1462,7 +1481,13 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.diagram.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.gauge.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.map.min.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz-vsdoc.min.js.map">
+      <DependentUpon>kendo.dataviz-vsdoc.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.dataviz.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.min.intellisense.min.js">
+      <DependentUpon>kendo.dataviz.min.intellisense.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.qrcode.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.sparkline.min.js" />
@@ -1485,7 +1510,13 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.listview.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.maskedtextbox.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.menu.min.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.dataviz.min.intellisense.min.js.map">
+      <DependentUpon>kendo.dataviz.min.intellisense.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.mobile-vsdoc.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.mobile-vsdoc.min.js">
+      <DependentUpon>kendo.mobile-vsdoc.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.actionsheet.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.application.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.button.min.js" />
@@ -1493,7 +1524,13 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.drawer.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.listview.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.loader.min.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.mobile-vsdoc.min.js.map">
+      <DependentUpon>kendo.mobile-vsdoc.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.mobile.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.min.intellisense.min.js">
+      <DependentUpon>kendo.mobile.min.intellisense.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.modalview.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.navbar.min.js" />
@@ -1536,15 +1573,29 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.userevents.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.validator.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.view.min.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.mobile.min.intellisense.min.js.map">
+      <DependentUpon>kendo.mobile.min.intellisense.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.web-vsdoc.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.web-vsdoc.min.js.map">
+      <DependentUpon>kendo.web-vsdoc.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\kendo\2014.1.318\kendo.web.min.intellisense.js" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.web-vsdoc.min.js">
+      <DependentUpon>kendo.web-vsdoc.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\kendo\2014.1.318\kendo.web.min.intellisense.min.js">
+      <DependentUpon>kendo.web.min.intellisense.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\kendo\2014.1.318\kendo.web.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.window.min.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1717,6 +1768,14 @@
     <Content Include="Views\SysSetting\EditAbout.cshtml" />
     <Content Include="Views\SysSetting\EditContact.cshtml" />
     <Content Include="Views\DataResource\Index.cshtml" />
+    <Content Include="Views\DataResource\ImportArtistData.cshtml" />
+    <Content Include="Views\DataResource\ImportFromService.cshtml" />
+    <Content Include="Views\DataResource\CleanMeetings.cshtml" />
+    <Content Include="Views\DataResource\CleanAttendees.cshtml" />
+    <Content Include="Views\DataResource\SchedulerResetIndex.cshtml" />
+    <Content Include="Scripts\kendo\2014.1.318\kendo.web.min.intellisense.min.js.map">
+      <DependentUpon>kendo.web.min.intellisense.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

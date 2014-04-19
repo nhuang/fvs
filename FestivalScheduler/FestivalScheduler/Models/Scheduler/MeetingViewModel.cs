@@ -71,5 +71,22 @@
 
             return meeting;
         }
+
+        public MeetingViewModel ToViewModel(Meeting meeting)
+        {            
+                MeetingID = meeting.MeetingID;
+                Title = meeting.Title;
+                Start = meeting.Start;
+                StartTimezone = meeting.StartTimezone;
+                End = meeting.End;
+                EndTimezone = meeting.EndTimezone;
+                Description = meeting.Description;
+                IsAllDay = meeting.IsAllDay;
+                RecurrenceRule = meeting.RecurrenceRule;
+                RecurrenceException = meeting.RecurrenceException;
+                RecurrenceID = meeting.RecurrenceID;
+                RoomID = meeting.RoomID;
+            return this;
+        }
     }
 }

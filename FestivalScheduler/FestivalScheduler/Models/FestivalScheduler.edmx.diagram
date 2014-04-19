@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="fschedulerModel.Group" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="fschedulerModel.MeetingAttendee" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="fschedulerModel.Meeting" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="fschedulerModel.Room" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="fschedulerModel.Task" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="fschedulerModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="fschedulerModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -27,6 +26,7 @@
         <EntityTypeShape EntityType="fschedulerModel.SysEvent" Width="1.5" PointX="10.375" PointY="3.75" />
         <EntityTypeShape EntityType="fschedulerModel.SupportTeam" Width="1.5" PointX="10.375" PointY="6.75" />
         <EntityTypeShape EntityType="fschedulerModel.Attendee" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="fschedulerModel.Room" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

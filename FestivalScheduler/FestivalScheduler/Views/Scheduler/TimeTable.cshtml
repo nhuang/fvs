@@ -1,6 +1,6 @@
 ﻿@using System.Globalization;
 @using FestivalScheduler.Models.Resouces;
-@model IEnumerable<FestivalScheduler.Models.Resouces.ArtistViewModel>
+@model IEnumerable<FestivalScheduler.Models.Meeting>
 
 @{
     ViewBag.Title = "Scheduling";
@@ -8,32 +8,26 @@
     string timePatten = "hh:mm tt";
 }
 
-<h2>Scheduling</h2>
+<h2>Time Table</h2>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
     <thead>
         <tr>
-            <th>
-                Ref
+            <th width="30%">
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                Type
+                <label>Date</label>
             </th>
             <th>
-                Show Title
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
             </th>
 
             <th>
-                Color
-            </th>
-            <th>
-                Number of shows
-            </th>
-            <th>
-                Length
-            </th>
-            <th>
-                PDF
+                @Html.DisplayNameFor(model => model.Description)
             </th>
         </tr>
     </thead>
@@ -42,57 +36,46 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Value)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @item.Start.ToString(datePatten, CultureInfo.CreateSpecificCulture("en-US"))
                 </td>
                 <td>
-                    <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Text) </strong>
+                    @item.Start.ToString(timePatten, CultureInfo.CreateSpecificCulture("en-US"))
                 </td>
                 <td>
-                    <strong style="color:@item.Color">@Html.DisplayFor(modelItem => item.Color) </strong>
+                    @item.End.ToString(timePatten, CultureInfo.CreateSpecificCulture("en-US"))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfShows)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Length)
-                </td>
-                <td>
-                    <a href="@string.Format("{0}/{1}.pdf", "../File/Download/",item.Value)"> PDF </a> 
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
             </tr>
-
         }
     </tbody>
     <tfoot>
         <tr>
             <th>
-                Reference Number
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                Type
+                <label>Date</label>
             </th>
             <th>
-                Show Title
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
             </th>
 
             <th>
-                Color
-            </th>
-            <th>
-                Number of shows
-            </th>
-            <th>
-                Length
-            </th>
-            <th>
-                PDF
+                @Html.DisplayNameFor(model => model.Description)
             </th>
         </tr>
     </tfoot>
 </table>
+
+
 
 <script type="text/javascript" charset="utf-8">
 
@@ -111,7 +94,7 @@
             "bInfo": true,
             "bAutoWidth": true,
             "sPaginationType": "full_numbers",
-            "sScrollY": "800"
+            "sScrollY": "750px"
         });
     });
 </script>

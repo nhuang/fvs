@@ -199,6 +199,7 @@
     <Property Name="Refund" Type="varchar" MaxLength="200" />
     <Property Name="RefundDate" Type="varchar" MaxLength="200" />
     <Property Name="DateEntered" Type="varchar" MaxLength="200" />
+    <Property Name="VenueNo" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
@@ -241,6 +242,7 @@
     <Property Name="Value" Type="int" Nullable="false" />
     <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
     <Property Name="Show" Type="bit" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="2000" />
   </EntityType>
   <EntityType Name="SupportTeam">
     <Key>

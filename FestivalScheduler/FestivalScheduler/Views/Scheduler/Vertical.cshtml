@@ -12,30 +12,24 @@
 <h2>Rooms Vertical Grouping</h2>
 @using (Html.BeginForm("VRoomFilter", "Scheduler", FormMethod.Post))
 {
-     <p>
-        <label for="start">Start time:</label>
-        @(Html.Kendo().TimePicker()
-        .Name("timeStart")
-        .Format("HH:mm")
-        .Value("11:00 AM")
-        )
-        <label for="end" style="margin-left:3em">End time:</label>
-        @(Html.Kendo().TimePicker()
-        .Name("timeEnd")
-        .Format("HH:mm")
-        .Value("23:59 PM")
-        )
-    </p>
-    
-    foreach (var item in Model)
-    {
-        <input type="checkbox" name="room" value="@item.Value" checked="checked"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
-    }
-    <input type="submit" value="Filter" />
+ @(Html.Kendo().DropDownList()
+                          .Name("Venue")
+                      .DataTextField("Text")
+                      .DataValueField("Value")
+                      .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("Room_Read", "Room"); //Set the Action and Controller name
+                            })
+                            .ServerFiltering(true); //If true the DataSource will not filter the data on the client.
+                        })
+                      .SelectedIndex(0)
+                      .HtmlAttributes(new { style = "width:" + 250 + "px" })
+                  )
+
+    <input type="submit" value="Select" />
 }
-<form>
-    <input type="button" value="New Window!" style="float:right" onclick="window.open('@Request.Url.AbsoluteUri', 'mywindow', 'width=$( window ).width();,height=$( window ).height();')">
-</form> 
 <hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
@@ -46,7 +40,7 @@
     {
         views.DayView();
         views.WeekView(view => view.Selected(true));
-        views.MonthView();
+        views.CustomView("CustomView");
     })
         .Timezone("Etc/UTC")
             .MajorTick(60)
@@ -60,7 +54,7 @@
                      .DataTextField("Text")
                      .DataValueField("Value")
                      .DataColorField("Color")
-                     .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
+                     .DataSource(ds => ds.Read(read => read.Action("Attendee_Selected", "Attendee"))
                    );
                  
                  resource.Add(m => m.RoomID)
@@ -219,4 +213,26 @@
         return true;
     }
 
+    var CustomView = kendo.ui.MultiDayView.extend({
+        options: {
+            selectedDateFormat: "{0:D} - {1:D}"
+        },
+        name: "customView",
+        calculateDateRange: function () {
+            //create a range of dates to be shown within the view
+
+            var selectedDate = this.options.date,
+                start = kendo.date.dayOfWeek(selectedDate, this.calendarInfo().firstDay, -1),
+                idx, length,
+                dates = [];
+
+            for (idx = 0, length = 14; idx < length; idx++) {
+                dates.push(start);
+                start = kendo.date.nextDay(start);
+            }
+
+            this._render(dates);
+        }
+
+    });
 </script>

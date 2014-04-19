@@ -97,16 +97,6 @@
     <NavigationProperty Name="Meetings1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings" ToRole="Meetings1" />
     <NavigationProperty Name="Meeting1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings1" ToRole="Meetings" />
   </EntityType>
-  <EntityType Name="Room">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Value" Type="Int32" Nullable="false" />
-    <Property Name="Color" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Show" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="Task">
     <Key>
       <PropertyRef Name="TaskID" />
@@ -213,7 +203,6 @@
     <EntitySet Name="Groups" EntityType="Self.Group" />
     <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendee" />
     <EntitySet Name="Meetings" EntityType="Self.Meeting" />
-    <EntitySet Name="Rooms" EntityType="Self.Room" />
     <EntitySet Name="Tasks" EntityType="Self.Task" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -251,6 +240,7 @@
     <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
     <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
     <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
+    <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
   </EntityContainer>
   <EntityType Name="SysSetting">
     <Key>
@@ -407,5 +397,17 @@
     <Property Name="Refund" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="RefundDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="DateEntered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VenueNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Show" Type="Boolean" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

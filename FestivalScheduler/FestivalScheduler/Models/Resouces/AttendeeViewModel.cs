@@ -24,6 +24,10 @@ namespace FestivalScheduler.Models.Resouces
         public int Length { get; set; }
         [Display(Name = "Number of Shows")]
         public int NumberOfShows { get; set; }
+        [Display(Name = "Status")]
+        public string Status { get; set; }
+        [Display(Name = "Type")]
+        public string Type { get; set; }
 
         public Attendee ToEntity()
         {
@@ -34,19 +38,17 @@ namespace FestivalScheduler.Models.Resouces
                 Value = Value,
                 Color = Color,
                 Show = Show,
-                Length = Length
+                Length = Length,
+                Status = Status,
+                Type = Type
             };
 
             return attendee;
         }
-
-
     }
 
     public class ArtistViewModel : AttendeeViewModel
-    {
-        public string Type { get; set; }
-        public string Status { get; set; }
+    {       
         public string Company { get; set; }
         public string PrimaryFirstName { get; set; }
         public string PrimaryLastName { get; set; }
@@ -159,7 +161,7 @@ namespace FestivalScheduler.Models.Resouces
         public string Refund { get; set; }
         public string RefundDate { get; set; }
         public string DateEntered { get; set; }
-
+        public string VenueNo { get; set; }
 
         public Attendee ToArtistEntity(Attendee model)
         {
@@ -284,6 +286,7 @@ namespace FestivalScheduler.Models.Resouces
                 model.Refund = Refund;
                 model.RefundDate = RefundDate;
                 model.DateEntered = DateEntered;
+                model.VenueNo = VenueNo;
                 return model;
             }
             else
@@ -409,7 +412,8 @@ namespace FestivalScheduler.Models.Resouces
                     Amount = Amount,
                     Refund = Refund,
                     RefundDate = RefundDate,
-                    DateEntered = DateEntered
+                    DateEntered = DateEntered,
+                    VenueNo = VenueNo
                 };
                 return attendee;
             }

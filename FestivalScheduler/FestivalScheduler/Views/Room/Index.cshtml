@@ -14,11 +14,13 @@
     .Columns(columns =>
     {
         columns.Bound(r => r.ID).Visible(false);
-        columns.Bound(r => r.Text);
-        columns.Bound(r => r.Value);
-        columns.Bound(r => r.Color);
-        columns.Command(command => { command.Edit(); command.Destroy(); });
+        columns.Bound(r => r.Text).Width("20%");
+        columns.Bound(r => r.Value).Width("10%");
+        columns.Bound(r => r.Color).Width("10%"); ;
+        columns.Bound(r => r.Address);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width("15%");
     })
+    .HtmlAttributes(new { style = "height: 800px;" })
     .Editable(editable => editable.Mode(GridEditMode.PopUp))
     .Pageable()
     .ToolBar(toolbar => toolbar.Create())

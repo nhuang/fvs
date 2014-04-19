@@ -204,6 +204,7 @@
           <Property Name="Refund" Type="varchar" MaxLength="200" />
           <Property Name="RefundDate" Type="varchar" MaxLength="200" />
           <Property Name="DateEntered" Type="varchar" MaxLength="200" />
+          <Property Name="VenueNo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -246,6 +247,7 @@
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="SupportTeam">
           <Key>
@@ -609,16 +611,6 @@
           <NavigationProperty Name="Meetings1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings" ToRole="Meetings1" />
           <NavigationProperty Name="Meeting1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings1" ToRole="Meetings" />
         </EntityType>
-        <EntityType Name="Room">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="TaskID" />
@@ -725,7 +717,6 @@
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendee" />
           <EntitySet Name="Meetings" EntityType="Self.Meeting" />
-          <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -763,6 +754,7 @@
           <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
           <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
           <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
+          <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
         </EntityContainer>
         <EntityType Name="SysSetting">
           <Key>
@@ -919,6 +911,18 @@
           <Property Name="Refund" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="RefundDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="DateEntered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1013,17 +1017,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="fschedulerModel.Room">
-              <MappingFragment StoreEntitySet="Room">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="fschedulerModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
@@ -1105,6 +1098,7 @@
           <EntitySetMapping Name="Attendees">
             <EntityTypeMapping TypeName="fschedulerModel.Attendee">
               <MappingFragment StoreEntitySet="Attendees">
+                <ScalarProperty Name="VenueNo" ColumnName="VenueNo" />
                 <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
                 <ScalarProperty Name="RefundDate" ColumnName="RefundDate" />
                 <ScalarProperty Name="Refund" ColumnName="Refund" />
@@ -1220,6 +1214,18 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="fschedulerModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Value" ColumnName="Value" />

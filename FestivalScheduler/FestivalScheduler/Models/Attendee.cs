@@ -134,5 +134,6 @@ namespace FestivalScheduler.Models
         public string Refund { get; set; }
         public string RefundDate { get; set; }
         public string DateEntered { get; set; }
+        public string VenueNo { get; set; }
     }
 }

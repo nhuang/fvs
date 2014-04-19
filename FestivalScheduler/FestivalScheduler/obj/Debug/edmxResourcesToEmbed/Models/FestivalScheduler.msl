@@ -88,17 +88,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Rooms">
-      <EntityTypeMapping TypeName="fschedulerModel.Room">
-        <MappingFragment StoreEntitySet="Room">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="Show" ColumnName="Show" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tasks">
       <EntityTypeMapping TypeName="fschedulerModel.Task">
         <MappingFragment StoreEntitySet="Tasks">
@@ -180,6 +169,7 @@
     <EntitySetMapping Name="Attendees">
       <EntityTypeMapping TypeName="fschedulerModel.Attendee">
         <MappingFragment StoreEntitySet="Attendees">
+          <ScalarProperty Name="VenueNo" ColumnName="VenueNo" />
           <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
           <ScalarProperty Name="RefundDate" ColumnName="RefundDate" />
           <ScalarProperty Name="Refund" ColumnName="Refund" />
@@ -295,6 +285,18 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="fschedulerModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Show" ColumnName="Show" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Value" ColumnName="Value" />

@@ -14,24 +14,25 @@ namespace FestivalScheduler.Controllers.Resources
 {
     public class AttendeeController : Controller
     {
+        private AttendeeService service;
+
+        public AttendeeController()
+        {
+            this.service = new AttendeeService();
+        }
+
         //
         // GET: /Attendee/
         public ActionResult Index()
         {
-            return View();
+            return View(service.GetAllArtists());
         }
-
-        private AttendeeService service;
-
-        public AttendeeController()
-		{
-            this.service = new AttendeeService();
-		}
 
         public virtual JsonResult Attendee_Read()
 		{
             return Json(service.GetAll(), JsonRequestBehavior.AllowGet);
 		}
+
 
         public virtual JsonResult Attendee_Selected()
         {

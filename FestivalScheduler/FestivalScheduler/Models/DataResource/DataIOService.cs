@@ -22,7 +22,7 @@ namespace FestivalScheduler.Models.DataResource
         private fschedulerEntities db;
         private string artistFile = "ArtistData.json";
         private string artistFilePath = "";
-
+        private int recordCount = 0;
         public DataIOService(fschedulerEntities context)
         {
             db = context;
@@ -36,6 +36,7 @@ namespace FestivalScheduler.Models.DataResource
         public string ProcessImportArtistData(string username, string password)
         {
             string result = "";
+            
             result = ImportArtistDataFromService(username, password);
             if (!string.IsNullOrEmpty(result))
             {
@@ -47,6 +48,12 @@ namespace FestivalScheduler.Models.DataResource
             {
                 return result;
             }
+            
+            //ConvertToKeyDisplayMapping();
+
+            PDFService pdf = new PDFService();
+            pdf.GenerateAgendaPDF();
+            result = string.Format("Processed {0} records success.", recordCount);
             return result;
         }
         public string ImportArtistDataFromService(string username, string password)
@@ -95,7 +102,7 @@ namespace FestivalScheduler.Models.DataResource
                     int objAt = 0;
                     foreach (JObject obj in array)
                     {
-                        
+
                         try
                         {
                             model.ConvertFromJson(obj);
@@ -158,16 +165,55 @@ namespace FestivalScheduler.Models.DataResource
                             count = 0;
                         }
                     }
-                    return string.Format("Processed {0} records success.", array.Count);
+                    recordCount = array.Count();
                 }
             }
             catch (Exception e)
             {
                 return "Insert or Update database fail, please contact system administrator > " + e.Message;
             }
+
             return "";
         }
 
+
+        public void ConvertToKeyDisplayMapping()
+        {
+
+            try
+            {
+                artistFilePath = HttpContext.Current.Server.MapPath("~/File/Resource/") + artistFile;
+                using (StreamReader sr = new StreamReader(artistFilePath))
+                {
+                    String line = sr.ReadToEnd();
+                    JArray array = JArray.Parse(line);
+
+                    JObject obj = (JObject)array.ElementAt(0);
+                    IList<string> keys = obj.Properties().Select(p => p.Name).ToList();
+                    StringBuilder sb = new StringBuilder();
+                    obj = new JObject();
+                    foreach (string item in keys)
+                    {
+                        foreach (Char c in item)
+                        {
+                            if (Char.IsLetterOrDigit(c))
+                            {
+                                sb.Append(c);
+                            }
+                        }
+                        obj.Add(sb.ToString(), item);
+                        sb.Clear();
+
+                    }
+                    string path = HttpContext.Current.Server.MapPath("~/File/Resource/") + "KeysMapping.json";
+                    File.WriteAllText(path, obj.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+            }
+        }
 
         public void ReadExcelFile()
         {

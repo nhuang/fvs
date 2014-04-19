@@ -19,6 +19,14 @@ namespace AspNetGroupBasedPermissions.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.StartHour = settingService.GetStartHour();
+            ViewBag.StartMinute = settingService.GetStartMinute();
+            ViewBag.EndHour = settingService.GetEndHour();
+            ViewBag.EndMinute = settingService.GetEndMinute();
+            ViewBag.StartDate = settingService.GetStartDate();
+            ViewBag.EndDate = settingService.GetGetEndDate();
+
+
             return View();
         }
 

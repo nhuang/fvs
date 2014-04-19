@@ -11,6 +11,7 @@ using Kendo.Mvc.UI;
 using FestivalScheduler;
 using FestivalScheduler.Models;
 using FestivalScheduler.Models.Resouces;
+using FestivalScheduler.Models.DataResource;
 
 namespace FestivalScheduler.Controllers.Scheduler
 {
@@ -92,10 +93,15 @@ namespace FestivalScheduler.Controllers.Scheduler
         // GET: /Scheduler/AttendeeAgenda
         public ActionResult AttendeeAgenda()
         {
-            ViewBag.Shows = attendeeService.CountShowsForAttendee();
-            return View(meetingService.GetAllMeetingAgenda());
+            return View(attendeeService.CountShowsForAttendee());
         }
 
+        // GET: /Scheduler/TimeTable
+        public ActionResult TimeTable()
+        {
+            return View(meetingService.GetAllMeetingAgenda());
+            
+        }
 
         // GET: /Scheduler/AttendeeShows
         public ActionResult AttendeeShows()
@@ -108,6 +114,36 @@ namespace FestivalScheduler.Controllers.Scheduler
         {
             meetingService.ResetAllMeetingTitle();
             return RedirectToAction("AttendeeAgenda", "Scheduler");
+        }
+
+
+        // GET: /Scheduler/GenerateAgendaPDF
+        public ActionResult GenerateAgendaPDF()
+        {
+            PDFService pdf = new PDFService();
+            pdf.GenerateAgendaPDF();
+
+            return RedirectToAction("AttendeeAgenda", "Scheduler");
+        }
+
+        // GET: /Scheduler/ReplaceMeetingByReferenceID
+        public ActionResult ReplaceMeetingByReferenceID()
+        {
+            return View();
+        }
+
+ 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ProcessMeetingByReferenceID(FormCollection collection)
+        {
+            string[] fromID = collection.GetValues("From");
+            string[] toID = collection.GetValues("To");
+            string[] startDate = collection.GetValues("datetimepicker");
+
+            ViewBag.Result =  meetingService.ReplaceMeetingByReferenceID(fromID[0], toID[0], startDate[0], this.ModelState);
+
+            NewSysEvent(SysEventViewModel.NEW, string.Format("Meeting Ref#{0} replaced by Ref#{1}, start from {2}.", fromID[0], toID[0], startDate[0]));
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -149,17 +185,15 @@ namespace FestivalScheduler.Controllers.Scheduler
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult VRoomFilter(FormCollection collection)
         {
-            string[] periods = collection.GetValues("timeStart");
-            int timeStartHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
-            int timeStartMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
-            ViewBag.timeStart = new DateTime(DateTime.Now.Year, 1, 1, timeStartHour, timeStartMin, 0);
-            periods = collection.GetValues("timeEnd");
-            int timeEndHour = Convert.ToInt32(periods[0].Substring(0, periods[0].IndexOf(':')));
-            int timeEndMin = Convert.ToInt32(periods[0].Substring(periods[0].IndexOf(':') + 1, 2).Trim());
-            ViewBag.timeEnd = new DateTime(DateTime.Now.Year, 1, 1, timeEndHour, timeEndMin, 0);
+            ViewBag.StartHour = settingService.GetStartHour();
+            ViewBag.StartMinute = settingService.GetStartMinute();
+            ViewBag.EndHour = settingService.GetEndHour();
+            ViewBag.EndMinute = settingService.GetEndMinute();
             ViewBag.StartDate = settingService.GetStartDate();
+            ViewBag.EndDate = settingService.GetGetEndDate();
 
-            string[] strs = collection.GetValues("room");
+
+            string[] strs = collection.GetValues("Venue");
             roomService.UpdateRoomsToShow(strs);
             return View(roomService.GetAll());
         }

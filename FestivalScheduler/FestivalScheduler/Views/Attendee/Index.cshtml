@@ -1,58 +1,91 @@
-﻿@model IEnumerable<FestivalScheduler.Models.Resouces.AttendeeViewModel>
+﻿@model IEnumerable<FestivalScheduler.Models.Resouces.ArtistViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Attendee</h2>
+<h2>Index</h2>
 
-@(Html.Kendo().Grid<FestivalScheduler.Models.Resouces.AttendeeViewModel>(Model)
-        .Name("Attendee")
-    .Columns(columns =>
-    {
-        columns.Bound(r => r.ID);
-        columns.Bound(r => r.Text);
-        columns.Bound(r => r.Value);
-        columns.Bound(r => r.Color);
-        columns.Bound(r => r.Length);
-        columns.Command(command => { command.Edit(); command.Destroy(); });
-    })
-    .Editable(editable => editable.Mode(GridEditMode.PopUp))
-    .Pageable()
-    .ToolBar(toolbar => toolbar.Create())
-    .Sortable()
-    .Scrollable()
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .PageSize(20)
-        .ServerOperation(false)
-        .Events(events => events.Error("error_handler"))
-        .Model(model =>
-            {
-                //The unique identifier (primary key) of the model is the ProductID property
-                model.Id(r => r.ID);
-                // Declare a model field and optionally specify its default value (used when a new model instance is created)
-                model.Field(v => v.ID).Editable(false);
-            })
-           .Create(update => update.Action("EditingPopup_Create", "Attendee"))
-           .Read(read => read.Action("EditingPopup_Read", "Attendee"))
-           .Update(update => update.Action("EditingPopup_Update", "Attendee"))
-           .Destroy(update => update.Action("EditingPopup_Destroy", "Attendee"))
-    )
-)
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
+    <thead>
+        <tr>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th width="30%">
+                @Html.DisplayNameFor(model => model.Text)
+            </th>            
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
 
-<script type="text/javascript">
-    function error_handler(e) {
-        if (e.errors) {
-            var message = "Errors:\n";
-            $.each(e.errors, function (key, value) {
-                if ('errors' in value) {
-                    $.each(value.errors, function () {
-                        message += this + "\n";
-                    });
-                }
-            });
-            alert(message);
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th width="15%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                   <label style="color:@item.Color"> @Html.DisplayFor(modelItem => item.Text)</label>
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
         }
-    }
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Scripts/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"
+            },
+            "aaSorting": [[0, "asc"]],
+            "iDisplayLength": 100,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true,
+            "sPaginationType": "full_numbers",
+            "sScrollY": "800"
+        });
+    });
 </script>

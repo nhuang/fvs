@@ -33,11 +33,11 @@ namespace FestivalScheduler.Models
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<MeetingAttendee> MeetingAttendees { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<SysSetting> SysSettings { get; set; }
         public virtual DbSet<SysEvent> SysEvents { get; set; }
         public virtual DbSet<SupportTeam> SupportTeams { get; set; }
         public virtual DbSet<Attendee> Attendees { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
     }
 }

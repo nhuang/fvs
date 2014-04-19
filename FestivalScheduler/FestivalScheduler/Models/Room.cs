@@ -19,5 +19,6 @@ namespace FestivalScheduler.Models
         public int Value { get; set; }
         public string Color { get; set; }
         public bool Show { get; set; }
+        public string Address { get; set; }
     }
 }

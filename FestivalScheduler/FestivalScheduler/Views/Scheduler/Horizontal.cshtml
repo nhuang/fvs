@@ -11,32 +11,6 @@
 }
 <h2>Rooms Horizontal Grouping</h2>
 
-
-<br />
-@using (Html.BeginForm("HRoomFilter", "Scheduler", FormMethod.Post))
-{
-    <p>
-        <label for="start">Start time:</label>
-        @(Html.Kendo().TimePicker()
-        .Name("timeStart")
-        .Format("HH:mm")
-        .Value("11:00 AM")
-        )
-        <label for="end" style="margin-left:3em">End time:</label>
-        @(Html.Kendo().TimePicker()
-        .Name("timeEnd")
-        .Format("HH:mm")
-        .Value("11:59 PM")
-        )
-    </p>
-    foreach (var item in Model)
-    {
-        <input type="checkbox" name="room" value="@item.Value" checked="checked"><label style="width:100px;background-color:@item.Color;text-align: center;">@item.Text</label>
-    }
-    <input type="submit" value="Filter" />
-}
-
-<hr />
 @(Html.Kendo().Scheduler<FestivalScheduler.Models.MeetingViewModel>()
     .Name("scheduler")
     .Date(@StartDate)
@@ -49,12 +23,21 @@
     {
         views.DayView(view => view.Selected(true));
         views.WeekView();
-        views.MonthView();
+        views.CustomView("CustomView");
     })
     .Timezone("Etc/UTC")
     .Group(group => group.Resources("Rooms"))
     .Resources(resource =>
          {
+             resource.Add(m => m.Attendees)
+                 .Title("Attendees")
+                 .Multiple(true)
+                 .DataTextField("Text")
+                 .DataValueField("Value")
+                 .DataColorField("Color")
+                 .DataSource(ds => ds.Read(read => read.Action("Attendee_Selected", "Attendee"))
+               );
+             
              resource.Add(m => m.RoomID)
                  .Title("Room")
                  .Name("Rooms")
@@ -63,14 +46,7 @@
                  .DataColorField("Color")
                  .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
                );
-             resource.Add(m => m.Attendees)
-                 .Title("Attendees")
-                 .Multiple(true)
-                 .DataTextField("Text")
-                 .DataValueField("Value")
-                 .DataColorField("Color")
-                 .DataSource(ds => ds.Read(read => read.Action("Attendee_Read", "Attendee"))
-               );
+             
          })
             .DataSource(d => d
             .Model(m =>
@@ -214,5 +190,26 @@
 
         return true;
     }
+    var CustomView = kendo.ui.MultiDayView.extend({
+        options: {
+            selectedDateFormat: "{0:D} - {1:D}"
+        },
+        name: "customView",
+        calculateDateRange: function () {
+            //create a range of dates to be shown within the view
 
+            var selectedDate = this.options.date,
+                start = kendo.date.dayOfWeek(selectedDate, this.calendarInfo().firstDay, -1),
+                idx, length,
+                dates = [];
+
+            for (idx = 0, length = 14; idx < length; idx++) {
+                dates.push(start);
+                start = kendo.date.nextDay(start);
+            }
+
+            this._render(dates);
+        }
+
+    });
 </script>

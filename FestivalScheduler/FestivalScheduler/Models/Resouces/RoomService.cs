@@ -33,7 +33,8 @@ namespace FestivalScheduler.Models.Resouces
                     Text = room.Text,
                     Value = room.Value,
                     Color = room.Color,
-                    Show = room.Show
+                    Show = room.Show,
+                    Address = room.Address
                 }).AsQueryable();
         }
 
@@ -45,7 +46,8 @@ namespace FestivalScheduler.Models.Resouces
                 Text = room.Text,
                 Value = room.Value,
                 Color = room.Color,
-                 Show = room.Show
+                Show = room.Show,
+                Address = room.Address
             }).Where(r => r.Show == true).AsQueryable();
         }
 
@@ -67,8 +69,7 @@ namespace FestivalScheduler.Models.Resouces
             {
                 db.Database.ExecuteSqlCommand("update Room set show = 0");
                 db.SaveChanges();
-            }
-        
+            }        
         }
 
         public virtual void Insert(RoomViewModel room, ModelStateDictionary modelState)
@@ -112,6 +113,8 @@ namespace FestivalScheduler.Models.Resouces
 
                 db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+
+                UpdateAttendeeRoomDetail(entity);
             }
         }
 
@@ -122,6 +125,19 @@ namespace FestivalScheduler.Models.Resouces
             // TODO: here should verify the room id is not in the meeting tables
             db.Rooms.Remove(entity);
             db.SaveChanges();
+        }
+
+        public void UpdateAttendeeRoomDetail(Room room)
+        {
+            List<Attendee> models = db.Attendees.Where(m => m.VenueNo == room.Value.ToString()).ToList();
+            foreach (Attendee item in models)
+            {
+                item.VenueName = room.Text;
+                item.VenueAddress = room.Address;
+                db.Attendees.Attach(item);
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         private bool ValidateModel(RoomViewModel room, ModelStateDictionary modelState)

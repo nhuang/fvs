@@ -31,33 +31,15 @@ namespace FestivalScheduler.Models.Resouces
                     Value = attendee.Value,
                     Color = attendee.Color,
                     Show = attendee.Show,
-                    Length = attendee.Length
+                    Length = attendee.Length,
+                    Type = attendee.Type
                 }).AsQueryable();
-        }
-
-
-        public virtual List<AttendeeViewModel> CountShowsForAttendee()
-        {
-            IEnumerable<AttendeeViewModel> iAttendees = db.Attendees.ToList().Select(attendee => new AttendeeViewModel
-                {
-                    ID = attendee.ID,
-                    Text = attendee.Text,
-                    Value = attendee.Value,
-                    Color = attendee.Color,
-                    Show = attendee.Show,
-                    Length = attendee.Length
-                });
-
-            List<AttendeeViewModel> result = iAttendees.ToList();
-            foreach (AttendeeViewModel comp in result)
-            {
-                comp.NumberOfShows = db.MeetingAttendees.Count(m => m.AttendeeID == comp.Value);
-            }
-            return result;
         }
 
         public virtual IQueryable<AttendeeViewModel> GetAttendeesForScheduler()
         {
+            string term = "In";
+         
             return db.Attendees.ToList().Select(attendee => new AttendeeViewModel
             {
                 ID = attendee.ID,
@@ -65,9 +47,163 @@ namespace FestivalScheduler.Models.Resouces
                 Value = attendee.Value,
                 Color = attendee.Color,
                 Show = attendee.Show,
-                Length = attendee.Length
-            }).Where(r => r.Show == true).AsQueryable();
+                Length = attendee.Length,
+                Status = attendee.Status,
+                Type = attendee.Type
+            }).Where(r => r.Status == term && (r.Type == "Local" || r.Type == "International")).OrderBy(r => r.Value).AsQueryable();
         }
+
+        public virtual IQueryable<ArtistViewModel> GetAllArtists()
+        {
+            return db.Attendees.ToList().Select(attendee => new ArtistViewModel
+            {
+                ID = attendee.ID,
+                Text = attendee.Text,
+                Value = attendee.Value,
+                Color = attendee.Color,
+                Show = attendee.Show,
+                Length = attendee.Length,
+                Type = attendee.Type,
+                Status = attendee.Status,
+                Company = attendee.Company,
+                PrimaryFirstName = attendee.PrimaryFirstName,
+                PrimaryLastName = attendee.PrimaryLastName,
+                PrimaryAddress = attendee.PrimaryAddress,
+                PrimaryCity = attendee.PrimaryCity,
+                PrimaryProvState = attendee.PrimaryProvState,
+                PrimaryCountry = attendee.PrimaryCountry,
+                PrimaryPCZip = attendee.PrimaryPCZip,
+                PrimaryPhone = attendee.PrimaryPhone,
+                PrimaryEmail = attendee.PrimaryEmail,
+                SecondaryFirstName = attendee.SecondaryFirstName,
+                SecondaryLastName = attendee.SecondaryLastName,
+                SecondaryAddress = attendee.SecondaryAddress,
+                SecondaryCity = attendee.SecondaryCity,
+                SecondaryPovState = attendee.SecondaryPovState,
+                SecondaryCountry = attendee.SecondaryCountry,
+                SecondaryPCZip = attendee.SecondaryPCZip,
+                SecondaryPhone = attendee.SecondaryPhone,
+                SecondaryEmail = attendee.SecondaryEmail,
+                CastMembers = attendee.CastMembers,
+                Playwright = attendee.Playwright,
+                Director = attendee.Director,
+                StageManager = attendee.StageManager,
+                Designer = attendee.Designer,
+                TeamSize = attendee.TeamSize,
+                NewWork = attendee.NewWork,
+                Genre = attendee.Genre,
+                GenreOther = attendee.GenreOther,
+                ShowRating = attendee.ShowRating,
+                AgeRestriction = attendee.AgeRestriction,
+                ShowContains = attendee.ShowContains,
+                ContentAdvisory = attendee.ContentAdvisory,
+                GeneralAdmission = attendee.GeneralAdmission,
+                StudentSenior = attendee.StudentSenior,
+                ShowDescription = attendee.ShowDescription,
+                Website = attendee.Website,
+                ShowImage = attendee.ShowImage,
+                NameonCheque = attendee.NameonCheque,
+                CompanyNameonCheque = attendee.CompanyNameonCheque,
+                ChequeAddress = attendee.ChequeAddress,
+                ChequeCity = attendee.ChequeCity,
+                ChequeProvState = attendee.ChequeProvState,
+                ChequeCountry = attendee.ChequeCountry,
+                ChequePCZip = attendee.ChequePCZip,
+                GST = attendee.GST,
+                WhenNotAvailable = attendee.WhenNotAvailable,
+                Sharing = attendee.Sharing,
+                SharingRef = attendee.SharingRef,
+                SharingCompany = attendee.SharingCompany,
+                SharingShowTitle = attendee.SharingShowTitle,
+                StagingRequirements = attendee.StagingRequirements,
+                Intermission = attendee.Intermission,
+                LightingRequirements = attendee.LightingRequirements,
+                SoundRequirements = attendee.SoundRequirements,
+                Dancing = attendee.Dancing,
+                DancingType = attendee.DancingType,
+                Projection = attendee.Projection,
+                ImageSize = attendee.ImageSize,
+                ThrowDistance = attendee.ThrowDistance,
+                Holdovers = attendee.Holdovers,
+                ScreenElevation = attendee.ScreenElevation,
+                ScreenHeight = attendee.ScreenHeight,
+                ScreenWidth = attendee.ScreenWidth,
+                ProjectionRatio = attendee.ProjectionRatio,
+                MediaType = attendee.MediaType,
+                ShootFrom = attendee.ShootFrom,
+                ShootFromOther = attendee.ShootFromOther,
+                ScreenMaterial = attendee.ScreenMaterial,
+                SoundOut = attendee.SoundOut,
+                Liquids = attendee.Liquids,
+                LiquidsDescribe = attendee.LiquidsDescribe,
+                OpenFlames = attendee.OpenFlames,
+                Loud = attendee.Loud,
+                LoudDescribe = attendee.LoudDescribe,
+                Firearms = attendee.Firearms,
+                Smoking = attendee.Smoking,
+                FogMachine = attendee.FogMachine,
+                Strobe = attendee.Strobe,
+                Hazer = attendee.Hazer,
+                MoreLights = attendee.MoreLights,
+                WirelessMic = attendee.WirelessMic,
+                Frequencies = attendee.Frequencies,
+                OtherEquipments = attendee.OtherEquipments,
+                EquipmentSpecify = attendee.EquipmentSpecify,
+                StageDesign = attendee.StageDesign,
+                SpecialNeeds = attendee.SpecialNeeds,
+                Comments = attendee.Comments,
+                RehearsalTime = attendee.RehearsalTime,
+                ComingFrom = attendee.ComingFrom,
+                FestivalComingFrom = attendee.FestivalComingFrom,
+                WhenArriving = attendee.WhenArriving,
+                Release = attendee.Release,
+                VenueName = attendee.VenueName,
+                VenueAddress = attendee.VenueAddress,
+                VenueTotal = attendee.VenueTotal,
+                Wheelchair = attendee.Wheelchair,
+                WheelchairCapacity = attendee.WheelchairCapacity,
+                Washrooms = attendee.Washrooms,
+                WheelchairWashrooms = attendee.WheelchairWashrooms,
+                Alcohol = attendee.Alcohol,
+                Food = attendee.Food,
+                EnterEarly = attendee.EnterEarly,
+                MinutesBefore = attendee.MinutesBefore,
+                Bar = attendee.Bar,
+                Minors = attendee.Minors,
+                ShowDate = attendee.ShowDate,
+                PayDate = attendee.PayDate,
+                PayMethod = attendee.PayMethod,
+                Amount = attendee.Amount,
+                Refund = attendee.Refund,
+                RefundDate = attendee.RefundDate,
+                DateEntered = attendee.DateEntered,
+                VenueNo = attendee.VenueNo
+            }).AsQueryable();
+        }
+
+
+        public virtual List<ArtistViewModel> CountShowsForAttendee()
+        {
+            IEnumerable<ArtistViewModel> iAttendees = db.Attendees.ToList().Select(attendee => new ArtistViewModel
+                {
+                    ID = attendee.ID,
+                    Text = attendee.Text,
+                    Value = attendee.Value,
+                    Color = attendee.Color,
+                    Show = attendee.Show,
+                    Length = attendee.Length,
+                    Type = attendee.Type
+                });
+
+            List<ArtistViewModel> result = iAttendees.ToList();
+            foreach (AttendeeViewModel comp in result)
+            {
+                comp.NumberOfShows = db.MeetingAttendees.Count(m => m.AttendeeID == comp.Value);
+            }
+            return result;
+        }
+
+ 
 
         public virtual void UpdateAttendeesToShow(string[] strs)
         {

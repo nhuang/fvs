@@ -57,8 +57,19 @@
            {
                children.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
                children.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
-               children.Add().Text("Room Attendee").Action("Attendee", "Scheduler");
-               children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler");
+               children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler")
+                   .Items(innerChildren =>
+                   {
+                       innerChildren.Add().Text("Re-generate Agenda").Action("GenerateAgendaPDF", "Scheduler");
+                   });
+               children.Add().Text("Time Table").Action("TimeTable", "Scheduler");
+               children.Add().Text("Batch")
+                      .Items(innerChildren =>
+                      {
+                          innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
+                          innerChildren.Add().Text("Replace Shows").Action("ReplaceMeetingByReferenceID", "Scheduler");
+                          innerChildren.Add().Text("Import Artist").Action("ImportArtistData", "DataResource");
+                      });
            });
 
           items.Add()
@@ -78,8 +89,6 @@
                          innerChildren.Add().Text("Rooms").Action("Index", "Room");
                          innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
                          innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
-                         innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
-                         innerChildren.Add().Text("Import Artist").Action("ImportArtistData", "DataResource");
                          innerChildren.Add().Text("Clean System").Action("SchedulerResetIndex", "DataResource");
                      });
               children.Add().Text("System")
@@ -95,6 +104,7 @@
                     )
 
                 </ul>
+
 				@Html.Partial("_LoginPartial")
 			</div>
 		</div>

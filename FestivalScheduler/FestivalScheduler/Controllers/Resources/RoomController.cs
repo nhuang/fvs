@@ -27,15 +27,29 @@ namespace FestivalScheduler.Controllers.Resources
 			return View(roomService.GetAll());
 		}
 
+        public virtual JsonResult Room_IndoorRead()
+        {
+            return Json(roomService.GetRoomsByType("Indoor"), JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult Room_OutdoorRead()
+        {
+            return Json(roomService.GetRoomsByType("Outdoor"), JsonRequestBehavior.AllowGet);
+        }
 
 		public virtual JsonResult Room_Read()
 		{
 			return Json(roomService.GetAll(), JsonRequestBehavior.AllowGet);
 		}
 
-        public virtual JsonResult Room_Selected()
+        public virtual JsonResult Room_IndoorSelected()
         {
-            return Json(roomService.GetRoomsForScheduler(), JsonRequestBehavior.AllowGet);
+            return Json(roomService.GetRoomsForScheduler("Indoor"), JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult Room_OutdoorSelected()
+        {
+            return Json(roomService.GetRoomsForScheduler("Outdoor"), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditingPopup_Read([DataSourceRequest] DataSourceRequest request)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FestivalScheduler.Models.DataResource;
+using FestivalScheduler.Models.Resouces;
 
 namespace FestivalScheduler.Controllers.Resources
 {
@@ -11,10 +12,11 @@ namespace FestivalScheduler.Controllers.Resources
     {
 
         private DataIOService dataIOService;
-
+        private AttendeeService attendeeService;
          public DataResourceController()
         {
             this.dataIOService = new DataIOService();
+            this.attendeeService = new AttendeeService();
         }
 
         //
@@ -23,6 +25,26 @@ namespace FestivalScheduler.Controllers.Resources
         {            
             return View();
         }
+
+        // GET: /DataResource/GetAllArtistToExcel
+        public ActionResult GetAllArtistToExcel()
+        {
+            string file = attendeeService.GetAllArtistsForExport();
+            if (!file.StartsWith("Error"))
+            {
+                System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+                response.ClearContent();
+                response.Clear();
+                response.ContentType = "application/vnd.xls";
+                response.AddHeader("Content-Disposition", "attachment; filename=" + "ArtistMaster.csv" + ";");
+                response.TransmitFile(file);
+                response.End();
+            }
+
+
+            return RedirectToAction("AttendeeAgenda", "Scheduler");
+        }
+ 
 
         // GET: /DataResource/ImportArtistData
         public ActionResult ImportArtistData()

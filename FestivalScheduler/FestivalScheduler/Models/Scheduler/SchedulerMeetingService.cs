@@ -117,6 +117,7 @@
         {
             if (ValidateModel(meeting, modelState))
             {
+                meeting = ApplyMeetingStartTimeRules(meeting);
                 meeting = ApplyMeetingRules(meeting);
 
                 if (meeting.Attendees == null)
@@ -251,6 +252,22 @@
 
             return meeting;
         }
+
+        private MeetingViewModel ApplyMeetingStartTimeRules(MeetingViewModel meeting)
+        {
+            DateTime utcTime = meeting.Start.ToUniversalTime();
+            Meeting existMeetings = db.Meetings.Where(m => (m.End < utcTime) && (m.RoomID == meeting.RoomID)).OrderByDescending(m => m.End).FirstOrDefault();
+            if (existMeetings != null)
+            {
+                if (existMeetings.End.ToLocalTime().Day == meeting.Start.Day)
+                {
+                    meeting.Start = existMeetings.End.ToLocalTime().AddHours(1);
+                    meeting.End = meeting.Start.AddMinutes(15.0);
+                }
+            }
+            return meeting;
+        }
+
 
         private Meeting ApplyMeetingRules(Meeting meeting)
         {
@@ -411,6 +428,7 @@
                     result += string.Format("<p> ** meeting {0} - {1} : Ref# {2} replaced by Ref#{3}, start from {4} </p>", meeting.Start.ToString("MMM dd, yyyy hh:mm tt"), meeting.End.ToString("hh:mm tt"), fromID, toID, startDate);
                 }
             }
+
             return result;
         }
 

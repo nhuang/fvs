@@ -35,7 +35,7 @@
                  .DataTextField("Text")
                  .DataValueField("Value")
                  .DataColorField("Color")
-                 .DataSource(ds => ds.Read(read => read.Action("Attendee_Selected", "Attendee"))
+                 .DataSource(ds => ds.Read(read => read.Action("Attendee_IndoorSelected", "Attendee"))
                );
              
              resource.Add(m => m.RoomID)
@@ -44,7 +44,7 @@
                  .DataTextField("Text")
                  .DataValueField("Value")
                  .DataColorField("Color")
-                 .DataSource(ds => ds.Read(read => read.Action("Room_Read", "Room"))
+                 .DataSource(ds => ds.Read(read => read.Action("Room_IndoorRead", "Room"))
                );
              
          })
@@ -56,10 +56,10 @@
                 m.RecurrenceId(f => f.RecurrenceID);
                 m.Field(f => f.Title).DefaultValue("No title");
             })
-                .Read("Grouping_Horizontal_Read", "Scheduler")
-                .Create("Grouping_Horizontal_Create", "Scheduler")
-                .Destroy("Grouping_Horizontal_Destroy", "Scheduler")
-                .Update("Grouping_Horizontal_Update", "Scheduler")
+                    .Read("Indoor_Horizontal_Read", "Scheduler")
+                    .Create("Indoor_Horizontal_Create", "Scheduler")
+                    .Destroy("Indoor_Horizontal_Destroy", "Scheduler")
+                    .Update("Indoor_Horizontal_Update", "Scheduler")
             ).EventTemplate(
                         "<div class='view-template'>" +
                                 "#= kendo.toString(start, 'hh:mm') # - #= kendo.toString(end, 'hh:mm') #" +

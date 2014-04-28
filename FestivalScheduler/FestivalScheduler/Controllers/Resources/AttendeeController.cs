@@ -28,17 +28,58 @@ namespace FestivalScheduler.Controllers.Resources
             return View(service.GetAllArtists());
         }
 
+
+        //
+        // GET: /Attendee/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View(service.GetArtistsByID(id));
+        }
+
+        //
+        // POST: /Attendee/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                
+            }
+            catch
+            {
+               
+            }
+            return View();
+        }
+
+
         public virtual JsonResult Attendee_Read()
 		{
             return Json(service.GetAll(), JsonRequestBehavior.AllowGet);
 		}
 
 
-        public virtual JsonResult Attendee_Selected()
+        public virtual JsonResult Attendee_IndoorSelected()
         {
-            return Json(service.GetAttendeesForScheduler(), JsonRequestBehavior.AllowGet);
+            return Json(service.GetAttendeesIndoorForScheduler("In"), JsonRequestBehavior.AllowGet);
         }
 
+        public virtual JsonResult Attendee_IndoorWaiting()
+        {
+            return Json(service.GetAttendeesIndoorForScheduler("Waiting List"), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public virtual JsonResult Attendee_OutdoorSelected()
+        {
+            return Json(service.GetAttendeesOutdoorForScheduler("In"), JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult Attendee_OutdoorWaiting()
+        {
+            return Json(service.GetAttendeesOutdoorForScheduler("Waiting List"), JsonRequestBehavior.AllowGet);
+        }
+        
         public ActionResult EditingPopup_Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(service.GetAll().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);

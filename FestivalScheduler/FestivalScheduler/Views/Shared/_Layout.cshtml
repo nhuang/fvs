@@ -1,43 +1,43 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
-	@Styles.Render("~/Content/css")
-	@Scripts.Render("~/bundles/modernizr")
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
-	@RenderSection("scripts", required: false)
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
-	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/demo_page.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/css/TableTools.css")" rel="stylesheet" type="text/css" />
 
-	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/jquery.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.all.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.318/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/js/ZeroClipboard.js")"></script>
     <script src="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/js/TableTools.js")"></script>
 
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				@Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
-			</div>
-			<div class="navbar-collapse collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Scheduler System", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @(Html.Kendo().Menu()
       .Name("Menu")
@@ -55,8 +55,21 @@
            .Text("Scheduler")
            .Items(children =>
            {
-               children.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
-               children.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
+               children.Add().Text("Indoor")
+                   .Items(innerChildren =>
+                   {
+                       innerChildren.Add().Text("Room Horizontal").Action("Horizontal", "Scheduler");
+                       innerChildren.Add().Text("Room Vertical ").Action("Vertical", "Scheduler");
+                       innerChildren.Add().Text("Replace Shows").Action("ReplaceMeetingByReferenceID", "Scheduler");
+                   });
+
+               children.Add().Text("Outdoor")
+                  .Items(innerChildren =>
+                  {
+                      innerChildren.Add().Text("Room Horizontal").Action("OutdoorHorizontal", "Scheduler");
+                      innerChildren.Add().Text("Room Vertical ").Action("OutdoorVertical", "Scheduler");
+                      innerChildren.Add().Text("Replace Shows").Action("ReplaceOutdoorMeetingByReferenceID", "Scheduler");
+                  });
                children.Add().Text("Agenda").Action("AttendeeAgenda", "Scheduler")
                    .Items(innerChildren =>
                    {
@@ -67,13 +80,20 @@
                       .Items(innerChildren =>
                       {
                           innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
-                          innerChildren.Add().Text("Replace Shows").Action("ReplaceMeetingByReferenceID", "Scheduler");
                           innerChildren.Add().Text("Import Artist").Action("ImportArtistData", "DataResource");
+                          innerChildren.Add().Text("Export Artist").Action("GetAllArtistToExcel", "DataResource");
                       });
+               children.Add().Text("Resources")
+                                   .Items(innerChildren =>
+                                   {
+                                       innerChildren.Add().Text("Rooms").Action("Index", "Room");
+                                       innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
+                                       innerChildren.Add().Text("Clean System").Action("SchedulerResetIndex", "DataResource");
+                                   });              
            });
 
           items.Add()
-          .Text("Admin")
+          .Text("Administration")
           .Items(children =>
           {
               children.Add().Text("Permissions")
@@ -83,14 +103,7 @@
                           innerChildren.Add().Text("Groups").Action("Index", "Groups");
                           innerChildren.Add().Text("Permissions").Action("Index", "Roles");
                       });
-              children.Add().Text("Resources")
-                     .Items(innerChildren =>
-                     {
-                         innerChildren.Add().Text("Rooms").Action("Index", "Room");
-                         innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
-                         innerChildren.Add().Text("Support Team").Action("Index", "SupportTeam");
-                         innerChildren.Add().Text("Clean System").Action("SchedulerResetIndex", "DataResource");
-                     });
+             
               children.Add().Text("System")
                      .Items(innerChildren =>
                      {
@@ -105,17 +118,17 @@
 
                 </ul>
 
-				@Html.Partial("_LoginPartial")
-			</div>
-		</div>
-	</div>
-	<div class="container body-content">
-		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; @DateTime.Now.Year - Fringe Theatre Scheduler System</p>
-		</footer>
-	</div>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Fringe Theatre Scheduler System</p>
+        </footer>
+    </div>
 
 
 </body>

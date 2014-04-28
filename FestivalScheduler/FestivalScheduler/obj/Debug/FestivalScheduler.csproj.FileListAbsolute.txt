@@ -79,12 +79,17 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\FestivalScheduler.dll.conf
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\FestivalScheduler.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\FestivalScheduler.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Antlr3.Runtime.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\DocumentFormat.OpenXml.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.SqlServer.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Excel.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\ICSharpCode.SharpZipLib.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\itextsharp.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Kendo.Mvc.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\LINQtoCSV.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\log4net.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\LynxToolkit.Documents.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\LynxToolkit.Documents.OpenXml.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -99,6 +104,9 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Owin.Security.OA
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Web.Infrastructure.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Owin.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Remotion.Data.Linq.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Remotion.dll
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Remotion.Interfaces.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\RestSharp.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Net.Http.Formatting.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\System.Web.Helpers.dll
@@ -116,6 +124,8 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\EntityFramework.SqlServer.
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Excel.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\itextsharp.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Kendo.Mvc.xml
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\LynxToolkit.Documents.pdb
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\LynxToolkit.Documents.OpenXml.pdb
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Owin.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\Microsoft.Owin.Security.xml

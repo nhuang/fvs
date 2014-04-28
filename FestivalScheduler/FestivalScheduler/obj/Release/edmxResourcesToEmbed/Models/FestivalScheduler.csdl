@@ -97,16 +97,6 @@
     <NavigationProperty Name="Meetings1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings" ToRole="Meetings1" />
     <NavigationProperty Name="Meeting1" Relationship="Self.FK_Meetings_Meetings" FromRole="Meetings1" ToRole="Meetings" />
   </EntityType>
-  <EntityType Name="Room">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Value" Type="Int32" Nullable="false" />
-    <Property Name="Color" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Show" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="Task">
     <Key>
       <PropertyRef Name="TaskID" />
@@ -125,6 +115,8 @@
     <Property Name="EndTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Tasks1" Relationship="Self.FK_Tasks_Tasks" FromRole="Tasks" ToRole="Tasks1" />
     <NavigationProperty Name="Task1" Relationship="Self.FK_Tasks_Tasks" FromRole="Tasks1" ToRole="Tasks" />
+    <Property Name="MeetingID" Type="Int32" />
+    <Property Name="RoomID" Type="Int32" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -211,7 +203,6 @@
     <EntitySet Name="Groups" EntityType="Self.Group" />
     <EntitySet Name="MeetingAttendees" EntityType="Self.MeetingAttendee" />
     <EntitySet Name="Meetings" EntityType="Self.Meeting" />
-    <EntitySet Name="Rooms" EntityType="Self.Room" />
     <EntitySet Name="Tasks" EntityType="Self.Task" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -249,6 +240,7 @@
     <EntitySet Name="SysEvents" EntityType="fschedulerModel.SysEvent" />
     <EntitySet Name="SupportTeams" EntityType="fschedulerModel.SupportTeam" />
     <EntitySet Name="Attendees" EntityType="fschedulerModel.Attendee" />
+    <EntitySet Name="Rooms" EntityType="fschedulerModel.Room" />
   </EntityContainer>
   <EntityType Name="SysSetting">
     <Key>
@@ -291,5 +283,132 @@
     <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="Show" Type="Boolean" Nullable="false" />
     <Property Name="Length" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Company" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryFirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryLastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryProvState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryPCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryFirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryLastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryPovState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryPCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CastMembers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Playwright" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Director" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="StageManager" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Designer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TeamSize" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NewWork" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Genre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GenreOther" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShowRating" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AgeRestriction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShowContains" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ContentAdvisory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GeneralAdmission" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="StudentSenior" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShowDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ShowImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NameonCheque" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyNameonCheque" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeProvState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeCountry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ChequePCZip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GST" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WhenNotAvailable" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sharing" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SharingRef" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SharingCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SharingShowTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="StagingRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Intermission" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LightingRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SoundRequirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Dancing" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DancingType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Projection" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ImageSize" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ThrowDistance" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Holdovers" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ScreenElevation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ScreenHeight" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ScreenWidth" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectionRatio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MediaType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShootFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShootFromOther" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ScreenMaterial" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SoundOut" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Liquids" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LiquidsDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OpenFlames" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Loud" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LoudDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Firearms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Smoking" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FogMachine" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Strobe" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Hazer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MoreLights" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WirelessMic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Frequencies" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OtherEquipments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EquipmentSpecify" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StageDesign" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SpecialNeeds" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RehearsalTime" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ComingFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FestivalComingFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WhenArriving" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Release" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VenueName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VenueAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VenueTotal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Wheelchair" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WheelchairCapacity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Washrooms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WheelchairWashrooms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Alcohol" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Food" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EnterEarly" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MinutesBefore" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Bar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Minors" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ShowDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PayDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PayMethod" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Refund" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RefundDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DateEntered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VenueNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Show" Type="Boolean" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="RoomType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

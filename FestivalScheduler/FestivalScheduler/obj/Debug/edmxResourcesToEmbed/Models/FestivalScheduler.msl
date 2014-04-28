@@ -296,6 +296,7 @@
     <EntitySetMapping Name="Rooms">
       <EntityTypeMapping TypeName="fschedulerModel.Room">
         <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Show" ColumnName="Show" />
           <ScalarProperty Name="Color" ColumnName="Color" />

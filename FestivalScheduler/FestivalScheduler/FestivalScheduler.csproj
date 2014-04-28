@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -64,8 +68,20 @@
       <HintPath>..\lib\KENDOUIMVC\2014.1.318.545\Kendo.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LINQtoCSV">
+      <HintPath>..\packages\LINQtoCSV.1.5.0.0\lib\net35\LINQtoCSV.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="LynxToolkit.Documents, Version=2014.1.16.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lynx.Documents.2014.1.16.1\lib\portable-NET4+wp71+win8\LynxToolkit.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="LynxToolkit.Documents.OpenXml">
+      <HintPath>..\packages\Lynx.Documents.OpenXml.2014.1.16.1\lib\NET40\LynxToolkit.Documents.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Expression.SilverlightPlatform, Version=5.0.30709.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -87,8 +103,17 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion">
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
@@ -652,7 +677,6 @@
     <Content Include="Scripts\DataTables-1.9.4\scripts\make.sh" />
     <Content Include="Scripts\DataTables-1.9.4\scripts\unit_tests.sh" />
     <Content Include="File\Upload\BYOVArtistMasterList.xlsx" />
-    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\34cdb56b2c.html" />
     <Content Include="Scripts\DataTables-1.9.4\docs\DataTable.defaults.columns.html" />
     <Content Include="Scripts\DataTables-1.9.4\docs\DataTable.defaults.html" />
@@ -1429,11 +1453,12 @@
     <Content Include="Scripts\DataTables-1.9.4\media\unit_testing\tests_onhold\6_delayed_rendering\_zero_config.js" />
     <Content Include="Scripts\DataTables-1.9.4\media\unit_testing\unit_test.js" />
     <Content Include="Scripts\DataTables-1.9.4\Readme.txt" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1780,11 +1805,18 @@
     <Content Include="Views\Attendee\Index.cshtml" />
     <Content Include="Views\Scheduler\ReplaceMeetingByReferenceID.cshtml" />
     <Content Include="Views\Scheduler\ProcessMeetingByReferenceID.cshtml" />
+    <Content Include="Views\Attendee\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RoomResouce.cshtml" />
+    <Content Include="Views\Scheduler\OutdoorHorizontal.cshtml" />
+    <Content Include="Views\Scheduler\OutdoorVertical.cshtml" />
+    <Content Include="Views\Scheduler\VOutdoorRoomFilter.cshtml" />
+    <Content Include="Views\Scheduler\ReplaceOutdoorMeetingByReferenceID.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\UserFiles\Images\" />
     <Folder Include="File\Download\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

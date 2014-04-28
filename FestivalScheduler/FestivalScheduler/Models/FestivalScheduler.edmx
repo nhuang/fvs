@@ -243,11 +243,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Text" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Value" Type="int" Nullable="false" />
-          <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Show" Type="bit" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="2000" />
+          <Property Name="RoomType" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="SupportTeam">
           <Key>
@@ -918,11 +919,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1225,6 +1227,7 @@
           <EntitySetMapping Name="Rooms">
             <EntityTypeMapping TypeName="fschedulerModel.Room">
               <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Color" ColumnName="Color" />

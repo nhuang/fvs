@@ -14,6 +14,8 @@ namespace FestivalScheduler.Models.Resouces
             public string Color { get; set; }
             public bool Show { get; set; }
             public string Address { get; set; }
+            public string RoomType { get; set; }
+
             public Room ToEntity()
             {
                 var room = new Room
@@ -23,7 +25,8 @@ namespace FestivalScheduler.Models.Resouces
                     Value = Value,
                     Color = Color,
                     Show = Show,
-                    Address = Address
+                    Address = Address,
+                    RoomType = RoomType
                 };
 
                 return room;

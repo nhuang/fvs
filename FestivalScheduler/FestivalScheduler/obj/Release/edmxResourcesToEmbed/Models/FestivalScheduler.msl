@@ -88,20 +88,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Rooms">
-      <EntityTypeMapping TypeName="fschedulerModel.Room">
-        <MappingFragment StoreEntitySet="Room">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="Show" ColumnName="Show" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tasks">
       <EntityTypeMapping TypeName="fschedulerModel.Task">
         <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
           <ScalarProperty Name="TaskID" ColumnName="TaskID" />
           <ScalarProperty Name="Start" ColumnName="Start" />
           <ScalarProperty Name="End" ColumnName="End" />
@@ -178,7 +169,135 @@
     <EntitySetMapping Name="Attendees">
       <EntityTypeMapping TypeName="fschedulerModel.Attendee">
         <MappingFragment StoreEntitySet="Attendees">
+          <ScalarProperty Name="VenueNo" ColumnName="VenueNo" />
+          <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
+          <ScalarProperty Name="RefundDate" ColumnName="RefundDate" />
+          <ScalarProperty Name="Refund" ColumnName="Refund" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PayMethod" ColumnName="PayMethod" />
+          <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+          <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+          <ScalarProperty Name="Minors" ColumnName="Minors" />
+          <ScalarProperty Name="Bar" ColumnName="Bar" />
+          <ScalarProperty Name="MinutesBefore" ColumnName="MinutesBefore" />
+          <ScalarProperty Name="EnterEarly" ColumnName="EnterEarly" />
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="Alcohol" ColumnName="Alcohol" />
+          <ScalarProperty Name="WheelchairWashrooms" ColumnName="WheelchairWashrooms" />
+          <ScalarProperty Name="Washrooms" ColumnName="Washrooms" />
+          <ScalarProperty Name="WheelchairCapacity" ColumnName="WheelchairCapacity" />
+          <ScalarProperty Name="Wheelchair" ColumnName="Wheelchair" />
+          <ScalarProperty Name="VenueTotal" ColumnName="VenueTotal" />
+          <ScalarProperty Name="VenueAddress" ColumnName="VenueAddress" />
+          <ScalarProperty Name="VenueName" ColumnName="VenueName" />
+          <ScalarProperty Name="Release" ColumnName="Release" />
+          <ScalarProperty Name="WhenArriving" ColumnName="WhenArriving" />
+          <ScalarProperty Name="FestivalComingFrom" ColumnName="FestivalComingFrom" />
+          <ScalarProperty Name="ComingFrom" ColumnName="ComingFrom" />
+          <ScalarProperty Name="RehearsalTime" ColumnName="RehearsalTime" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="SpecialNeeds" ColumnName="SpecialNeeds" />
+          <ScalarProperty Name="StageDesign" ColumnName="StageDesign" />
+          <ScalarProperty Name="EquipmentSpecify" ColumnName="EquipmentSpecify" />
+          <ScalarProperty Name="OtherEquipments" ColumnName="OtherEquipments" />
+          <ScalarProperty Name="Frequencies" ColumnName="Frequencies" />
+          <ScalarProperty Name="WirelessMic" ColumnName="WirelessMic" />
+          <ScalarProperty Name="MoreLights" ColumnName="MoreLights" />
+          <ScalarProperty Name="Hazer" ColumnName="Hazer" />
+          <ScalarProperty Name="Strobe" ColumnName="Strobe" />
+          <ScalarProperty Name="FogMachine" ColumnName="FogMachine" />
+          <ScalarProperty Name="Smoking" ColumnName="Smoking" />
+          <ScalarProperty Name="Firearms" ColumnName="Firearms" />
+          <ScalarProperty Name="LoudDescribe" ColumnName="LoudDescribe" />
+          <ScalarProperty Name="Loud" ColumnName="Loud" />
+          <ScalarProperty Name="OpenFlames" ColumnName="OpenFlames" />
+          <ScalarProperty Name="LiquidsDescribe" ColumnName="LiquidsDescribe" />
+          <ScalarProperty Name="Liquids" ColumnName="Liquids" />
+          <ScalarProperty Name="SoundOut" ColumnName="SoundOut" />
+          <ScalarProperty Name="ScreenMaterial" ColumnName="ScreenMaterial" />
+          <ScalarProperty Name="ShootFromOther" ColumnName="ShootFromOther" />
+          <ScalarProperty Name="ShootFrom" ColumnName="ShootFrom" />
+          <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+          <ScalarProperty Name="ProjectionRatio" ColumnName="ProjectionRatio" />
+          <ScalarProperty Name="ScreenWidth" ColumnName="ScreenWidth" />
+          <ScalarProperty Name="ScreenHeight" ColumnName="ScreenHeight" />
+          <ScalarProperty Name="ScreenElevation" ColumnName="ScreenElevation" />
+          <ScalarProperty Name="Holdovers" ColumnName="Holdovers" />
+          <ScalarProperty Name="ThrowDistance" ColumnName="ThrowDistance" />
+          <ScalarProperty Name="ImageSize" ColumnName="ImageSize" />
+          <ScalarProperty Name="Projection" ColumnName="Projection" />
+          <ScalarProperty Name="DancingType" ColumnName="DancingType" />
+          <ScalarProperty Name="Dancing" ColumnName="Dancing" />
+          <ScalarProperty Name="SoundRequirements" ColumnName="SoundRequirements" />
+          <ScalarProperty Name="LightingRequirements" ColumnName="LightingRequirements" />
+          <ScalarProperty Name="Intermission" ColumnName="Intermission" />
+          <ScalarProperty Name="StagingRequirements" ColumnName="StagingRequirements" />
+          <ScalarProperty Name="SharingShowTitle" ColumnName="SharingShowTitle" />
+          <ScalarProperty Name="SharingCompany" ColumnName="SharingCompany" />
+          <ScalarProperty Name="SharingRef" ColumnName="SharingRef" />
+          <ScalarProperty Name="Sharing" ColumnName="Sharing" />
+          <ScalarProperty Name="WhenNotAvailable" ColumnName="WhenNotAvailable" />
+          <ScalarProperty Name="GST" ColumnName="GST" />
+          <ScalarProperty Name="ChequePCZip" ColumnName="ChequePCZip" />
+          <ScalarProperty Name="ChequeCountry" ColumnName="ChequeCountry" />
+          <ScalarProperty Name="ChequeProvState" ColumnName="ChequeProvState" />
+          <ScalarProperty Name="ChequeCity" ColumnName="ChequeCity" />
+          <ScalarProperty Name="ChequeAddress" ColumnName="ChequeAddress" />
+          <ScalarProperty Name="CompanyNameonCheque" ColumnName="CompanyNameonCheque" />
+          <ScalarProperty Name="NameonCheque" ColumnName="NameonCheque" />
+          <ScalarProperty Name="ShowImage" ColumnName="ShowImage" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="ShowDescription" ColumnName="ShowDescription" />
+          <ScalarProperty Name="StudentSenior" ColumnName="StudentSenior" />
+          <ScalarProperty Name="GeneralAdmission" ColumnName="GeneralAdmission" />
+          <ScalarProperty Name="ContentAdvisory" ColumnName="ContentAdvisory" />
+          <ScalarProperty Name="ShowContains" ColumnName="ShowContains" />
+          <ScalarProperty Name="AgeRestriction" ColumnName="AgeRestriction" />
+          <ScalarProperty Name="ShowRating" ColumnName="ShowRating" />
+          <ScalarProperty Name="GenreOther" ColumnName="GenreOther" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="NewWork" ColumnName="NewWork" />
+          <ScalarProperty Name="TeamSize" ColumnName="TeamSize" />
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="StageManager" ColumnName="StageManager" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="Playwright" ColumnName="Playwright" />
+          <ScalarProperty Name="CastMembers" ColumnName="CastMembers" />
+          <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+          <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+          <ScalarProperty Name="SecondaryPCZip" ColumnName="SecondaryPCZip" />
+          <ScalarProperty Name="SecondaryCountry" ColumnName="SecondaryCountry" />
+          <ScalarProperty Name="SecondaryPovState" ColumnName="SecondaryPovState" />
+          <ScalarProperty Name="SecondaryCity" ColumnName="SecondaryCity" />
+          <ScalarProperty Name="SecondaryAddress" ColumnName="SecondaryAddress" />
+          <ScalarProperty Name="SecondaryLastName" ColumnName="SecondaryLastName" />
+          <ScalarProperty Name="SecondaryFirstName" ColumnName="SecondaryFirstName" />
+          <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="PrimaryPCZip" ColumnName="PrimaryPCZip" />
+          <ScalarProperty Name="PrimaryCountry" ColumnName="PrimaryCountry" />
+          <ScalarProperty Name="PrimaryProvState" ColumnName="PrimaryProvState" />
+          <ScalarProperty Name="PrimaryCity" ColumnName="PrimaryCity" />
+          <ScalarProperty Name="PrimaryAddress" ColumnName="PrimaryAddress" />
+          <ScalarProperty Name="PrimaryLastName" ColumnName="PrimaryLastName" />
+          <ScalarProperty Name="PrimaryFirstName" ColumnName="PrimaryFirstName" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="fschedulerModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Show" ColumnName="Show" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Value" ColumnName="Value" />

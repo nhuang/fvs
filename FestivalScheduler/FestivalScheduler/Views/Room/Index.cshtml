@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-
-
-
 @(Html.Kendo().Grid<FestivalScheduler.Models.Resouces.RoomViewModel>(Model)
     .Name("Room")
     .Columns(columns =>
@@ -18,10 +15,11 @@
         columns.Bound(r => r.Value).Width("10%");
         columns.Bound(r => r.Color).Width("10%"); ;
         columns.Bound(r => r.Address);
+        columns.Bound(r => r.RoomType);
         columns.Command(command => { command.Edit(); command.Destroy(); }).Width("15%");
     })
     .HtmlAttributes(new { style = "height: 800px;" })
-    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("RoomResouce").Window(w=>w.Width(800)))
     .Pageable()
     .ToolBar(toolbar => toolbar.Create())
     .Sortable()
@@ -59,4 +57,6 @@
             alert(message);
         }
     }
+
+
 </script>

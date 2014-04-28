@@ -13,7 +13,8 @@ namespace FestivalScheduler.Models.Resouces
     public class RoomService
     {
         private fschedulerEntities db;
-
+        public string INDOOR = "Indoor";
+        public string OUTDOOR = "Outdoor";
         public RoomService(fschedulerEntities context)
         {
             db = context;
@@ -24,7 +25,6 @@ namespace FestivalScheduler.Models.Resouces
         {
         }
 
-
         public virtual IQueryable<RoomViewModel> GetAll()
         {
             return db.Rooms.ToList().Select(room => new RoomViewModel
@@ -34,11 +34,12 @@ namespace FestivalScheduler.Models.Resouces
                     Value = room.Value,
                     Color = room.Color,
                     Show = room.Show,
-                    Address = room.Address
+                    Address = room.Address,
+                    RoomType = room.RoomType
                 }).AsQueryable();
         }
 
-        public virtual IQueryable<RoomViewModel> GetRoomsForScheduler()
+        public virtual IQueryable<RoomViewModel> GetRoomsByType(string roomType)
         {
             return db.Rooms.ToList().Select(room => new RoomViewModel
             {
@@ -47,8 +48,24 @@ namespace FestivalScheduler.Models.Resouces
                 Value = room.Value,
                 Color = room.Color,
                 Show = room.Show,
-                Address = room.Address
-            }).Where(r => r.Show == true).AsQueryable();
+                Address = room.Address,
+                RoomType = room.RoomType
+            }).Where(m => m.RoomType == roomType).OrderBy(m=>m.Value).AsQueryable();
+        }
+
+
+        public virtual IQueryable<RoomViewModel> GetRoomsForScheduler(string roomType)
+        {
+            return db.Rooms.ToList().Select(room => new RoomViewModel
+            {
+                ID = room.ID,
+                Text = room.Text,
+                Value = room.Value,
+                Color = room.Color,
+                Show = room.Show,
+                Address = room.Address,
+                RoomType = room.RoomType
+            }).Where(r => r.Show == true && r.RoomType==roomType).AsQueryable();
         }
 
         public virtual void UpdateRoomsToShow(string[] strs )

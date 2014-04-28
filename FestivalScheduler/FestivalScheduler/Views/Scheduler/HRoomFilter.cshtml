@@ -59,7 +59,7 @@
            .DataTextField("Text")
            .DataValueField("Value")
            .DataColorField("Color")
-           .DataSource(ds => ds.Read(read => read.Action("Attendee_Selected", "Attendee"))
+           .DataSource(ds => ds.Read(read => read.Action("Attendee_IndoorSelected", "Attendee"))
          );
         
              resource.Add(m => m.RoomID)
@@ -68,7 +68,7 @@
                  .DataTextField("Text")
                  .DataValueField("Value")
                  .DataColorField("Color")
-                 .DataSource(ds => ds.Read(read => read.Action("Room_Selected", "Room"))
+                 .DataSource(ds => ds.Read(read => read.Action("Room_IndoorSelected", "Room"))
                );
             
          })

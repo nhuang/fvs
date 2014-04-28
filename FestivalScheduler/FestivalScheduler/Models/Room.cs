@@ -20,5 +20,6 @@ namespace FestivalScheduler.Models
         public string Color { get; set; }
         public bool Show { get; set; }
         public string Address { get; set; }
+        public string RoomType { get; set; }
     }
 }

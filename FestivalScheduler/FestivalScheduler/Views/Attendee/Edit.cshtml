@@ -1,0 +1,945 @@
+﻿@model FestivalScheduler.Models.Resouces.ArtistViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ArtistViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <table>
+            <tr>
+                <td colspan="6"><h3 style="color:blue">Company Name and Show Title</h3></td>
+            </tr>
+            <tr>
+                <td style="width:10%">
+                    @Html.LabelFor(model => model.Value, new { @class = "control-label col-md-2" })
+                </td>
+                <td style="width:15%">
+                    @Html.EditorFor(model => model.Value)
+                    @Html.ValidationMessageFor(model => model.Value)
+                </td>
+
+                <td>
+                    @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Text, new { style = "width: 600px" })
+                    @Html.ValidationMessageFor(model => model.Text)
+                </td>
+
+
+                <td style="width:10%">
+                    @Html.LabelFor(model => model.Length, new { @class = "control-label col-md-2" })
+                </td>
+                <td style="width: 15%">
+                    @Html.EditorFor(model => model.Length)
+                    @Html.ValidationMessageFor(model => model.Length)
+                </td>
+
+            </tr>
+            <tr>
+                <td style="width:10%">
+                    @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+                </td>
+                <td style="width: 15%">
+                    @(Html.Kendo().ComboBox()
+                      .Name("Status")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "In", Value = "In"
+                              },
+                              new SelectListItem() {
+                                Text = "Waiting List", Value = "Waiting List"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Status)
+                </td>
+
+                <td>
+                    @Html.LabelFor(model => model.Company, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Company, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.Company)
+                </td>
+
+                <td style="width:10%">
+                    @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+                </td>
+                <td style="width: 15%">
+                    @Html.ValidationMessageFor(model => model.Type)
+                    @(Html.Kendo().ComboBox()
+                        .Name("Type")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Local", Value = "Local"
+                              },
+                              new SelectListItem() {
+                                Text = "National", Value = "National"
+                              },
+                              new SelectListItem() {
+                                Text = "International", Value = "International"
+                              },
+                              new SelectListItem() {
+                                Text = "TYA", Value = "TYA"
+                              },
+                              new SelectListItem() {
+                                Text = "Outdoor", Value = "Outdoor"
+                              },
+                              new SelectListItem() {
+                                Text = "BYOV", Value = "BYOV"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6"><h3 style="color:blue">Primary Contact Information</h3></td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryFirstName, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryFirstName)
+                    @Html.ValidationMessageFor(model => model.PrimaryFirstName)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryLastName, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryLastName)
+                    @Html.ValidationMessageFor(model => model.PrimaryLastName)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryPhone, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryPhone)
+                    @Html.ValidationMessageFor(model => model.PrimaryPhone)
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryEmail, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryEmail)
+                    @Html.ValidationMessageFor(model => model.PrimaryEmail)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryAddress, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.PrimaryAddress, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.PrimaryAddress)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryCity, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.EditorFor(model => model.PrimaryCity)
+                    @Html.ValidationMessageFor(model => model.PrimaryCity)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryProvState, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryProvState)
+                    @Html.ValidationMessageFor(model => model.PrimaryProvState)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryCountry, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryCountry)
+                    @Html.ValidationMessageFor(model => model.PrimaryCountry)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PrimaryPCZip, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PrimaryPCZip)
+                    @Html.ValidationMessageFor(model => model.PrimaryPCZip)
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="6"><h3 style="color:blue">Secondary Contact Information</h3></td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryFirstName, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryFirstName)
+                    @Html.ValidationMessageFor(model => model.SecondaryFirstName)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryLastName, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryLastName)
+                    @Html.ValidationMessageFor(model => model.SecondaryLastName)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryPhone, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryPhone)
+                    @Html.ValidationMessageFor(model => model.SecondaryPhone)
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryEmail, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryEmail)
+                    @Html.ValidationMessageFor(model => model.SecondaryEmail)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryAddress, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.SecondaryAddress, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.SecondaryAddress)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryCity, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryCity)
+                    @Html.ValidationMessageFor(model => model.SecondaryCity)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryPovState, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryPovState)
+                    @Html.ValidationMessageFor(model => model.SecondaryPovState)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryCountry, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryCountry)
+                    @Html.ValidationMessageFor(model => model.SecondaryCountry)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SecondaryPCZip, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SecondaryPCZip)
+                    @Html.ValidationMessageFor(model => model.SecondaryPCZip)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Company Information</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Playwright, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Playwright)
+                    @Html.ValidationMessageFor(model => model.Playwright)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Director, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Director)
+                    @Html.ValidationMessageFor(model => model.Director)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.StageManager, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.StageManager)
+                    @Html.ValidationMessageFor(model => model.StageManager)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Designer, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Designer)
+                    @Html.ValidationMessageFor(model => model.Designer)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.CastMembers, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.CastMembers, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.CastMembers)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TeamSize, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.TeamSize)
+                    @Html.ValidationMessageFor(model => model.TeamSize)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Show information</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.NewWork, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                            .Name("NewWork")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Genre, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Genre)
+                    @Html.ValidationMessageFor(model => model.Genre)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ShowRating, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ShowRating)
+                    @Html.ValidationMessageFor(model => model.ShowRating)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.AgeRestriction, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.AgeRestriction)
+                    @Html.ValidationMessageFor(model => model.AgeRestriction)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ShowContains, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.ShowContains, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.ShowContains)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ContentAdvisory, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.ContentAdvisory, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.ContentAdvisory)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Ticket Price</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.GeneralAdmission, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.GeneralAdmission)
+                    @Html.ValidationMessageFor(model => model.GeneralAdmission)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.StudentSenior, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.StudentSenior, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.StudentSenior)
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Show Description & Website Information</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Website, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Website, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.Website)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ShowDescription, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.ShowDescription, new { style = "width:600px;height:200px" })
+                    @Html.ValidationMessageFor(model => model.ShowDescription)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ShowImage, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.ShowImage, new { style = "width:100%" })
+                    @Html.ValidationMessageFor(model => model.ShowImage)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Artist Payout</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.NameonCheque, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.NameonCheque)
+                    @Html.ValidationMessageFor(model => model.NameonCheque)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.CompanyNameonCheque, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.TextBoxFor(model => model.CompanyNameonCheque, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.CompanyNameonCheque)
+                </td>
+            </tr>
+           
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ChequeProvState, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ChequeProvState)
+                    @Html.ValidationMessageFor(model => model.ChequeProvState)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ChequeCountry, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ChequeCountry)
+                    @Html.ValidationMessageFor(model => model.ChequeCountry)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ChequePCZip, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ChequePCZip)
+                    @Html.ValidationMessageFor(model => model.ChequePCZip)
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Sharing cast or crew members  </h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Sharing, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Sharing")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Sharing)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SharingRef, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.TextBoxFor(model => model.SharingRef, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.SharingRef)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Intermission, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                   @(Html.Kendo().ComboBox()
+                          .Name("Intermission")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Intermission)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SharingShowTitle, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(model => model.SharingShowTitle, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.SharingShowTitle)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Technical Requirements</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.LightingRequirements, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.LightingRequirements, new { style = "width:600px;height:100px" })
+                    @Html.ValidationMessageFor(model => model.LightingRequirements)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.SoundRequirements, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(model => model.SoundRequirements, new { style = "width:600px;height:100px" })
+                    @Html.ValidationMessageFor(model => model.SoundRequirements)
+                </td>
+               
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Dancing, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Dancing")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Dancing)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DancingType, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="3">
+                    @Html.TextBoxFor(model => model.DancingType, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.DancingType)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Projection, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Projection")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Projection)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ImageSize, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ImageSize)
+                    @Html.ValidationMessageFor(model => model.ImageSize)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ThrowDistance, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ThrowDistance)
+                    @Html.ValidationMessageFor(model => model.ThrowDistance)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ProjectionRatio, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ProjectionRatio)
+                    @Html.ValidationMessageFor(model => model.ProjectionRatio)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ScreenHeight, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ScreenHeight)
+                    @Html.ValidationMessageFor(model => model.ScreenHeight)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ScreenWidth, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ScreenWidth)
+                    @Html.ValidationMessageFor(model => model.ScreenWidth)
+                </td>
+               
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.MediaType, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.MediaType)
+                    @Html.ValidationMessageFor(model => model.MediaType)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ShootFrom, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ShootFrom)
+                    @Html.ValidationMessageFor(model => model.ShootFrom)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.ScreenMaterial, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ScreenMaterial)
+                    @Html.ValidationMessageFor(model => model.ScreenMaterial)
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SoundOut, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.SoundOut)
+                    @Html.ValidationMessageFor(model => model.SoundOut)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Liquids, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Liquids)
+                    @Html.ValidationMessageFor(model => model.Liquids)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.LiquidsDescribe, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.LiquidsDescribe, new { style = "width:600px" })
+                    @Html.ValidationMessageFor(model => model.LiquidsDescribe)
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Does your show include the use of the following</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.OpenFlames, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+              .Name("OpenFlames")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.OpenFlames)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Firearms, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Firearms")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Firearms)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Smoking, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Smoking")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Smoking)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.FogMachine, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("FogMachine")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.FogMachine)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Strobe, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Strobe")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Strobe)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Hazer, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("Hazer")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.Hazer)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.MoreLights, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("MoreLights")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.MoreLights)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.WirelessMic, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("WirelessMic")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.WirelessMic)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.OtherEquipments, new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @(Html.Kendo().ComboBox()
+                          .Name("OtherEquipments")
+                          .DataTextField("Text")
+                          .DataValueField("Value")
+                          .BindTo(new List<SelectListItem>() {
+                              new SelectListItem() {
+                                Text = "Yes", Value = "Yes"
+                              },
+                              new SelectListItem() {
+                                Text = "No", Value = "No"
+                              }
+                          })
+                          .SelectedIndex(0)
+                          .Suggest(true)
+                    )
+                    @Html.ValidationMessageFor(model => model.OtherEquipments)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <h3 style="color:blue">Staging requirements</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SpecialNeeds, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="2">
+                    @Html.TextAreaFor(model => model.SpecialNeeds, new { style = "width:600px; height:100px" })
+                    @Html.ValidationMessageFor(model => model.SpecialNeeds)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Comments, new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan="2">
+                    @Html.TextAreaFor(model => model.Comments, new { style = "width:600px; height:100px" })
+                    @Html.ValidationMessageFor(model => model.Comments)
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

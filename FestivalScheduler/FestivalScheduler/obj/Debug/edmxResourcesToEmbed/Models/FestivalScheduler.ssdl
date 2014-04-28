@@ -238,11 +238,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Text" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="Text" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Value" Type="int" Nullable="false" />
-    <Property Name="Color" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="Color" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Show" Type="bit" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="2000" />
+    <Property Name="RoomType" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="SupportTeam">
     <Key>

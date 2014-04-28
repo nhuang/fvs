@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using LINQtoCSV;
 
 namespace FestivalScheduler.Models.Resouces
 {
@@ -15,7 +16,7 @@ namespace FestivalScheduler.Models.Resouces
         public int ID { get; set; }
         [Display(Name = "Show Title"), Required]
         public string Text { get; set; }
-        [Display(Name = "Reference Number"), Required]
+        [Display(Name = "Ref#"), Required]
         public int Value { get; set; }
         [Display(Name = "Color"), Required]
         public string Color { get; set; }
@@ -47,121 +48,353 @@ namespace FestivalScheduler.Models.Resouces
         }
     }
 
-    public class ArtistViewModel : AttendeeViewModel
-    {       
+    public class ArtistViewExportModel
+    {
+        [CsvColumn(Name = "Status", FieldIndex = 0)]
+        public string Status { get; set; }
+        [CsvColumn(Name = "Ref#", FieldIndex = 1)]
+        public int Value { get; set; }
+        [CsvColumn(Name = "Company", FieldIndex = 2)]
         public string Company { get; set; }
+        [CsvColumn(Name = "ShowTitle", FieldIndex = 3)]
+        public string Text { get; set; }
+        [CsvColumn(Name = "PrimaryFirstName", FieldIndex = 4)]
         public string PrimaryFirstName { get; set; }
+        [CsvColumn(Name = "PrimaryLastName", FieldIndex = 5)]
         public string PrimaryLastName { get; set; }
+        [CsvColumn(Name = "PrimaryAddress", FieldIndex = 6)]
         public string PrimaryAddress { get; set; }
+        [CsvColumn(Name = "PrimaryCity", FieldIndex = 7)]
         public string PrimaryCity { get; set; }
+        [CsvColumn(Name = "PrimaryProvState", FieldIndex = 8)]
         public string PrimaryProvState { get; set; }
+        [CsvColumn(Name = "PrimaryCountry", FieldIndex = 9)]
         public string PrimaryCountry { get; set; }
+        [CsvColumn(Name = "PrimaryPCZip", FieldIndex = 10)]
         public string PrimaryPCZip { get; set; }
+        [CsvColumn(Name = "PrimaryPhone", FieldIndex = 11)]
         public string PrimaryPhone { get; set; }
+        [CsvColumn(Name = "PrimaryEmail", FieldIndex = 12)]
         public string PrimaryEmail { get; set; }
+        [CsvColumn(Name = "SecondaryFirstName", FieldIndex = 13)]
         public string SecondaryFirstName { get; set; }
+        [CsvColumn(Name = "SecondaryLastName", FieldIndex = 14)]
         public string SecondaryLastName { get; set; }
+        [CsvColumn(Name = "SecondaryAddress", FieldIndex = 15)]
         public string SecondaryAddress { get; set; }
+        [CsvColumn(Name = "SecondaryCity", FieldIndex = 16)]
         public string SecondaryCity { get; set; }
+        [CsvColumn(Name = "SecondaryPovState", FieldIndex = 17)]
         public string SecondaryPovState { get; set; }
+        [CsvColumn(Name = "SecondaryCountry", FieldIndex = 18)]
         public string SecondaryCountry { get; set; }
+        [CsvColumn(Name = "SecondaryPCZip", FieldIndex = 19)]
         public string SecondaryPCZip { get; set; }
+        [CsvColumn(Name = "SecondaryPhone", FieldIndex = 20)]
         public string SecondaryPhone { get; set; }
+        [CsvColumn(Name = "SecondaryEmail", FieldIndex = 21)]
         public string SecondaryEmail { get; set; }
+        [CsvColumn(Name = "CastMembers", FieldIndex = 22)]
         public string CastMembers { get; set; }
+        [CsvColumn(Name = "Playwright", FieldIndex = 23)]
         public string Playwright { get; set; }
+        [CsvColumn(Name = "Director", FieldIndex = 24)]
         public string Director { get; set; }
+        [CsvColumn(Name = "StageManager", FieldIndex = 25)]
         public string StageManager { get; set; }
+        [CsvColumn(Name = "Designer", FieldIndex = 26)]
         public string Designer { get; set; }
+        [CsvColumn(Name = "TeamSize", FieldIndex = 27)]
         public string TeamSize { get; set; }
-        public string NewWork { get; set; }
-        public string Genre { get; set; }
-        public string GenreOther { get; set; }
-        public string ShowRating { get; set; }
-        public string AgeRestriction { get; set; }
-        public string ShowContains { get; set; }
-        public string ContentAdvisory { get; set; }
-        public string GeneralAdmission { get; set; }
-        public string StudentSenior { get; set; }
-        public string ShowDescription { get; set; }
-        public string Website { get; set; }
-        public string ShowImage { get; set; }
-        public string NameonCheque { get; set; }
-        public string CompanyNameonCheque { get; set; }
+
+        [CsvColumn(Name = "ChequeAddress", FieldIndex = 28)]
         public string ChequeAddress { get; set; }
+        [CsvColumn(Name = "ChequeCity", FieldIndex = 29)]
         public string ChequeCity { get; set; }
+        [CsvColumn(Name = "ChequeProvState", FieldIndex = 30)]
         public string ChequeProvState { get; set; }
+        [CsvColumn(Name = "ChequeCountry", FieldIndex = 31)]
         public string ChequeCountry { get; set; }
+        [CsvColumn(Name = "ChequePCZip", FieldIndex = 32)]
         public string ChequePCZip { get; set; }
+        [CsvColumn(Name = "GST", FieldIndex = 33)]
         public string GST { get; set; }
-        public string WhenNotAvailable { get; set; }
-        public string Sharing { get; set; }
-        public string SharingRef { get; set; }
-        public string SharingCompany { get; set; }
-        public string SharingShowTitle { get; set; }
-        public string StagingRequirements { get; set; }
-        public string Intermission { get; set; }
-        public string LightingRequirements { get; set; }
-        public string SoundRequirements { get; set; }
-        public string Dancing { get; set; }
-        public string DancingType { get; set; }
-        public string Projection { get; set; }
-        public string ImageSize { get; set; }
-        public string ThrowDistance { get; set; }
-        public string Holdovers { get; set; }
-        public string ScreenElevation { get; set; }
-        public string ScreenHeight { get; set; }
-        public string ScreenWidth { get; set; }
-        public string ProjectionRatio { get; set; }
-        public string MediaType { get; set; }
-        public string ShootFrom { get; set; }
-        public string ShootFromOther { get; set; }
-        public string ScreenMaterial { get; set; }
-        public string SoundOut { get; set; }
-        public string Liquids { get; set; }
-        public string LiquidsDescribe { get; set; }
-        public string OpenFlames { get; set; }
-        public string Loud { get; set; }
-        public string LoudDescribe { get; set; }
-        public string Firearms { get; set; }
-        public string Smoking { get; set; }
-        public string FogMachine { get; set; }
-        public string Strobe { get; set; }
-        public string Hazer { get; set; }
-        public string MoreLights { get; set; }
-        public string WirelessMic { get; set; }
-        public string Frequencies { get; set; }
-        public string OtherEquipments { get; set; }
-        public string EquipmentSpecify { get; set; }
-        public string StageDesign { get; set; }
-        public string SpecialNeeds { get; set; }
-        public string Comments { get; set; }
-        public string RehearsalTime { get; set; }
-        public string ComingFrom { get; set; }
-        public string FestivalComingFrom { get; set; }
-        public string WhenArriving { get; set; }
-        public string Release { get; set; }
+
+        [CsvColumn(Name = "VenueName", FieldIndex = 34)]
         public string VenueName { get; set; }
+        [CsvColumn(Name = "VenueAddress", FieldIndex = 35)]
         public string VenueAddress { get; set; }
+        [CsvColumn(Name = "VenueTotal", FieldIndex = 36)]        
         public string VenueTotal { get; set; }
+        [CsvColumn(Name = "Wheelchair", FieldIndex = 37)]
         public string Wheelchair { get; set; }
+        [CsvColumn(Name = "WheelchairCapacity", FieldIndex = 38)]
         public string WheelchairCapacity { get; set; }
+        [CsvColumn(Name = "Washrooms", FieldIndex = 39)]
         public string Washrooms { get; set; }
+        [CsvColumn(Name = "WheelchairWashrooms", FieldIndex = 40)]
         public string WheelchairWashrooms { get; set; }
+        [CsvColumn(Name = "Alcohol", FieldIndex = 41)]
         public string Alcohol { get; set; }
+        [CsvColumn(Name = "Food", FieldIndex = 42)]
         public string Food { get; set; }
+        [CsvColumn(Name = "EnterEarly", FieldIndex = 43)]
         public string EnterEarly { get; set; }
+        [CsvColumn(Name = "MinutesBefore", FieldIndex = 44)]
         public string MinutesBefore { get; set; }
+        [CsvColumn(Name = "Bar", FieldIndex = 45)]
         public string Bar { get; set; }
+        [CsvColumn(Name = "Minors", FieldIndex = 46)]
         public string Minors { get; set; }
+        [CsvColumn(Name = "ShowDate", FieldIndex = 47)]
         public string ShowDate { get; set; }
-        public string PayDate { get; set; }
-        public string PayMethod { get; set; }
-        public string Amount { get; set; }
-        public string Refund { get; set; }
-        public string RefundDate { get; set; }
+        [CsvColumn(Name = "Release", FieldIndex = 48)]
+        public string Release { get; set; }
+        [CsvColumn(Name = "DateEntered", FieldIndex = 49)]
         public string DateEntered { get; set; }
+
+        [CsvColumn(Name = "PayDate", FieldIndex = 50)]
+        public string PayDate { get; set; }
+        [CsvColumn(Name = "PayMethod", FieldIndex = 51)]
+        public string PayMethod { get; set; }
+        [CsvColumn(Name = "Amount", FieldIndex = 52)]
+        public string Amount { get; set; }
+        [CsvColumn(Name = "Refund", FieldIndex = 53)]
+        public string Refund { get; set; }
+        [CsvColumn(Name = "RefundDate", FieldIndex = 54)]
+        public string RefundDate { get; set; }
+
+    }
+
+    public class ArtistViewModel : AttendeeViewModel
+    {
+        [Display(Name = "Company")]
+        public string Company { get; set; }
+        [Display(Name = "First Name")]
+        public string PrimaryFirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string PrimaryLastName { get; set; }
+        [Display(Name = "Address")]
+        public string PrimaryAddress { get; set; }
+        [Display(Name = "City")]
+        public string PrimaryCity { get; set; }
+        [Display(Name = "Prov/State")]
+        public string PrimaryProvState { get; set; }
+        [Display(Name = "Country")]
+        public string PrimaryCountry { get; set; }
+        [Display(Name = "PC/Zip")]
+        public string PrimaryPCZip { get; set; }
+        [Display(Name = "Phone")]
+        public string PrimaryPhone { get; set; }
+        [Display(Name = "Email")]
+        public string PrimaryEmail { get; set; }
+        [Display(Name = "First Name")]
+        public string SecondaryFirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string SecondaryLastName { get; set; }
+        [Display(Name = "Address")]
+        public string SecondaryAddress { get; set; }
+        [Display(Name = "City")]
+        public string SecondaryCity { get; set; }
+        [Display(Name = "Pov/State")]
+        public string SecondaryPovState { get; set; }
+        [Display(Name = "Country")]
+        public string SecondaryCountry { get; set; }
+        [Display(Name = "PC/Zip")]
+        public string SecondaryPCZip { get; set; }
+        [Display(Name = "Phone")]
+        public string SecondaryPhone { get; set; }
+        [Display(Name = "Email")]
+        public string SecondaryEmail { get; set; }
+        [Display(Name = "Cast Members")]
+        public string CastMembers { get; set; }
+        [Display(Name = "Playwright")]
+        public string Playwright { get; set; }
+        [Display(Name = "Director")]
+        public string Director { get; set; }
+        [Display(Name = "Stage Manager")]
+        public string StageManager { get; set; }
+        [Display(Name = "Designer")]
+        public string Designer { get; set; }
+        [Display(Name = "Team Size")]
+        public string TeamSize { get; set; }
+        [Display(Name = "New Work")]
+        public string NewWork { get; set; }
+        [Display(Name = "Genre")]
+        public string Genre { get; set; }
+        [Display(Name = "Genre Other")]
+        public string GenreOther { get; set; }
+        [Display(Name = "Show Rating")]
+        public string ShowRating { get; set; }
+        [Display(Name = "Age Restriction")]
+        public string AgeRestriction { get; set; }
+        [Display(Name = "Show Contains")]
+        public string ShowContains { get; set; }
+        [Display(Name = "Content Advisory")]
+        public string ContentAdvisory { get; set; }
+        [Display(Name = "General Admission")]
+        public string GeneralAdmission { get; set; }
+        [Display(Name = "Student Senior")]
+        public string StudentSenior { get; set; }
+        [Display(Name = "Show Description")]
+        public string ShowDescription { get; set; }
+        [Display(Name = "Website")]
+        public string Website { get; set; }
+        [Display(Name = "Show Image")]
+        public string ShowImage { get; set; }
+        [Display(Name = "Name on Cheque")]
+        public string NameonCheque { get; set; }
+        [Display(Name = "Company Name on Cheque")]
+        public string CompanyNameonCheque { get; set; }
+        [Display(Name = "Address")]
+        public string ChequeAddress { get; set; }
+        [Display(Name = "ChequeCity")]
+        public string ChequeCity { get; set; }
+        [Display(Name = "Prov/State")]
+        public string ChequeProvState { get; set; }
+        [Display(Name = "Country")]
+        public string ChequeCountry { get; set; }
+        [Display(Name = "PCZip")]
+        public string ChequePCZip { get; set; }
+        [Display(Name = "GST")]
+        public string GST { get; set; }
+        [Display(Name = "When Not Available")]
+        public string WhenNotAvailable { get; set; }
+        [Display(Name = "Sharing")]
+        public string Sharing { get; set; }
+        [Display(Name = "Sharing Ref")]
+        public string SharingRef { get; set; }
+        [Display(Name = "Sharing Company")]
+        public string SharingCompany { get; set; }
+        [Display(Name = "Sharing Show Title")]
+        public string SharingShowTitle { get; set; }
+        [Display(Name = "Staging Requirements")]
+        public string StagingRequirements { get; set; }
+        [Display(Name = "Intermission")]
+        public string Intermission { get; set; }
+        [Display(Name = "Lighting Requirements")]
+        public string LightingRequirements { get; set; }
+        [Display(Name = "Sound Requirements")]
+        public string SoundRequirements { get; set; }
+        [Display(Name = "Dancing")]
+        public string Dancing { get; set; }
+        [Display(Name = "Dancing Type")]
+        public string DancingType { get; set; }
+        [Display(Name = "Projection")]
+        public string Projection { get; set; }
+        [Display(Name = "Image Size")]
+        public string ImageSize { get; set; }
+        [Display(Name = "Throw Distance")]
+        public string ThrowDistance { get; set; }
+        [Display(Name = "Holdovers")]
+        public string Holdovers { get; set; }
+        [Display(Name = "Screen Elevation")]
+        public string ScreenElevation { get; set; }
+        [Display(Name = "Screen Height")]
+        public string ScreenHeight { get; set; }
+        [Display(Name = "Screen Width")]
+        public string ScreenWidth { get; set; }
+        [Display(Name = "Projection Ratio")]
+        public string ProjectionRatio { get; set; }
+        [Display(Name = "Media Type")]
+        public string MediaType { get; set; }
+        [Display(Name = "Shoot From")]
+        public string ShootFrom { get; set; }
+        [Display(Name = "Shoot From Other")]
+        public string ShootFromOther { get; set; }
+        [Display(Name = "Screen Material")]
+        public string ScreenMaterial { get; set; }
+        [Display(Name = "Sound Out")]
+        public string SoundOut { get; set; }
+        [Display(Name = "Liquids")]
+        public string Liquids { get; set; }
+        [Display(Name = "Liquids Describe")]
+        public string LiquidsDescribe { get; set; }
+        [Display(Name = "Open Flames")]
+        public string OpenFlames { get; set; }
+        [Display(Name = "Loud")]
+        public string Loud { get; set; }
+        [Display(Name = "Loud Describe")]
+        public string LoudDescribe { get; set; }
+        [Display(Name = "Firearms")]
+        public string Firearms { get; set; }
+        [Display(Name = "Smoking")]
+        public string Smoking { get; set; }
+        [Display(Name = "Fog Machine")]
+        public string FogMachine { get; set; }
+        [Display(Name = "Strobe")]
+        public string Strobe { get; set; }
+        [Display(Name = "Hazer")]
+        public string Hazer { get; set; }
+        [Display(Name = "More Lights")]
+        public string MoreLights { get; set; }
+        [Display(Name = "Wireless Mic")]
+        public string WirelessMic { get; set; }
+        [Display(Name = "Frequencies")]
+        public string Frequencies { get; set; }
+        [Display(Name = "Other Equipments")]
+        public string OtherEquipments { get; set; }
+        [Display(Name = "Equipment Specify")]
+        public string EquipmentSpecify { get; set; }
+        [Display(Name = "Stage Design")]
+        public string StageDesign { get; set; }
+        [Display(Name = "Special Needs")]
+        public string SpecialNeeds { get; set; }
+        [Display(Name = "Comments")]
+        public string Comments { get; set; }
+        [Display(Name = "Rehearsal Time")]
+        public string RehearsalTime { get; set; }
+        [Display(Name = "Coming From")]
+        public string ComingFrom { get; set; }
+        [Display(Name = "Festival Coming From")]
+        public string FestivalComingFrom { get; set; }
+        [Display(Name = "When Arriving")]
+        public string WhenArriving { get; set; }
+        [Display(Name = "Release")]
+        public string Release { get; set; }        
+        [Display(Name = "Venue No")]
         public string VenueNo { get; set; }
+        [Display(Name = "Venue Name")]
+        public string VenueName { get; set; }
+        [Display(Name = "Venue Address")]
+        public string VenueAddress { get; set; }
+        [Display(Name = "Venue Total")]
+        public string VenueTotal { get; set; }
+        [Display(Name = "Wheelchair")]
+        public string Wheelchair { get; set; }
+        [Display(Name = "Wheelchair Capacity")]
+        public string WheelchairCapacity { get; set; }
+        [Display(Name = "Washrooms")]
+        public string Washrooms { get; set; }
+        [Display(Name = "Wheelchair Washrooms")]
+        public string WheelchairWashrooms { get; set; }
+        [Display(Name = "Alcohol")]
+        public string Alcohol { get; set; }
+        [Display(Name = "Food")]
+        public string Food { get; set; }
+        [Display(Name = "Enter Early")]
+        public string EnterEarly { get; set; }
+        [Display(Name = "Minutes Before")]
+        public string MinutesBefore { get; set; }
+        [Display(Name = "Bar")]
+        public string Bar { get; set; }
+        [Display(Name = "Minors")]
+        public string Minors { get; set; }
+        [Display(Name = "Show Date")]
+        public string ShowDate { get; set; }
+        [Display(Name = "Pay Date")]
+        public string PayDate { get; set; }
+        [Display(Name = "Pay Method")]
+        public string PayMethod { get; set; }
+        [Display(Name = "Amount")]
+        public string Amount { get; set; }
+        [Display(Name = "Refund")]
+        public string Refund { get; set; }
+        [Display(Name = "Refund Date")]
+        public string RefundDate { get; set; }
+        [Display(Name = "Date Entered")]
+        public string DateEntered { get; set; }
+       
 
         public Attendee ToArtistEntity(Attendee model)
         {

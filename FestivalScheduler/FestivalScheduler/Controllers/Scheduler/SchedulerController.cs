@@ -74,7 +74,18 @@ namespace FestivalScheduler.Controllers.Scheduler
             ViewBag.EndMinute = settingService.GetEndMinute();
             ViewBag.StartDate = settingService.GetStartDate();
             ViewBag.EndDate = settingService.GetGetEndDate();
-            return View(roomService.GetAll());
+            return View(roomService.GetRoomsByType("Indoor"));
+        }
+        // GET: /Scheduler/OutdoorHorizontal
+        public ActionResult OutdoorHorizontal()
+        {
+            ViewBag.StartHour = settingService.GetStartHour();
+            ViewBag.StartMinute = settingService.GetStartMinute();
+            ViewBag.EndHour = settingService.GetEndHour();
+            ViewBag.EndMinute = settingService.GetEndMinute();
+            ViewBag.StartDate = settingService.GetStartDate();
+            ViewBag.EndDate = settingService.GetGetEndDate();
+            return View(roomService.GetRoomsByType("Outdoor"));
         }
 
         // GET: /Scheduler/Vertical
@@ -87,7 +98,20 @@ namespace FestivalScheduler.Controllers.Scheduler
             ViewBag.StartDate = settingService.GetStartDate();
             ViewBag.EndDate = settingService.GetGetEndDate();
 
-            return View(roomService.GetAll());
+            return View(roomService.GetRoomsByType("Indoor"));
+        }
+
+        // GET: /Scheduler/OutdoorVertical
+        public ActionResult OutdoorVertical()
+        {
+            ViewBag.StartHour = settingService.GetStartHour();
+            ViewBag.StartMinute = settingService.GetStartMinute();
+            ViewBag.EndHour = settingService.GetEndHour();
+            ViewBag.EndMinute = settingService.GetEndMinute();
+            ViewBag.StartDate = settingService.GetStartDate();
+            ViewBag.EndDate = settingService.GetGetEndDate();
+
+            return View(roomService.GetRoomsByType("Outdoor"));
         }
 
         // GET: /Scheduler/AttendeeAgenda
@@ -132,7 +156,12 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View();
         }
 
- 
+        // GET: /Scheduler/ReplaceOutdoorMeetingByReferenceID
+        public ActionResult ReplaceOutdoorMeetingByReferenceID()
+        {
+            return View();
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ProcessMeetingByReferenceID(FormCollection collection)
         {
@@ -141,6 +170,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             string[] startDate = collection.GetValues("datetimepicker");
 
             ViewBag.Result =  meetingService.ReplaceMeetingByReferenceID(fromID[0], toID[0], startDate[0], this.ModelState);
+            attendeeService.ReplaceAttendeeStatus(fromID[0], toID[0]);
 
             NewSysEvent(SysEventViewModel.NEW, string.Format("Meeting Ref#{0} replaced by Ref#{1}, start from {2}.", fromID[0], toID[0], startDate[0]));
             return View();
@@ -161,7 +191,7 @@ namespace FestivalScheduler.Controllers.Scheduler
 
             string[] strs = collection.GetValues("room");
             roomService.UpdateRoomsToShow(strs);
-            return View(roomService.GetAll());
+            return View(roomService.GetRoomsByType("Indoor"));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -195,43 +225,59 @@ namespace FestivalScheduler.Controllers.Scheduler
 
             string[] strs = collection.GetValues("Venue");
             roomService.UpdateRoomsToShow(strs);
-            return View(roomService.GetAll());
+            return View(roomService.GetRoomsByType("Indoor"));
         }
 
 
-        public virtual JsonResult Grouping_Horizontal_Read([DataSourceRequest] DataSourceRequest request)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult VOutdoorRoomFilter(FormCollection collection)
+        {
+            ViewBag.StartHour = settingService.GetStartHour();
+            ViewBag.StartMinute = settingService.GetStartMinute();
+            ViewBag.EndHour = settingService.GetEndHour();
+            ViewBag.EndMinute = settingService.GetEndMinute();
+            ViewBag.StartDate = settingService.GetStartDate();
+            ViewBag.EndDate = settingService.GetGetEndDate();
+
+
+            string[] strs = collection.GetValues("Venue");
+            roomService.UpdateRoomsToShow(strs);
+            return View(roomService.GetRoomsByType("Outdoor"));
+        }
+
+        public virtual JsonResult Indoor_Horizontal_Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(meetingService.GetAll().ToDataSourceResult(request));
         }
 
-        public virtual JsonResult Grouping_Horizontal_Destroy([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
+        public virtual JsonResult Indoor_Horizontal_Destroy([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
         {
             if (ModelState.IsValid)
             {
                 meetingService.Delete(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.DELETED, string.Format("Meeting {0} deleted. Schedule : {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten),meeting.Start.ToString(timePatten),meeting.End.ToString(timePatten),meeting.Description));
+                NewSysEvent(SysEventViewModel.DELETED, string.Format("Indoor Meeting {0} deleted. Schedule : {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Grouping_Horizontal_Create([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
+        public virtual JsonResult Indoor_Horizontal_Create([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
         {
             if (ModelState.IsValid)
             {
                 meetingService.Insert(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.NEW, string.Format("Meeting {0} created. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
+                NewSysEvent(SysEventViewModel.NEW, string.Format("Indoor Meeting {0} created. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Grouping_Horizontal_Update([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
+        public virtual JsonResult Indoor_Horizontal_Update([DataSourceRequest] DataSourceRequest request, MeetingViewModel meeting)
         {
             if (ModelState.IsValid)
             {
                 meetingService.Update(meeting, ModelState);
-                NewSysEvent(SysEventViewModel.UPDATE, string.Format("Meeting {0} updated. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
+                NewSysEvent(SysEventViewModel.UPDATE, string.Format("Indoor Meeting {0} updated. Schedule: {1} {2} to {3}. {4}", meeting.Title, meeting.Start.ToString(datePatten), meeting.Start.ToString(timePatten), meeting.End.ToString(timePatten), meeting.Description));
             }
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));

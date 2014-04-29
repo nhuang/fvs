@@ -518,6 +518,105 @@ namespace FestivalScheduler.Models.Resouces
             }
         }
 
+
+        public string  Update(int id, FormCollection collection, ModelStateDictionary modelState)
+        {
+            try
+            {
+                Attendee attendee = db.Attendees.Where(m => m.ID == id).FirstOrDefault();
+
+                attendee.Value = Convert.ToInt32(collection.GetValues("Value")[0]);
+                attendee.Text = Convert.ToString(collection.GetValues("Text")[0]);
+                attendee.Length = Convert.ToInt32(collection.GetValues("Length")[0]);
+                attendee.Status = Convert.ToString(collection.GetValues("Status")[0]);
+                attendee.Company = Convert.ToString(collection.GetValues("Company")[0]);
+                attendee.Type = Convert.ToString(collection.GetValues("Type")[0]);
+                attendee.PrimaryFirstName = Convert.ToString(collection.GetValues("PrimaryFirstName")[0]);
+                attendee.PrimaryLastName = Convert.ToString(collection.GetValues("PrimaryLastName")[0]);
+                attendee.PrimaryPhone = Convert.ToString(collection.GetValues("PrimaryPhone")[0]);
+                attendee.PrimaryEmail = Convert.ToString(collection.GetValues("PrimaryEmail")[0]);
+                attendee.PrimaryAddress = Convert.ToString(collection.GetValues("PrimaryAddress")[0]);
+                attendee.PrimaryCity = Convert.ToString(collection.GetValues("PrimaryCity")[0]);
+                attendee.PrimaryProvState = Convert.ToString(collection.GetValues("PrimaryProvState")[0]);
+                attendee.PrimaryCountry = Convert.ToString(collection.GetValues("PrimaryCountry")[0]);
+                attendee.PrimaryPCZip = Convert.ToString(collection.GetValues("PrimaryPCZip")[0]);
+                attendee.SecondaryFirstName = Convert.ToString(collection.GetValues("SecondaryFirstName")[0]);
+                attendee.SecondaryLastName = Convert.ToString(collection.GetValues("SecondaryLastName")[0]);
+                attendee.SecondaryPhone = Convert.ToString(collection.GetValues("SecondaryPhone")[0]);
+                attendee.SecondaryEmail = Convert.ToString(collection.GetValues("SecondaryEmail")[0]);
+                attendee.SecondaryAddress = Convert.ToString(collection.GetValues("SecondaryAddress")[0]);
+                attendee.SecondaryCity = Convert.ToString(collection.GetValues("SecondaryCity")[0]);
+                attendee.SecondaryPovState = Convert.ToString(collection.GetValues("SecondaryPovState")[0]);
+                attendee.SecondaryCountry = Convert.ToString(collection.GetValues("SecondaryCountry")[0]);
+                attendee.SecondaryPCZip = Convert.ToString(collection.GetValues("SecondaryPCZip")[0]);
+                attendee.Playwright = Convert.ToString(collection.GetValues("Playwright")[0]);
+                attendee.Director = Convert.ToString(collection.GetValues("Director")[0]);
+                attendee.StageManager = Convert.ToString(collection.GetValues("StageManager")[0]);
+                attendee.Designer = Convert.ToString(collection.GetValues("Designer")[0]);
+                attendee.CastMembers = Convert.ToString(collection.GetValues("CastMembers")[0]);
+                attendee.TeamSize = Convert.ToString(collection.GetValues("TeamSize")[0]);
+                attendee.NewWork = Convert.ToString(collection.GetValues("NewWork")[0]);
+                attendee.Genre = Convert.ToString(collection.GetValues("Genre")[0]);
+                attendee.ShowRating = Convert.ToString(collection.GetValues("ShowRating")[0]);
+                attendee.AgeRestriction = Convert.ToString(collection.GetValues("AgeRestriction")[0]);
+                attendee.ShowContains = Convert.ToString(collection.GetValues("ShowContains")[0]);
+                attendee.ContentAdvisory = Convert.ToString(collection.GetValues("ContentAdvisory")[0]);
+                attendee.GeneralAdmission = Convert.ToString(collection.GetValues("GeneralAdmission")[0]);
+                attendee.StudentSenior = Convert.ToString(collection.GetValues("StudentSenior")[0]);
+                attendee.Website = Convert.ToString(collection.GetValues("Website")[0]);
+                attendee.ShowDescription = Convert.ToString(collection.GetValues("ShowDescription")[0]);
+                attendee.ShowImage = Convert.ToString(collection.GetValues("ShowImage")[0]);
+                attendee.NameonCheque = Convert.ToString(collection.GetValues("NameonCheque")[0]);
+                attendee.CompanyNameonCheque = Convert.ToString(collection.GetValues("CompanyNameonCheque")[0]);
+                attendee.ChequeProvState = Convert.ToString(collection.GetValues("ChequeProvState")[0]);
+                attendee.ChequeCountry = Convert.ToString(collection.GetValues("ChequeCountry")[0]);
+                attendee.ChequePCZip = Convert.ToString(collection.GetValues("ChequePCZip")[0]);
+                attendee.Sharing = Convert.ToString(collection.GetValues("Sharing")[0]);
+                attendee.SharingRef = Convert.ToString(collection.GetValues("SharingRef")[0]);
+                attendee.Intermission = Convert.ToString(collection.GetValues("Intermission")[0]);
+                attendee.SharingShowTitle = Convert.ToString(collection.GetValues("SharingShowTitle")[0]);
+                attendee.LightingRequirements = Convert.ToString(collection.GetValues("LightingRequirements")[0]);
+                attendee.SoundRequirements = Convert.ToString(collection.GetValues("SoundRequirements")[0]);
+                attendee.Dancing = Convert.ToString(collection.GetValues("Dancing")[0]);
+                attendee.DancingType = Convert.ToString(collection.GetValues("DancingType")[0]);
+                attendee.Projection = Convert.ToString(collection.GetValues("Projection")[0]);
+                attendee.ImageSize = Convert.ToString(collection.GetValues("ImageSize")[0]);
+                attendee.ThrowDistance = Convert.ToString(collection.GetValues("ThrowDistance")[0]);
+                attendee.ProjectionRatio = Convert.ToString(collection.GetValues("ProjectionRatio")[0]);
+                attendee.ScreenHeight = Convert.ToString(collection.GetValues("ScreenHeight")[0]);
+                attendee.ScreenWidth = Convert.ToString(collection.GetValues("ScreenWidth")[0]);
+                attendee.MediaType = Convert.ToString(collection.GetValues("MediaType")[0]);
+                attendee.ShootFrom = Convert.ToString(collection.GetValues("ShootFrom")[0]);
+                attendee.ScreenMaterial = Convert.ToString(collection.GetValues("ScreenMaterial")[0]);
+                attendee.SoundOut = Convert.ToString(collection.GetValues("SoundOut")[0]);
+                attendee.Liquids = Convert.ToString(collection.GetValues("Liquids")[0]);
+                attendee.LiquidsDescribe = Convert.ToString(collection.GetValues("LiquidsDescribe")[0]);
+                attendee.OpenFlames = Convert.ToString(collection.GetValues("OpenFlames")[0]);
+                attendee.Firearms = Convert.ToString(collection.GetValues("Firearms")[0]);
+                attendee.Smoking = Convert.ToString(collection.GetValues("Smoking")[0]);
+                attendee.FogMachine = Convert.ToString(collection.GetValues("FogMachine")[0]);
+                attendee.Strobe = Convert.ToString(collection.GetValues("Strobe")[0]);
+                attendee.Hazer = Convert.ToString(collection.GetValues("Hazer")[0]);
+                attendee.MoreLights = Convert.ToString(collection.GetValues("MoreLights")[0]);
+                attendee.WirelessMic = Convert.ToString(collection.GetValues("WirelessMic")[0]);
+                attendee.OtherEquipments = Convert.ToString(collection.GetValues("OtherEquipments")[0]);
+                attendee.SpecialNeeds = Convert.ToString(collection.GetValues("SpecialNeeds")[0]);
+                attendee.Comments = Convert.ToString(collection.GetValues("Comments")[0]);
+
+                db.Attendees.Attach(attendee);
+                db.Entry(attendee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+
+                return "";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+           
+
+        }
+
         public virtual void ReplaceAttendeeStatus(string from, string to)
         {
             int fromID = Convert.ToInt32(from);

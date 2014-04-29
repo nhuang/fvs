@@ -89,3 +89,4 @@ C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\uk-UA\Kendo.Mvc.resources.
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\bin\zh-CN\Kendo.Mvc.resources.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Release\FestivalScheduler.dll
 C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Release\FestivalScheduler.pdb
+C:\Github\fvs\FestivalScheduler\FestivalScheduler\obj\Release\FestivalScheduler.csprojResolveAssemblyReference.cache

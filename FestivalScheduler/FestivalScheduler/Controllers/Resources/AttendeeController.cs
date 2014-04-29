@@ -33,6 +33,7 @@ namespace FestivalScheduler.Controllers.Resources
         // GET: /Attendee/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Message = "";
             return View(service.GetArtistsByID(id));
         }
 
@@ -43,13 +44,14 @@ namespace FestivalScheduler.Controllers.Resources
         {
             try
             {
-                
+                service.Update(id, collection, ModelState);
+                ViewBag.Message = "Update data succeed";
             }
-            catch
+            catch(Exception e)
             {
-               
+                ViewBag.Message = e.Message;
             }
-            return View();
+            return View(service.GetArtistsByID(id));
         }
 
 

@@ -363,7 +363,7 @@ namespace FestivalScheduler.Models.DataResource
                 DateTime startDate = Convert.ToDateTime(sysStarttDate.Value).ToLocalTime();
                 DateTime endDate = Convert.ToDateTime(sysEndDate.Value).ToLocalTime();
 
-               
+
                 // get the rooms
                 List<Room> rooms = db.Rooms.OrderByDescending(m => m.Value).ToList();
                 // get the attendees
@@ -383,7 +383,7 @@ namespace FestivalScheduler.Models.DataResource
                     xlWorkSheet.Cells[1, 1] = "Time";
                     for (int i = 1; i <= days; i++)
                     {
-                        xlWorkSheet.Cells[1, i + 1] = startDate.AddDays(i).ToShortDateString();
+                        xlWorkSheet.Cells[1, i + 1] = startDate.AddDays(i-1).ToShortDateString();
                     }
                     int hour = 24 * 60;
                     int divide = 15;
@@ -396,7 +396,9 @@ namespace FestivalScheduler.Models.DataResource
                     }
 
                     meetings = db.Meetings.Where(m => m.RoomID == room.Value && m.Start >= startDate).OrderBy(m => m.Start).ToList();
-                    
+
+                
+               
                     foreach (Meeting item in meetings)
                     {
                         try
@@ -407,19 +409,60 @@ namespace FestivalScheduler.Models.DataResource
                             int desCellNo = titleCellNo + 1;
                             int endCellNo = (item.End.Hour * 60 / divide) + item.End.Minute / divide + timeslot;
                             int theDay = (int)ts.Days + dayslot;
-                            xlWorkSheet.Cells[titleCellNo, theDay] = string.Format("#{0}",attendee.Value);
+                            xlWorkSheet.Cells[titleCellNo, theDay] = string.Format("#{0}", attendee.Value);
                             xlWorkSheet.Cells[desCellNo, theDay] = string.Format("{0} minutes", attendee.Length);
 
                             Microsoft.Office.Interop.Excel.Range c1 = xlWorkSheet.Cells[titleCellNo, theDay];
                             Microsoft.Office.Interop.Excel.Range c2 = xlWorkSheet.Cells[endCellNo, theDay];
 
-                            Microsoft.Office.Interop.Excel.Range excelRange = xlWorkSheet.get_Range(c1,c2);
+                            Microsoft.Office.Interop.Excel.Range excelRange = xlWorkSheet.get_Range(c1, c2);
                             excelRange.EntireColumn.AutoFit();
                             excelRange.Cells.Interior.Color = GetSystemColorFromHtmlCode(attendee.Color);
                         }
                         catch (Exception e)
                         {
                             string msg = e.Message;
+                        }
+
+                    }
+
+                    // for tech departments
+                    startDate = Convert.ToDateTime(sysStarttDate.Value);
+                    endDate = Convert.ToDateTime(sysEndDate.Value);
+                    ts = endDate - startDate;
+                    for (int i = 0; i < ts.Days; i++)
+                    {
+                        DateTime techDateStart = startDate.AddDays(i);
+                        DateTime techDateEnd = techDateStart.AddDays(1);
+                        Meeting firstMeetingOfTheDay = db.Meetings.Where(m => m.Start >= techDateStart && m.Start < techDateEnd && m.RoomID == room.Value).OrderBy(m => m.Start).FirstOrDefault();
+                        Meeting lastMeetingOfTheDay = db.Meetings.Where(m => m.Start >= techDateStart && m.Start < techDateEnd && m.RoomID == room.Value).OrderByDescending(m => m.Start).FirstOrDefault();
+                        if (firstMeetingOfTheDay != null)
+                        {
+                            firstMeetingOfTheDay.End = firstMeetingOfTheDay.Start;
+                            firstMeetingOfTheDay.Start = firstMeetingOfTheDay.Start.AddMinutes(-30);
+                            lastMeetingOfTheDay.Start = lastMeetingOfTheDay.End;
+                            lastMeetingOfTheDay.End = lastMeetingOfTheDay.End.AddMinutes(30);
+                            // Tech Start
+                            int titleCellNo = (firstMeetingOfTheDay.Start.Hour * 60 / divide) + firstMeetingOfTheDay.Start.Minute / divide + timeslot;
+                            int endCellNo = titleCellNo+1;
+                            int theDay = i + dayslot;
+                            xlWorkSheet.Cells[titleCellNo, theDay] = "Tech Start";
+
+                            Microsoft.Office.Interop.Excel.Range c1 = xlWorkSheet.Cells[titleCellNo, theDay];
+                            Microsoft.Office.Interop.Excel.Range c2 = xlWorkSheet.Cells[endCellNo, theDay];
+                            Microsoft.Office.Interop.Excel.Range excelRange = xlWorkSheet.get_Range(c1, c2);
+                            excelRange.EntireColumn.AutoFit();
+                            excelRange.Cells.Interior.Color = System.Drawing.Color.LightGreen;
+                            // Tech End
+                            titleCellNo = (lastMeetingOfTheDay.Start.Hour * 60 / divide) + lastMeetingOfTheDay.Start.Minute / divide + timeslot;
+                            endCellNo = titleCellNo + 1;
+                            xlWorkSheet.Cells[titleCellNo, theDay] = "Tech End";
+
+                            c1 = xlWorkSheet.Cells[titleCellNo, theDay];
+                            c2 = xlWorkSheet.Cells[endCellNo, theDay];
+                            excelRange = xlWorkSheet.get_Range(c1, c2);
+                            excelRange.EntireColumn.AutoFit();
+                            excelRange.Cells.Interior.Color = System.Drawing.Color.LightGreen;
                         }
 
                     }

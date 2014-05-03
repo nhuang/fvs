@@ -29,6 +29,14 @@ namespace FestivalScheduler.Controllers.Resources
         // GET: /DataResource/GetAllArtistToExcel
         public ActionResult GetAllArtistToExcel()
         {
+            try
+            {
+                dataIOService.ExportSchedule();
+            }
+            catch
+            {
+
+            }
             string file = attendeeService.GetAllArtistsForExport();
             if (!file.StartsWith("Error"))
             {

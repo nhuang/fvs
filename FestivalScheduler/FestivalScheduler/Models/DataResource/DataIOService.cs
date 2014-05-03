@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Excel;
 using System.IO;
+using Excel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
@@ -13,6 +13,8 @@ using System.Text;
 using FestivalScheduler.Models.Resouces;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace FestivalScheduler.Models.DataResource
 {
@@ -36,7 +38,7 @@ namespace FestivalScheduler.Models.DataResource
         public string ProcessImportArtistData(string username, string password)
         {
             string result = "";
-            
+
             result = ImportArtistDataFromService(username, password);
             if (!string.IsNullOrEmpty(result))
             {
@@ -48,7 +50,7 @@ namespace FestivalScheduler.Models.DataResource
             {
                 return result;
             }
-            
+
             //ConvertToKeyDisplayMapping();
 
             PDFService pdf = new PDFService();
@@ -336,6 +338,120 @@ namespace FestivalScheduler.Models.DataResource
             // delete Attendees
             db.Database.ExecuteSqlCommand("TRUNCATE TABLE Attendees");
             db.SaveChanges();
+        }
+
+        public void ExportSchedule()
+        {
+            try
+            {
+                string fileName = "schedule.xls";
+                string filePath = HttpContext.Current.Server.MapPath("~/File/Download/") + fileName;
+
+                Application xlApp;
+                Workbook xlWorkBook;
+                Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+
+                xlApp = new Application();
+                xlApp.DisplayAlerts = false;
+
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+
+                // get the schedule start and end date
+                SysSetting sysStarttDate = db.SysSettings.Where(m => m.KeyName == "StartDate").FirstOrDefault();
+                SysSetting sysEndDate = db.SysSettings.Where(m => m.KeyName == "EndDate").FirstOrDefault();
+                DateTime startDate = Convert.ToDateTime(sysStarttDate.Value).ToLocalTime();
+                DateTime endDate = Convert.ToDateTime(sysEndDate.Value).ToLocalTime();
+
+               
+                // get the rooms
+                List<Room> rooms = db.Rooms.OrderByDescending(m => m.Value).ToList();
+                // get the attendees
+                List<Attendee> listAttendees = db.Attendees.OrderBy(m => m.Value).ToList();
+                // get meetings by room
+                List<Meeting> meetings;
+                int dayslot = 2;
+                int timeslot = 1;
+                startDate = Convert.ToDateTime(sysStarttDate.Value);
+                foreach (Room room in rooms)
+                {
+                    xlWorkSheet = (Worksheet)xlWorkBook.Worksheets.Add();
+                    xlWorkSheet.Name = room.Text;
+                    // set the title for each day
+                    TimeSpan ts = endDate - startDate;
+                    double days = ts.TotalDays;
+                    xlWorkSheet.Cells[1, 1] = "Time";
+                    for (int i = 1; i <= days; i++)
+                    {
+                        xlWorkSheet.Cells[1, i + 1] = startDate.AddDays(i).ToShortDateString();
+                    }
+                    int hour = 24 * 60;
+                    int divide = 15;
+
+                    DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                    for (int i = 1; i < (hour / divide); i++)
+                    {
+                        xlWorkSheet.Cells[i + 1, 1] = today.AddMinutes(divide).ToShortTimeString();
+                        today = today.AddMinutes(divide);
+                    }
+
+                    meetings = db.Meetings.Where(m => m.RoomID == room.Value && m.Start >= startDate).OrderBy(m => m.Start).ToList();
+                    
+                    foreach (Meeting item in meetings)
+                    {
+                        try
+                        {
+                            Attendee attendee = GetAttendeeByMeeting(item, listAttendees);
+                            ts = (item.Start - startDate);
+                            int titleCellNo = (item.Start.Hour * 60 / divide) + item.Start.Minute / divide + timeslot;
+                            int desCellNo = titleCellNo + 1;
+                            int endCellNo = (item.End.Hour * 60 / divide) + item.End.Minute / divide + timeslot;
+                            int theDay = (int)ts.Days + dayslot;
+                            xlWorkSheet.Cells[titleCellNo, theDay] = string.Format("#{0}",attendee.Value);
+                            xlWorkSheet.Cells[desCellNo, theDay] = string.Format("{0} minutes", attendee.Length);
+
+                            Microsoft.Office.Interop.Excel.Range c1 = xlWorkSheet.Cells[titleCellNo, theDay];
+                            Microsoft.Office.Interop.Excel.Range c2 = xlWorkSheet.Cells[endCellNo, theDay];
+
+                            Microsoft.Office.Interop.Excel.Range excelRange = xlWorkSheet.get_Range(c1,c2);
+                            excelRange.EntireColumn.AutoFit();
+                            excelRange.Cells.Interior.Color = GetSystemColorFromHtmlCode(attendee.Color);
+                        }
+                        catch (Exception e)
+                        {
+                            string msg = e.Message;
+                        }
+
+                    }
+                }
+
+                xlWorkBook.SaveAs(filePath, XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+            }
+        }
+
+        public System.Drawing.Color GetSystemColorFromHtmlCode(string htmlcolor)
+        {
+            return System.Drawing.ColorTranslator.FromHtml(htmlcolor);
+        }
+
+        public Attendee GetAttendeeByMeeting(Meeting meeting, List<Attendee> list)
+        {
+            int ID = meeting.MeetingAttendees.First().AttendeeID;
+            foreach (Attendee item in list)
+            {
+                if (item.Value == ID)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }

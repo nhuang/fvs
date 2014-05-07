@@ -65,6 +65,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(attendeeService.GetAll());
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/Horizontal
         public ActionResult Horizontal()
         {
@@ -76,6 +77,8 @@ namespace FestivalScheduler.Controllers.Scheduler
             ViewBag.EndDate = settingService.GetGetEndDate();
             return View(roomService.GetRoomsByType("Indoor"));
         }
+
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/OutdoorHorizontal
         public ActionResult OutdoorHorizontal()
         {
@@ -88,6 +91,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(roomService.GetRoomsByType("Outdoor"));
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/Vertical
         public ActionResult Vertical()
         {
@@ -101,6 +105,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(roomService.GetRoomsByType("Indoor"));
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/OutdoorVertical
         public ActionResult OutdoorVertical()
         {
@@ -120,6 +125,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(attendeeService.CountShowsForAttendee());
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/TimeTable
         public ActionResult TimeTable()
         {
@@ -133,6 +139,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return View(attendeeService.CountShowsForAttendee());
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/ResetMeetingTitles
         public ActionResult ResetMeetingTitles()
         {
@@ -140,7 +147,7 @@ namespace FestivalScheduler.Controllers.Scheduler
             return RedirectToAction("AttendeeAgenda", "Scheduler");
         }
 
-
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/GenerateAgendaPDF
         public ActionResult GenerateAgendaPDF()
         {
@@ -150,12 +157,14 @@ namespace FestivalScheduler.Controllers.Scheduler
             return RedirectToAction("AttendeeAgenda", "Scheduler");
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/ReplaceMeetingByReferenceID
         public ActionResult ReplaceMeetingByReferenceID()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /Scheduler/ReplaceOutdoorMeetingByReferenceID
         public ActionResult ReplaceOutdoorMeetingByReferenceID()
         {

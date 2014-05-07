@@ -11,10 +11,8 @@
     @RenderSection("scripts", required: false)
 
     <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/demo_page.css")" rel="stylesheet" type="text/css" />
+ 
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/DataTables-1.9.4/extras/TableTools/media/css/TableTools.css")" rel="stylesheet" type="text/css" />
 
@@ -82,6 +80,7 @@
                           innerChildren.Add().Text("Reset Meeting Titles").Action("ResetMeetingTitles", "Scheduler");
                           innerChildren.Add().Text("Import Artist").Action("ImportArtistData", "DataResource");
                           innerChildren.Add().Text("Export Artist").Action("GetAllArtistToExcel", "DataResource");
+                          innerChildren.Add().Text("Export Schedule").Action("GetSchedulToExcel", "DataResource");
                       });
                children.Add().Text("Resources")
                                    .Items(innerChildren =>
@@ -89,7 +88,7 @@
                                        innerChildren.Add().Text("Rooms").Action("Index", "Room");
                                        innerChildren.Add().Text("Attendee").Action("Index", "Attendee");
                                        innerChildren.Add().Text("Clean System").Action("SchedulerResetIndex", "DataResource");
-                                   });              
+                                   });
            });
 
           items.Add()
@@ -103,7 +102,7 @@
                           innerChildren.Add().Text("Groups").Action("Index", "Groups");
                           innerChildren.Add().Text("Permissions").Action("Index", "Roles");
                       });
-             
+
               children.Add().Text("System")
                      .Items(innerChildren =>
                      {

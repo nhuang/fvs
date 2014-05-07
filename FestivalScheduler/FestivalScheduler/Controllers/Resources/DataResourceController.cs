@@ -26,34 +26,63 @@ namespace FestivalScheduler.Controllers.Resources
             return View();
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /DataResource/GetAllArtistToExcel
         public ActionResult GetAllArtistToExcel()
         {
             try
             {
-                dataIOService.ExportSchedule();
+                string file = attendeeService.GetAllArtistsForExport();
+                if (!file.StartsWith("Error"))
+                {
+                    System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+                    response.ClearContent();
+                    response.Clear();
+                    response.ContentType = "application/vnd.xls";
+                    response.AddHeader("Content-Disposition", "attachment; filename=" + "ArtistMaster.csv" + ";");
+                    response.TransmitFile(file);
+                    response.End();
+                }
+
             }
             catch
             {
 
             }
-            string file = attendeeService.GetAllArtistsForExport();
-            if (!file.StartsWith("Error"))
-            {
-                System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
-                response.ClearContent();
-                response.Clear();
-                response.ContentType = "application/vnd.xls";
-                response.AddHeader("Content-Disposition", "attachment; filename=" + "ArtistMaster.csv" + ";");
-                response.TransmitFile(file);
-                response.End();
-            }
-
+           
 
             return RedirectToAction("AttendeeAgenda", "Scheduler");
         }
- 
 
+
+
+        [Authorize(Roles = "Admin, Scheduler")]
+        // GET: /DataResource/GetSchedulToExcel
+        public ActionResult GetSchedulToExcel()
+        {
+            try
+            {
+                string file = dataIOService.ExportSchedule();
+                if (!file.StartsWith("Error"))
+                {
+                    System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+                    response.ClearContent();
+                    response.Clear();
+                    response.ContentType = "application/vnd.xls";
+                    response.AddHeader("Content-Disposition", "attachment; filename=" + "schedule.xls" + ";");
+                    response.TransmitFile(file);
+                    response.End();
+                }
+            }
+            catch
+            {
+
+            }
+            
+            return RedirectToAction("AttendeeAgenda", "Scheduler");
+        }
+
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /DataResource/ImportArtistData
         public ActionResult ImportArtistData()
         {
@@ -77,6 +106,7 @@ namespace FestivalScheduler.Controllers.Resources
             return View(); 
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         // GET: /DataResource/SchedulerResetIndex
         public ActionResult SchedulerResetIndex()
         {

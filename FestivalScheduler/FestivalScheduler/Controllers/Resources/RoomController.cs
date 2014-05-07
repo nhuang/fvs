@@ -20,6 +20,7 @@ namespace FestivalScheduler.Controllers.Resources
 			this.roomService = new RoomService();
 		}
 
+        [Authorize(Roles = "Admin, Scheduler")]
 		//
 		// GET: /Room/
 		public ActionResult Index()

@@ -340,12 +340,12 @@ namespace FestivalScheduler.Models.DataResource
             db.SaveChanges();
         }
 
-        public void ExportSchedule()
+        public string ExportSchedule()
         {
+            string filePath = "schedule.xls";
             try
             {
-                string fileName = "schedule.xls";
-                string filePath = HttpContext.Current.Server.MapPath("~/File/Download/") + fileName;
+                filePath = HttpContext.Current.Server.MapPath("~/File/Download/") + filePath;
 
                 Application xlApp;
                 Workbook xlWorkBook;
@@ -477,6 +477,8 @@ namespace FestivalScheduler.Models.DataResource
             {
                 string msg = e.Message;
             }
+
+            return filePath;
         }
 
         public System.Drawing.Color GetSystemColorFromHtmlCode(string htmlcolor)

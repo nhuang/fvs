@@ -21,6 +21,7 @@ namespace FestivalScheduler.Controllers.Resources
             this.service = new AttendeeService();
         }
 
+        [Authorize(Roles = "Admin, Scheduler")]
         //
         // GET: /Attendee/
         public ActionResult Index()
